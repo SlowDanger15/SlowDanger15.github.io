@@ -3,10 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Website</title>
+    <title>Rohan Prasad - Personal Website</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my personal website!</p>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Rohan Prasad</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="jumbotron text-center bg-light">
+        <div class="container">
+            <h1 class="display-4">Rohan Prasad</h1>
+            <p class="lead">Master's Student in Computer Science | AI/ML Enthusiast | Software Engineer</p>
+            <a href="mailto:rohanprasad.2001@gmail.com" class="btn btn-primary">Contact Me</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I am a Master’s student in Computer Science and Engineering at The Pennsylvania State University, graduating in May 2025. My academic background and professional experiences revolve around software development, AI/ML, and parallel computing. I enjoy working on impactful projects and exploring new technologies.</p>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="bg-light py-5">
+        <div class="container">
+            <h2>Experience</h2>
+            <ul>
+                <li><strong>AI/ML Scientist Intern</strong> at SAP (May 2024 – Present): Developed LLM-powered Multi-Agent Systems and optimized token utilization with RAG techniques.</li>
+                <li><strong>Software Engineer Intern</strong> at Akamai Technologies (Jan 2023 – Jul 2023): Built a Parquet File Parser and enhanced system diagnostics with OpenTelemetry.</li>
+                <li><strong>Data Analyst Intern</strong> at NeoDocto Inc. (Feb 2022 – Apr 2023): Analyzed trends in customer orders using tools like SQL, Tableau, and Python.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5">
+        <div class="container">
+            <h2>Projects</h2>
+            <ul>
+                <li><strong>Parallel Algorithms for Max Flow:</strong> Implemented lock-free async push-relabel algorithm achieving 4x speedup.</li>
+                <li><strong>Parallel File System:</strong> Built a system with gRPC communication for efficient file synchronization.</li>
+                <li><strong>Deep Learning for Brain Tumor Classification:</strong> Applied CNNs and ensemble learning for tumor identification with 79% accuracy.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="bg-light py-5">
+        <div class="container">
+            <h2>Publications</h2>
+            <ul>
+                <li><a href="https://ieeexplore.ieee.org/document/10037548" target="_blank">Classification of Brain Images for Identification of Tumors (IEEE Xplore, Feb 2023)</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5">
+        <div class="container">
+            <h2>Skills</h2>
+            <p><strong>Programming Languages:</strong> Python, C/C++, CUDA, Java, JavaScript, R, HTML, CSS.</p>
+            <p><strong>Tools & Frameworks:</strong> Kubernetes, Docker, Jenkins CI/CD, TensorFlow, PyTorch, Apache Spark.</p>
+            <p><strong>Key Areas:</strong> Generative AI, Parallel Programming, Distributed Systems, Machine Learning.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 bg-dark text-white">
+        <p>&copy; 2025 Rohan Prasad | <a href="https://github.com/SlowDanger15" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank">LinkedIn</a></p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
