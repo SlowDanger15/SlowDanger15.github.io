@@ -32,7 +32,7 @@
     <section class="jumbotron text-center bg-light">
         <div class="container">
             <h1 class="display-4">Rohan Prasad</h1>
-            <p class="lead">Master's Student in Computer Science | AI/ML Enthusiast | Software Engineer</p>
+            <p class="lead">Master's Student in Computer Science | AI/ML Scientist | Software Engineer</p>
             <a href="mailto:rohanprasad.2001@gmail.com" class="btn btn-primary">Contact Me</a>
         </div>
     </section>
@@ -56,14 +56,84 @@
 
             <!-- Subsections -->
             <h3>Courses Taken</h3>
-            <h5>1st Year</h5>
-            <p>Data Structures, Introduction to Programming, Mathematics I, Physics.</p>
-            <h5>2nd Year</h5>
-            <p>Algorithms, Computer Networks, Operating Systems, Mathematics II.</p>
-            <h5>3rd Year</h5>
-            <p>Distributed Systems, Machine Learning, Database Management Systems, OOP.</p>
-            <h5>4th Year</h5>
-            <p>Advanced AI, Parallel Programming, Deep Learning, Graph Analytics.</p>
+            <div class="accordion" id="courseAccordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                1st Year
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#courseAccordion">
+                        <div class="card-body">
+                            <ul>
+                                <li>Data Structures</li>
+                                <li>Introduction to Programming</li>
+                                <li>Mathematics I</li>
+                                <li>Physics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                2nd Year
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#courseAccordion">
+                        <div class="card-body">
+                            <ul>
+                                <li>Algorithms</li>
+                                <li>Computer Networks</li>
+                                <li>Operating Systems</li>
+                                <li>Mathematics II</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                3rd Year
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#courseAccordion">
+                        <div class="card-body">
+                            <ul>
+                                <li>Distributed Systems</li>
+                                <li>Machine Learning</li>
+                                <li>Database Management Systems</li>
+                                <li>Object-Oriented Programming</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingFour">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                4th Year
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#courseAccordion">
+                        <div class="card-body">
+                            <ul>
+                                <li>Advanced AI</li>
+                                <li>Parallel Programming</li>
+                                <li>Deep Learning</li>
+                                <li>Graph Analytics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <h3>Achievements</h3>
             <ul>
@@ -80,55 +150,52 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-5">
-        <div class="container">
-            <h2>Experience</h2>
-            <ul>
-                <li><strong>AI/ML Scientist Intern</strong> at SAP (May 2024 – Present): Developed LLM-powered Multi-Agent Systems and optimized token utilization with RAG techniques.</li>
-                <li><strong>Software Engineer Intern</strong> at Akamai Technologies (Jan 2023 – Jul 2023): Enhanced in house cloud services provider system diagnostics with OpenTelemetry</li>
-                <li><strong>Software Engineer Intern</strong> at Akamai Technologies (Jun 2023 – Jul 2023): Built a Parquet File Parser using C using a context free grammar utilizing concepts of Finite State Machines and Automata theory</li>
-                <li><strong>Data Analyst Intern</strong> at NeoDocto Inc. (Feb 2022 – Apr 2023): Analyzed trends in customer orders using tools like SQL, Tableau, and Python.</li>
-            </ul>
-        </div>
-    </section>
-
     <!-- Projects Section -->
     <section id="projects" class="bg-light py-5">
         <div class="container">
             <h2>Projects</h2>
-            <ul>
-                <li><strong>Parallel Algorithms for Max Flow</strong>
-                    <p><strong>Description:</strong> Implemented lock-free async push-relabel algorithm achieving 4x speedup.</p>
-                    <p><strong>Tech Stack:</strong> CUDA, GPU Programming, Graph Analytics</p>
-                    <p><strong>URL:</strong> <a href="#">GitHub Repository</a></p>
-                </li>
-                <li><strong>Parallel File System</strong>
-                    <p><strong>Description:</strong> Built a system with gRPC communication for efficient file synchronization.</p>
-                    <p><strong>Tech Stack:</strong> C, C++, gRPC, Protobuf</p>
-                    <p><strong>URL:</strong> <a href="#">GitHub Repository</a></p>
-                </li>
-                <li><strong>Deep Learning for Brain Tumor Classification</strong>
-                    <p><strong>Description:</strong> Applied CNNs and ensemble learning for tumor identification with 79% accuracy.</p>
-                    <p><strong>Tech Stack:</strong> Python, Tensorflow, Keras</p>
-                    <p><strong>URL:</strong> <a href="#">GitHub Repository</a></p>
-                </li>
-                <li><strong>Systolic Array Hardware Optimization</strong>
-                    <p><strong>Description:</strong> Improved architecture for Transformer Forward Pass with hardware utilization of 76.19%.</p>
-                    <p><strong>Tech Stack:</strong> Python, Scale-sim</p>
-                    <p><strong>URL:</strong> <a href="#">GitHub Repository</a></p>
-                </li>
-                <li><strong>Dynamic Network Traffic Analysis</strong>
-                    <p><strong>Description:</strong> Designed a system to analyze and optimize network traffic in real-time.</p>
-                    <p><strong>Tech Stack:</strong> Python, OpenTelemetry</p>
-                    <p><strong>URL:</strong> <a href="#">GitHub Repository</a></p>
-                </li>
-                <li><strong>Knowledge Graph Construction</strong>
-                    <p><strong>Description:</strong> Built a scalable knowledge graph for multi-agent coordination using LangChain.</p>
-                    <p><strong>Tech Stack:</strong> Python, LangChain, Knowledge Graphs</p>
-                    <p><strong>URL:</strong> <a href="#">GitHub Repository</a></p>
-                </li>
-            </ul>
+            <div id="projectCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Parallel Algorithms for Max Flow</h5>
+                                <p class="card-text">Implemented lock-free async push-relabel algorithm achieving 4x speedup.</p>
+                                <p><strong>Tech Stack:</strong> CUDA, GPU Programming, Graph Analytics</p>
+                                <a href="#" class="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Parallel File System</h5>
+                                <p class="card-text">Built a system with gRPC communication for efficient file synchronization.</p>
+                                <p><strong>Tech Stack:</strong> C, C++, gRPC, Protobuf</p>
+                                <a href="#" class="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Deep Learning for Brain Tumor Classification</h5>
+                                <p class="card-text">Applied CNNs and ensemble learning for tumor identification with 79% accuracy.</p>
+                                <p><strong>Tech Stack:</strong> Python, Tensorflow, Keras</p>
+                                <a href="#" class="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#projectCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#projectCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -162,4 +229,3 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
