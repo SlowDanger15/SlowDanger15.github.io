@@ -18,6 +18,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
                     <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
@@ -44,32 +45,95 @@
         </div>
     </section>
 
+    <!-- Education Section -->
+    <section id="education" class="bg-light py-5">
+        <div class="container">
+            <h2>Education</h2>
+            <h4>The Pennsylvania State University</h4>
+            <p>Master of Science in Computer Science, Aug 2023 – May 2025</p>
+            <h4>Manipal Institute of Technology</h4>
+            <p>Bachelor of Technology in Computer Science, Jul 2019 – Jun 2023</p>
+
+            <!-- Subsections -->
+            <h3>Courses Taken</h3>
+            <h5>1st Year</h5>
+            <p>Data Structures, Introduction to Programming, Mathematics I, Physics.</p>
+            <h5>2nd Year</h5>
+            <p>Algorithms, Computer Networks, Operating Systems, Mathematics II.</p>
+            <h5>3rd Year</h5>
+            <p>Distributed Systems, Machine Learning, Database Management Systems, OOP.</p>
+            <h5>4th Year</h5>
+            <p>Advanced AI, Parallel Programming, Deep Learning, Graph Analytics.</p>
+
+            <h3>Achievements</h3>
+            <ul>
+                <li>HackPSU: 3rd Place; Penn State’s largest student-run collegiate hackathon.</li>
+                <li>FormulaAI Hack: 2nd place; 3D Modeling Global Hackathon organized by Oracle RedBull Racing.</li>
+                <li>CodeStreet: Finalist and 2nd in Ideation; Cybersecurity in FinTech Hackathon organized by AmEx.</li>
+            </ul>
+
+            <h3>Volunteering Work</h3>
+            <ul>
+                <li>Organized coding workshops for high school students to introduce them to programming concepts.</li>
+                <li>Volunteered at local community centers to teach basic computer skills to adults.</li>
+            </ul>
+        </div>
+    </section>
+
     <!-- Experience Section -->
-    <section id="experience" class="bg-light py-5">
+    <section id="experience" class="py-5">
         <div class="container">
             <h2>Experience</h2>
             <ul>
                 <li><strong>AI/ML Scientist Intern</strong> at SAP (May 2024 – Present): Developed LLM-powered Multi-Agent Systems and optimized token utilization with RAG techniques.</li>
-                <li><strong>Software Engineer Intern</strong> at Akamai Technologies (Jan 2023 – Jul 2023): Built a Parquet File Parser and enhanced system diagnostics with OpenTelemetry.</li>
+                <li><strong>Software Engineer Intern</strong> at Akamai Technologies (Jan 2023 – Jul 2023): Enhanced in house cloud services provider system diagnostics with OpenTelemetry</li>
+                <li><strong>Software Engineer Intern</strong> at Akamai Technologies (Jun 2023 – Jul 2023): Built a Parquet File Parser using C using a context free grammar utilizing concepts of Finite State Machines and Automata theory</li>
                 <li><strong>Data Analyst Intern</strong> at NeoDocto Inc. (Feb 2022 – Apr 2023): Analyzed trends in customer orders using tools like SQL, Tableau, and Python.</li>
             </ul>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-5">
+    <section id="projects" class="bg-light py-5">
         <div class="container">
             <h2>Projects</h2>
             <ul>
-                <li><strong>Parallel Algorithms for Max Flow:</strong> Implemented lock-free async push-relabel algorithm achieving 4x speedup.</li>
-                <li><strong>Parallel File System:</strong> Built a system with gRPC communication for efficient file synchronization.</li>
-                <li><strong>Deep Learning for Brain Tumor Classification:</strong> Applied CNNs and ensemble learning for tumor identification with 79% accuracy.</li>
+                <li><strong>Parallel Algorithms for Max Flow</strong>
+                    <p><strong>Description:</strong> Implemented lock-free async push-relabel algorithm achieving 4x speedup.</p>
+                    <p><strong>Tech Stack:</strong> CUDA, GPU Programming, Graph Analytics</p>
+                    <p><strong>URL:</strong> <a href="#">GitHub Repository</a></p>
+                </li>
+                <li><strong>Parallel File System</strong>
+                    <p><strong>Description:</strong> Built a system with gRPC communication for efficient file synchronization.</p>
+                    <p><strong>Tech Stack:</strong> C, C++, gRPC, Protobuf</p>
+                    <p><strong>URL:</strong> <a href="#">GitHub Repository</a></p>
+                </li>
+                <li><strong>Deep Learning for Brain Tumor Classification</strong>
+                    <p><strong>Description:</strong> Applied CNNs and ensemble learning for tumor identification with 79% accuracy.</p>
+                    <p><strong>Tech Stack:</strong> Python, Tensorflow, Keras</p>
+                    <p><strong>URL:</strong> <a href="#">GitHub Repository</a></p>
+                </li>
+                <li><strong>Systolic Array Hardware Optimization</strong>
+                    <p><strong>Description:</strong> Improved architecture for Transformer Forward Pass with hardware utilization of 76.19%.</p>
+                    <p><strong>Tech Stack:</strong> Python, Scale-sim</p>
+                    <p><strong>URL:</strong> <a href="#">GitHub Repository</a></p>
+                </li>
+                <li><strong>Dynamic Network Traffic Analysis</strong>
+                    <p><strong>Description:</strong> Designed a system to analyze and optimize network traffic in real-time.</p>
+                    <p><strong>Tech Stack:</strong> Python, OpenTelemetry</p>
+                    <p><strong>URL:</strong> <a href="#">GitHub Repository</a></p>
+                </li>
+                <li><strong>Knowledge Graph Construction</strong>
+                    <p><strong>Description:</strong> Built a scalable knowledge graph for multi-agent coordination using LangChain.</p>
+                    <p><strong>Tech Stack:</strong> Python, LangChain, Knowledge Graphs</p>
+                    <p><strong>URL:</strong> <a href="#">GitHub Repository</a></p>
+                </li>
             </ul>
         </div>
     </section>
 
     <!-- Publications Section -->
-    <section id="publications" class="bg-light py-5">
+    <section id="publications" class="py-5">
         <div class="container">
             <h2>Publications</h2>
             <ul>
@@ -98,3 +162,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
