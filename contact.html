@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        // JavaScript for email validation
+        function validateForm(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const question = document.getElementById('question').value.trim();
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!name || !email || !question) {
+                alert('All fields are required.');
+                return false;
+            }
+
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+
+            sendEmail(name, email, question);
+        }
+
+        // Use EmailJS to send email
+        function sendEmail(name, email, question) {
+            emailjs.init('YOUR_USER_ID'); // Replace with your EmailJS user ID
+
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                message: question,
+            };
+
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams) // Replace with your EmailJS service and template ID
+                .then(function(response) {
+                    alert('Your message has been sent successfully!');
+                    document.getElementById('contactForm').reset();
+                }, function(error) {
+                    alert('Failed to send your message. Please try again later.');
+                });
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Rohan Prasad</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-5">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <form id="contactForm" onsubmit="validateForm(event)">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="question">Question:</label>
+                    <textarea class="form-control" id="question" rows="4" placeholder="Type your message here..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your EmailJS public key
+    </script>
+</body>
+</html>
