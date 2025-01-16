@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .card {
+            perspective: 1000px;
+            transition: transform 0.2s ease-in-out;
+            border: 3px solid purple;
+            border-radius: 10px;
+            background-color: #ffff; /* Darker purple */
+            min-height: 300px; /* Ensures consistent height for all cards */
+        }
+        .card:hover {
+            transform: translateY(-10px); /* Levitating effect */
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        .card:hover .card-inner {
+            transform: rotateY(180deg); /* Flip effect */
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+            background-color: #ffff;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .row {
+            margin-bottom: 30px; /* Ensure proper spacing between rows */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Rohan Prasad</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="experience.html">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5">
+        <div class="container">
+            <h2>Projects</h2>
+
+            <!-- First Row -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front bg-light text-dark">
+                                <h5 class="card-title">Parallel Algorithms for Max Network Flow</h5>
+                                <p><strong>Tech Stack:</strong> CUDA, GPU Programming, Graph Analytics</p>
+                                <p><strong>Date:</strong> Jan 2024</p>
+                            </div>
+                            <div class="card-back">
+                                <p>Implemented a lock-free async push-relabel algorithm achieving 4x speedup for max flow problems.</p>
+                                <div>
+                                    <img src="images/cuda.png" alt="CUDA" class="img-fluid" style="width: 170px;">
+                                    <img src="images/ncsa.png" alt="NCSA" class="img-fluid" style="width: 80px;">
+                                </div>
+                                <a href="https://github.com/SlowDanger15/parallel_algo_network_flow" class="btn btn-primary" target="_blank">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front bg-light text-dark">
+                                <h5 class="card-title">Deep Learning for Brain Tumor Classification</h5>
+                                <p><strong>Tech Stack:</strong> Python, TensorFlow, Keras</p>
+                                <p><strong>Date:</strong> Aug 2023</p>
+                            </div>
+                            <div class="card-back">
+                                <p>Applied CNNs and ensemble learning to identify brain tumors with 79% accuracy.</p>
+                                <div>
+                                    <img src="images/python.png" alt="Python" class="img-fluid" style="width: 100px;">
+                                    <img src="images/tf.png" alt="Tensorflow" class="img-fluid" style="width: 70px;">
+                                    <img src="images/Keras.png" alt="Keras" class="img-fluid" style="width: 50px;">
+                                </div>
+                                <a href="https://ieeexplore.ieee.org/document/10037548" class="btn btn-primary" target="_blank">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front bg-light text-dark">
+                                <h5 class="card-title">Simulation of Routing Algorithms</h5>
+                                <p><strong>Tech Stack:</strong> Python, NetworkX</p>
+                                <p><strong>Date:</strong> May 2023</p>
+                            </div>
+                            <div class="card-back">
+                                <p>Simulated various network routing algorithms like Dijkstra and Bellman-Ford.</p>
+                                <div>
+                                    <img src="images/python.png" alt="Python" class="img-fluid" style="width: 120px;">
+                                    <img src="images/networkx.png" alt="NetworkX" class="img-fluid" style="width: 120px;">
+                                </div>
+                                <a href="https://github.com/rpp5524/CSE_514_Project_rpp5524" class="btn btn-primary" target="_blank">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Row -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front bg-light text-dark">
+                                <h5 class="card-title">Systolic Array Hardware Optimization</h5>
+                                <p><strong>Tech Stack:</strong> Python, Hardware Design</p>
+                                <p><strong>Date:</strong> Oct 2023</p>
+                            </div>
+                            <div class="card-back">
+                                <p>Designed a systolic array architecture tailored for transformer forward passes.</p>
+                                <div>
+                                    <img src="images/python.png" alt="Python" class="img-fluid" style="width: 120px;">
+                                    <img src="images/scalesim.png" alt="Python" class="img-fluid" style="width: 90px;">
+                                </div>
+                                <a href="https://docs.google.com/document/d/1ekR-n7J6242EieYLJ3edgBjdo2WSVIB9Zuc5s74GT6A/edit?usp=sharing" class="btn btn-primary" target="_blank">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front bg-light text-dark">
+                                <h5 class="card-title">Parallel File System and Synchronizer</h5>
+                                <p><strong>Tech Stack:</strong> C, gRPC, Protobuf</p>
+                                <p><strong>Date:</strong> Jul 2023</p>
+                            </div>
+                            <div class="card-back">
+                                <p>Built a distributed file synchronization system using gRPC and Protobuf.</p>
+                                <div>
+                                    <img src="images/c.png" alt="C" class="img-fluid" style="width: 70px;">
+                                    <img src="images/grpc.png" alt="gRPC" class="img-fluid" style="width: 90px;">
+                                    <img src="images/protobuf.png" alt="protobuf" class="img-fluid" style="width: 100px;">
+                                </div>
+                                <a href="https://www.google.com" class="btn btn-primary" target="_blank">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-inner">
+                            <div class="card-front bg-light text-dark">
+                                <h5 class="card-title">Financial Services Android App</h5>
+                                <p><strong>Tech Stack:</strong> Python, Network Simulation</p>
+                                <p><strong>Date:</strong> Dec 2023</p>
+                            </div>
+                            <div class="card-back">
+                                <p>An Android Application, developed using Google Flutter, put into production to provide a complete financial suite rendering services like Loan eligibility classifier and Stock Price Prediction.</p>
+                                <div>
+                                    <img src="images/dart.png" alt="Python" class="img-fluid" style="width: 100px;">
+                                    <img src="images/flutter.png" alt="Python" class="img-fluid" style="width: 50px;">
+                                    <img src="images/firebase.png" alt="Python" class="img-fluid" style="width: 100px;">
+                                </div>
+                                <a href="https://github.com/SlowDanger15/citibank_final_app" class="btn btn-primary" target="_blank">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
