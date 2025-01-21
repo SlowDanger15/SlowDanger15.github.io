@@ -72,6 +72,26 @@
         .navbar-nav .nav-link:hover {
             color: #ff5f5f;
         }
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+            background-color: #ff5f5f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: opacity 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #back-to-top:hover {
+            background-color: #e04e4e;
+        }
     </style>
 </head>
 <body>
@@ -247,10 +267,28 @@
         </div>
     </section>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" onclick="scrollToTop()">↑</button>
+
     <!-- Footer -->
     <footer class="text-center py-4 bg-dark text-white">
         <p>&copy; 2025 Rohan Prasad | <a href="https://github.com/SlowDanger15" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank">LinkedIn</a></p>
     </footer>
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    
+        window.addEventListener('scroll', function() {
+            let backToTopButton = document.getElementById('back-to-top');
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>

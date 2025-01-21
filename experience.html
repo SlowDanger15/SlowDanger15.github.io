@@ -36,6 +36,26 @@
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+            background-color: #ff5f5f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: opacity 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #back-to-top:hover {
+            background-color: #e04e4e;
+        }
     </style>
 </head>
 <body>
@@ -165,73 +185,91 @@
     </section>
 
     <!-- Academic Experience Section -->
-<section id="academic-experience" class="py-5">
-    <div class="container">
-        <h2>Academic Experience</h2>
+    <section id="academic-experience" class="py-5">
+        <div class="container">
+            <h2>Academic Experience</h2>
 
-        <!-- Teaching Assistant at Penn State -->
-        <div class="card mb-4">
-            <div class="row no-gutters">
-                <div class="col-md-2 text-center">
-                    <img src="images/PSU.png" class="img-fluid" alt="Penn State University Logo">
-                </div>
-                <div class="col-md-10">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <h5 class="mb-0">Graduate Assistant</h5>
-                            <p class="text-muted mb-0">Department of Computer Science, Penn State University</p>
-                        </div>
-                        <div class="text-muted">Aug 2023 – May 2025</div>
+            <!-- Teaching Assistant at Penn State -->
+            <div class="card mb-4">
+                <div class="row no-gutters">
+                    <div class="col-md-2 text-center">
+                        <img src="images/PSU.png" class="img-fluid" alt="Penn State University Logo">
                     </div>
-                    <div class="card-body">
-                        <h6>Courses:</h6>
-                        <ul>
-                            <li>CMPSC 311: Systems Programming</li>
-                            <li>CMPSC 431: Database Management Systems</li>
-                            <li>CMPSC 473: Operating Systems Design & Implementation</li>
-                        </ul>
-                        <ul>
-                            <li>Facilitated Office hours to assist students on Systems Programming, Database Systems & Operating Systems.</li>
-                            <li>Incorporated Shell scripts to grade 30 students coding assignment submissions on Github classroom.</li>
-                            <li>Drafted comprehensive question papers for Midterms & Final Exams, ensuring alignment with course objectives.</li>
-                        </ul>
+                    <div class="col-md-10">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-0">Graduate Assistant</h5>
+                                <p class="text-muted mb-0">Department of Computer Science, Penn State University</p>
+                            </div>
+                            <div class="text-muted">Aug 2023 – May 2025</div>
+                        </div>
+                        <div class="card-body">
+                            <h6>Courses:</h6>
+                            <ul>
+                                <li>CMPSC 311: Systems Programming</li>
+                                <li>CMPSC 431: Database Management Systems</li>
+                                <li>CMPSC 473: Operating Systems Design & Implementation</li>
+                            </ul>
+                            <ul>
+                                <li>Facilitated Office hours to assist students on Systems Programming, Database Systems & Operating Systems.</li>
+                                <li>Incorporated Shell scripts to grade 30 students coding assignment submissions on Github classroom.</li>
+                                <li>Drafted comprehensive question papers for Midterms & Final Exams, ensuring alignment with course objectives.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Undergraduate Research Assistant -->
+            <div class="card mb-4">
+                <div class="row no-gutters">
+                    <div class="col-md-2 text-center">
+                        <img src="images/MIT.png" class="img-fluid" alt="Manipal Institute of Technology Logo", width="110px">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-0">Undergraduate Research Assistant</h5>
+                                <p class="text-muted mb-0">Department of Computer Science, Manipal Institute of Technology</p>
+                            </div>
+                            <div class="text-muted">Jan 2022 – Jun 2022</div>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Developed and constructed CNN models to classify MRI Scans into 1 of 4 types of Brain Tumors.</li>
+                                <li>Utilized ensemble learning methods aggregating various Neural Networks to reduce generalization errors.</li>
+                                <li>Trained hyperparameters of classical models like VGG16 and performed a comparative analysis on metrics.</li>
+                                <li>Research paper accepted to the 4th edition of International IEEE Bombay Section Signature Conference (IBSSC), 2022</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Undergraduate Research Assistant -->
-        <div class="card mb-4">
-            <div class="row no-gutters">
-                <div class="col-md-2 text-center">
-                    <img src="images/MIT.png" class="img-fluid" alt="Manipal Institute of Technology Logo", width="110px">
-                </div>
-                <div class="col-md-10">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <h5 class="mb-0">Undergraduate Research Assistant</h5>
-                            <p class="text-muted mb-0">Department of Computer Science, Manipal Institute of Technology</p>
-                        </div>
-                        <div class="text-muted">Jan 2022 – Jun 2022</div>
-                    </div>
-                    <div class="card-body">
-                        <ul>
-                            <li>Developed and constructed CNN models to classify MRI Scans into 1 of 4 types of Brain Tumors.</li>
-                            <li>Utilized ensemble learning methods aggregating various Neural Networks to reduce generalization errors.</li>
-                            <li>Trained hyperparameters of classical models like VGG16 and performed a comparative analysis on metrics.</li>
-                            <li>Research paper accepted to the 4th edition of International IEEE Bombay Section Signature Conference (IBSSC), 2022</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- Back to Top Button -->
+    <button id="back-to-top" onclick="scrollToTop()">↑</button>
 
-<!-- Footer -->
-<footer class="text-center py-4 bg-dark text-white">
-    <p>&copy; 2025 Rohan Prasad | <a href="https://github.com/SlowDanger15" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank">LinkedIn</a></p>
-</footer>
+    <!-- Footer -->
+    <footer class="text-center py-4 bg-dark text-white">
+        <p>&copy; 2025 Rohan Prasad | <a href="https://github.com/SlowDanger15" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank">LinkedIn</a></p>
+    </footer>
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', function() {
+            let backToTopButton = document.getElementById('back-to-top');
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+    </script>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
