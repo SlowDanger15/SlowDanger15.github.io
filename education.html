@@ -112,6 +112,19 @@
         #back-to-top:hover {
             background-color: #e04e4e;
         }
+
+        .degree-illustration {
+            max-width: 25%;
+            height: auto;
+            /* border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; */
+        }
+
+        /* .degree-illustration:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        } */
     </style>
 </head>
 <body>
@@ -136,6 +149,16 @@
 
     <!-- Education Section -->
     <section id="education" class="bg-light py-5">
+        <div class="row justify-content-center align-items-center mt-4 text-center">
+            <div class="col-md-6 text-center">
+                <img src="images/degree.png" alt="Degree Illustration" class="img-fluid degree-illustration">
+            </div>
+            <!-- <div class="col-md-6">
+                <h4>The Value of Education</h4>
+                <p>Education is the key to unlocking new opportunities and shaping the future. I have pursued my academic journey with passion and commitment to excellence.</p>
+            </div> -->
+        </div>
+        
         <div class="container">
             <h2>Education</h2>
             <div class="card mb-4">
@@ -272,7 +295,7 @@
     <footer class="text-center py-4 bg-dark text-white">
         <p>&copy; 2025 Rohan Prasad | <a href="https://github.com/SlowDanger15" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank">LinkedIn</a></p>
     </footer>
-    
+
     <script>
         function revealElements() {
             let elements = document.querySelectorAll('.education-card, .cert-card');
