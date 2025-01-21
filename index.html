@@ -81,7 +81,7 @@
             padding: 20px;
             opacity: 0;
             transform: translateX(-50px);
-            animation: fade-in 1.5s forwards;
+            animation: fade-in 4s forwards;
         }
 
         .what-item:nth-child(odd) {
@@ -90,7 +90,7 @@
 
         .what-item:nth-child(even) {
             text-align: right;
-            animation: fade-in-right 1.5s forwards;
+            animation: fade-in-right 4s forwards;
         }
 
         .what-item img {
@@ -341,13 +341,30 @@
         </div>
     </section>
 
-    <script>
+    <!-- <script>
         // Hide loading screen after 1.5 seconds
         window.onload = () => {
             setTimeout(() => {
                 document.getElementById('loading-screen').style.display = 'none';
             }, 1500);
         };
+    </script> -->
+    <script>
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.display = 'none';
+                triggerAnimations();
+            }, 1500); // Loading screen duration
+        };
+    
+        function triggerAnimations() {
+            let items = document.querySelectorAll('.what-item');
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('appear');
+                }, index * 500); // Staggered animation effect
+            });
+        }
     </script>
 
     <!-- Footer -->

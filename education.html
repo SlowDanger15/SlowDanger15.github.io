@@ -7,82 +7,90 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         /* Navbar Styling */
-    .navbar {
-        background: rgba(0, 0, 0, 0.8);
-    }
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+        }
 
-    .navbar-brand {
-        font-size: 1.5rem;
-        font-weight: bold;
-    }
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
 
-    .navbar-nav .nav-link {
-        color: rgba(255, 255, 255, 0.8);
-        transition: color 0.3s;
-    }
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s;
+        }
 
-    .navbar-nav .nav-link:hover {
-        color: #ff5f5f;
-    }
+        .navbar-nav .nav-link:hover {
+            color: #ff5f5f;
+        }
 
-    /* Card Shadow Styling */
-    .card {
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
+        /* Card Shadow Styling */
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
 
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
 
-    /* Certifications Section */
-    .certifications-container {
-        text-align: center;
-        margin-top: 50px;
-    }
+        /* Certifications Section */
+        .certifications-container {
+            text-align: center;
+            margin-top: 50px;
+        }
 
-    .cert-card {
-        position: relative;
-        border-radius: 10px;
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
+        .cert-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-in-out;
+        }
 
-    .cert-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        filter: brightness(0.9);
-    }
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            filter: brightness(0.9);
+        }
 
-    .cert-card img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-    }
+        .cert-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
 
-    .cert-card .cert-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        color: white;
-        font-size: 1.5rem;
-        font-weight: bold;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+        .cert-card .cert-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .cert-card:hover .cert-overlay {
-        opacity: 1;
-    }
+        .cert-card:hover .cert-overlay {
+            opacity: 1;
+        }
+
+        .cert-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -109,48 +117,41 @@
     <section id="education" class="bg-light py-5">
         <div class="container">
             <h2>Education</h2>
-            <!-- Penn State -->
             <div class="card mb-4">
                 <a href="https://www.psu.edu/" target="_blank">
-                <div class="row no-gutters align-items-center">
-                    <div class="col-md-2 text-center">
-                        <img src="images/PSU.png" class="img-fluid" alt="Penn State Logo" style="max-height: 120px;">
-                    </div>
-                    <div class="col-md-10">
-                        <div class="card-body">
-                            <h4 class="card-title">The Pennsylvania State University</h4>
-                            <p class="card-text">Master of Science in Computer Science</p>
-                            <p class="text-muted text-right">Aug 2023 – May 2025</p>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-md-2 text-center">
+                            <img src="images/PSU.png" class="img-fluid" alt="Penn State Logo" style="max-height: 120px;">
+                        </div>
+                        <div class="col-md-10">
+                            <div class="card-body">
+                                <h4 class="card-title">The Pennsylvania State University</h4>
+                                <p class="card-text">Master of Science in Computer Science</p>
+                                <p class="text-muted text-right">Aug 2023 – May 2025</p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </a>
             </div>
 
-            <!-- Manipal Institute -->
             <div class="card mb-4">
                 <a href="https://www.manipal.edu/mit.html" target="_blank">
-                <div class="row no-gutters align-items-center">
-                    <div class="col-md-2 text-center">
-                        <img src="images/MIT.png" class="img-fluid" alt="Manipal Logo" style="max-height: 100px;">
-                    </div>
-                    <div class="col-md-10">
-                        <div class="card-body">
-                            <h4 class="card-title">Manipal Institute of Technology</h4>
-                            <p class="card-text">Bachelor of Technology in Computer Science</p>
-                            <p class="text-muted text-right">Jul 2019 – Jun 2023</p>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-md-2 text-center">
+                            <img src="images/MIT.png" class="img-fluid" alt="Manipal Logo" style="max-height: 100px;">
+                        </div>
+                        <div class="col-md-10">
+                            <div class="card-body">
+                                <h4 class="card-title">Manipal Institute of Technology</h4>
+                                <p class="card-text">Bachelor of Technology in Computer Science</p>
+                                <p class="text-muted text-right">Jul 2019 – Jun 2023</p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </a>
             </div>
         </div>
     </section>
-
-    <!-- <div class="social-icons mt-3">
-        <a href="https://leetcode.com/u/rohanprasad_2001/" target="_blank"><img src="images/leetcode.webp" alt="Leetcode" style="width: 35px; margin-right: 5px;"></a>
-        <a href="https://www.hackerrank.com/profile/rohanprasad_2001" target="_blank"><img src="images/hackerrank.png" alt="Hackerank" style="width: 47px; margin-right: 5px;"></a> 
-    </div> -->
 
     <!-- Certifications Section -->
     <section id="certifications" class="py-5">
@@ -166,6 +167,7 @@
                     </a>
                     <p class="text-center mt-2"><strong>Machine Learning</strong><br>- Andrew Ng</p>
                 </div>
+                <!-- Add more certifications similarly -->
                 <div class="col-md-4 mb-4">
                     <a href="https://coursera.org/dl_certificate" target="_blank">
                         <div class="cert-card">
@@ -246,6 +248,23 @@
     <footer class="text-center py-4 bg-dark text-white">
         <p>&copy; 2025 Rohan Prasad | <a href="https://github.com/SlowDanger15" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank">LinkedIn</a></p>
     </footer>
+
+    <script>
+        function revealElements() {
+            let elements = document.querySelectorAll('.cert-card');
+            let windowHeight = window.innerHeight;
+
+            elements.forEach(el => {
+                let elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('show');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealElements);
+        revealElements();
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
