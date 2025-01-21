@@ -7,23 +7,82 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         /* Navbar Styling */
-        .navbar {
-            background: rgba(0, 0, 0, 0.8);
-        }
+    .navbar {
+        background: rgba(0, 0, 0, 0.8);
+    }
 
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+    .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
 
-        .navbar-nav .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            transition: color 0.3s;
-        }
+    .navbar-nav .nav-link {
+        color: rgba(255, 255, 255, 0.8);
+        transition: color 0.3s;
+    }
 
-        .navbar-nav .nav-link:hover {
-            color: #ff5f5f;
-        }
+    .navbar-nav .nav-link:hover {
+        color: #ff5f5f;
+    }
+
+    /* Card Shadow Styling */
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Certifications Section */
+    .certifications-container {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .cert-card {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .cert-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        filter: brightness(0.9);
+    }
+
+    .cert-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .cert-card .cert-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cert-card:hover .cert-overlay {
+        opacity: 1;
+    }
     </style>
 </head>
 <body>
@@ -51,53 +110,137 @@
         <div class="container">
             <h2>Education</h2>
             <!-- Penn State -->
-        <div class="card mb-4">
-            <div class="row no-gutters align-items-center">
-                <div class="col-md-2 text-center">
-                    <img src="images/PSU.png" class="img-fluid" alt="Penn State Logo" style="max-height: 120px;">
-                </div>
-                <div class="col-md-10">
-                    <div class="card-body">
-                        <h4 class="card-title">The Pennsylvania State University</h4>
-                        <p class="card-text">Master of Science in Computer Science</p>
-                        <p class="text-muted" style="text-align: right;">Aug 2023 – May 2025</p>
+            <div class="card mb-4">
+                <a href="https://www.psu.edu/" target="_blank">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-2 text-center">
+                        <img src="images/PSU.png" class="img-fluid" alt="Penn State Logo" style="max-height: 120px;">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <h4 class="card-title">The Pennsylvania State University</h4>
+                            <p class="card-text">Master of Science in Computer Science</p>
+                            <p class="text-muted text-right">Aug 2023 – May 2025</p>
+                        </div>
                     </div>
                 </div>
+                </a>
             </div>
-        </div>
 
-        <!-- Manipal Institute -->
-        <div class="card mb-4">
-            <div class="row no-gutters align-items-center">
-                <div class="col-md-2 text-center">
-                    <img src="images/MIT.png" class="img-fluid" alt="Manipal Logo" style="max-height: 100px;">
-                </div>
-                <div class="col-md-10">
-                    <div class="card-body">
-                        <h4 class="card-title">Manipal Institute of Technology</h4>
-                        <p class="card-text">Bachelor of Technology in Computer Science</p>
-                        <p class="text-muted" style="text-align: right;">Jul 2019 – Jun 2023</p>
+            <!-- Manipal Institute -->
+            <div class="card mb-4">
+                <a href="https://www.manipal.edu/mit.html" target="_blank">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-2 text-center">
+                        <img src="images/MIT.png" class="img-fluid" alt="Manipal Logo" style="max-height: 100px;">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <h4 class="card-title">Manipal Institute of Technology</h4>
+                            <p class="card-text">Bachelor of Technology in Computer Science</p>
+                            <p class="text-muted text-right">Jul 2019 – Jun 2023</p>
+                        </div>
                     </div>
                 </div>
+                </a>
             </div>
-        </div>
-
-            <h4>Achievements</h4>
-            <ul>
-                <li>HackPSU: 3rd Place; Penn State’s largest student-run collegiate hackathon.</li>
-                <li>FormulaAI Hack: 2nd place; 3D Modeling Global Hackathon organized by Oracle RedBull Racing.</li>
-                <li>CodeStreet: Finalist and 2nd in Ideation; Cybersecurity in FinTech Hackathon organized by AmEx.</li>
-            </ul>
-
-            <h4>Volunteering Work</h4>
-            <ul>
-                <li>Organized coding workshops for high school students to introduce them to programming concepts.</li>
-                <li>Volunteered at local community centers to teach basic computer skills to adults.</li>
-            </ul>
         </div>
     </section>
 
-    
+    <!-- <div class="social-icons mt-3">
+        <a href="https://leetcode.com/u/rohanprasad_2001/" target="_blank"><img src="images/leetcode.webp" alt="Leetcode" style="width: 35px; margin-right: 5px;"></a>
+        <a href="https://www.hackerrank.com/profile/rohanprasad_2001" target="_blank"><img src="images/hackerrank.png" alt="Hackerank" style="width: 47px; margin-right: 5px;"></a> 
+    </div> -->
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Certifications</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <a href="https://coursera.org/ml_certificate" target="_blank">
+                        <div class="cert-card">
+                            <img src="images/certifications/nvidia.png" alt="Machine Learning">
+                            <div class="cert-overlay">Certificate</div>
+                        </div>
+                    </a>
+                    <p class="text-center mt-2"><strong>Machine Learning</strong><br>- Andrew Ng</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a href="https://coursera.org/dl_certificate" target="_blank">
+                        <div class="cert-card">
+                            <img src="images/certifications/deeplearninai.png" alt="Deep Learning">
+                            <div class="cert-overlay">Certificate</div>
+                        </div>
+                    </a>
+                    <p class="text-center mt-2"><strong>Deep Learning</strong><br>- Andrew Ng</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a href="https://coursera.org/gcp_ml_certificate" target="_blank">
+                        <div class="cert-card">
+                            <img src="images/certifications/coursera.png" alt="ML on GCP">
+                            <div class="cert-overlay">Certificate</div>
+                        </div>
+                    </a>
+                    <p class="text-center mt-2"><strong>Coursera</strong><br>- Dr Chuck</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a href="https://coursera.org/ibm_ds_certificate" target="_blank">
+                        <div class="cert-card">
+                            <img src="images/certifications/udemy.png" alt="Data Science">
+                            <div class="cert-overlay">Certificate</div>
+                        </div>
+                    </a>
+                    <p class="text-center mt-2"><strong>Data Science</strong><br>- Alex Aklson</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a href="https://coursera.org/ibm_ds_certificate" target="_blank">
+                        <div class="cert-card">
+                            <img src="images/certifications/kaggle.png" alt="Data Analytics">
+                            <div class="cert-overlay">Certificate</div>
+                        </div>
+                    </a>
+                    <p class="text-center mt-2"><strong>Data Analytics</strong><br>- Mr dummy</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a href="https://coursera.org/ibm_ds_certificate" target="_blank">
+                        <div class="cert-card">
+                            <img src="images/certifications/google.png" alt="Data Analytics">
+                            <div class="cert-overlay">Certificate</div>
+                        </div>
+                    </a>
+                    <p class="text-center mt-2"><strong>Data Analytics</strong><br>- Mr dummy</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a href="https://coursera.org/ibm_ds_certificate" target="_blank">
+                        <div class="cert-card">
+                            <img src="images/certifications/linkedin.png" alt="Kubernetes">
+                            <div class="cert-overlay">Certificate</div>
+                        </div>
+                    </a>
+                    <p class="text-center mt-2"><strong>Kubernetes</strong><br>- Mr dummy</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a href="https://coursera.org/" target="_blank">
+                        <div class="cert-card">
+                            <img src="images/certifications/oracle.png" alt="Generative AI">
+                            <div class="cert-overlay">Certificate</div>
+                        </div>
+                    </a>
+                    <p class="text-center mt-2"><strong>Generative AI</strong><br>- Mr dummy</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <a href="https://coursera.org/" target="_blank">
+                        <div class="cert-card">
+                            <img src="images/certifications/canvas.png" alt="Formula AI Hack">
+                            <div class="cert-overlay">Certificate</div>
+                        </div>
+                    </a>
+                    <p class="text-center mt-2"><strong>Formula AI Hack</strong><br>- Mr dummy</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="text-center py-4 bg-dark text-white">
