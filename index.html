@@ -187,6 +187,40 @@
         #back-to-top:hover {
             background-color: #e04e4e;
         }
+        /* Initial State */
+        /* .image-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        } */
+
+        /* Trigger animation when scrolled into view */
+        /* .image-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        } */
+
+        /* Floating Effect */
+        /* @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        } */
+
+        /* Glowing Edge Effect on Hover */
+        /* .image-animate:hover {
+            animation: floating 3s infinite ease-in-out;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        } */
+        /* .image-animate:hover 
+        { 
+            animation: pulse 1.5s infinite; 
+        } */
     </style>
 </head>
 <body>
@@ -240,7 +274,7 @@
                 </div>
                 <!-- Right Illustration -->
                 <div class="col-md-6 text-center">
-                    <img src="images/webill.png" alt="Illustration" class="img-fluid" style="max-width: 100%; height: auto;">
+                    <img src="images/webill.png" alt="Illustration" class="img-fluid image-animate" style="max-width: 100%; height: auto;">
                 </div>
             </div>
         </div>
@@ -251,24 +285,6 @@
     <section id="what-i-do" class="py-5">
         <div class="container">
             <h2 class="text-center mb-5">What I Do</h2>
-            <!-- Item 1 -->
-            <div class="row align-items-center what-item">
-                <div class="col-md-6">
-                    <h3>AI-ML & Data Science</h3>
-                    <p>⚡ Developing scalable production-ready models for deep learning and statistical use cases.</p>
-                    <p>⚡ Experienced in Computer Vision and NLP projects.</p>
-                    <p>⚡ Quantitative modeling for forecasting and time series analysis.</p>
-                    <div>
-                        <img src="images/tensorflow.svg" alt="TensorFlow">
-                        <img src="images/pytorch.png" alt="PyTorch">
-                        <img src="images/python5.svg" alt="Python">
-                        <img src="images/Keras.png" alt="Keras">
-                    </div>
-                </div>
-                <div class="col-md-6 text-center">
-                    <img src="images/data_science.png" alt="AI-ML & Data Science Illustration" class="img-fluid" style="max-width: 100%; height: auto;">
-                </div>
-            </div>
             <!-- Item 4 -->
             <div class="row align-items-center what-item">
                 <div class="col-md-6 text-center">
@@ -288,9 +304,29 @@
                     </div>
                 </div>
             </div>
-
+            <!-- Item 1 -->
+            <div class="row align-items-center what-item">
+                <div class="col-md-6">
+                    <h3>AI-ML & Data Science</h3>
+                    <p>⚡ Developing scalable production-ready models for deep learning and statistical use cases.</p>
+                    <p>⚡ Experienced in Computer Vision and NLP projects.</p>
+                    <p>⚡ Quantitative modeling for forecasting and time series analysis.</p>
+                    <div>
+                        <img src="images/tensorflow.svg" alt="TensorFlow">
+                        <img src="images/pytorch.png" alt="PyTorch">
+                        <img src="images/python5.svg" alt="Python">
+                        <img src="images/Keras.png" alt="Keras">
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img src="images/data_science.png" alt="AI-ML & Data Science Illustration" class="img-fluid" style="max-width: 100%; height: auto;">
+                </div>
+            </div>
             <!-- Item 2 -->
             <div class="row align-items-center what-item">
+                <div class="col-md-6 text-center">
+                    <img src="images/webilldistributedsystems.png" alt="Distributed Systems Illustration" class="img-fluid" style="max-width: 100%; height: auto;">
+                </div>
                 <div class="col-md-6">
                     <h3>Distributed Systems & Parallel processing</h3>
                     <p>⚡ Designing parallel frameworks for large-scale computations.</p>
@@ -300,9 +336,6 @@
                         <img src="images/kubernetes.png" alt="Kubernetes">
                         <img src="images/apache-spark-5.svg" alt="Spark">
                     </div>
-                </div>
-                <div class="col-md-6 text-center">
-                    <img src="images/webilldistributedsystems.png" alt="Distributed Systems Illustration" class="img-fluid" style="max-width: 100%; height: auto;">
                 </div>
             </div>
             <!-- Item 3 -->
@@ -436,6 +469,23 @@
             }
         });
     </script>
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const image = document.querySelector('.image-animate');
+
+        function revealImage() {
+            const rect = image.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            if (rect.top < windowHeight - 50) {
+                image.classList.add('visible');
+            }
+        }
+
+        window.addEventListener('scroll', revealImage);
+        revealImage(); // Run once in case it's already visible
+    });
+    </script> -->
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>

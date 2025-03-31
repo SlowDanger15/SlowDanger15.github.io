@@ -200,7 +200,7 @@
           <p>Tech Stack: Python, PyTorch, OpenAI, Ollama</p>
         </div>
       </div>
-    <div class="project-card" onclick="openModal('Routing Algorithm Simulator', 'Oct 2024 - Dec 2024', 'Python, NetworkX', 'In this project, I implemented and analyzed three foundational routing algorithms Distance Vector, Link State, Path Vector to evaluate their performance across diverse network topologies, including linear, mesh, ring, star, tree, and grid. \n\nI developed a realistic network weight model based on geographic distance, bandwidth, and congestion factors, mimicking real-world network conditions.\n The findings provide valuable insights into the trade-offs between routing algorithms and their suitability for different network structures, contributing to the optimization of real-world network performance.', 'https://github.com/rpp5524/CSE_514_Project_rpp5524')">
+    <div class="project-card" onclick="openModal('Routing Algorithm Simulator', 'Oct 2024 - Dec 2024', 'Python, NetworkX', 'In this project, I implemented and analyzed three foundational routing algorithms Distance Vector, Link State, Path Vector to evaluate their performance across diverse network topologies, including linear, mesh, ring, star, tree, and grid. \n\nI developed a realistic network weight model based on geographic distance, bandwidth, and congestion factors, mimicking real-world network conditions.\n\nThe findings provide valuable insights into the trade-offs between routing algorithms and their suitability for different network structures, contributing to the optimization of real-world network performance.', 'https://github.com/rpp5524/CSE_514_Project_rpp5524')">
       <img src="images/project/project_routing_algo.jpg" alt="Routing Algorithm Simulator">
       <div class="content">
         <h3>Routing Algoritms Simulator</h3>
@@ -267,12 +267,22 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal-overlay" id="modal" style="display: none;" onclick="closeModal(event)">
+<div class="modal-overlay" id="modal" style="display: none;" onclick="closeModal(event)">
     <div class="modal-content" id="modal-content" onclick="event.stopPropagation()">
-      <h3 id="modal-title"></h3>
-      <p id="modal-date"></p>
-      <p id="modal-tech"></p>
-      <p id="modal-desc"></p>
+      <h3 id="modal-title" style="margin-bottom: 0.8rem;"></h3>
+      <p id="modal-date" style="margin-bottom: 0.4rem;"></p>
+      <p id="modal-tech" style="margin-bottom: 1rem;"></p>
+      
+      <hr style="border: 0.5px solid rgba(255, 255, 255, 0.1); margin: 1rem 0;" />
+  
+      <!-- <p id="modal-desc" style="margin-bottom: 1rem;"></p> -->
+      <p id="modal-desc" style="margin-bottom: 1rem; white-space: pre-wrap;"></p>
+  
+      <!-- Tech Stack Icons Row -->
+      <div id="modal-icons" style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 1.5rem;">
+        <!-- Dynamically injected <img> icons will appear here -->
+      </div>
+  
       <a href="#" target="_blank" id="modal-link" class="btn">Learn More</a>
     </div>
   </div>
@@ -284,6 +294,19 @@
       document.getElementById('modal-tech').textContent = 'Tech Stack: ' + tech;
       document.getElementById('modal-desc').textContent = desc;
       document.getElementById('modal-link').href = link;
+
+    //   const iconContainer = document.getElementById('modal-icons');
+    //   iconContainer.innerHTML = ''; // Clear previous icons
+
+    //   iconPaths.forEach(path => {
+    //       const img = document.createElement('img');
+    //       img.src = path;
+    //       img.alt = 'Tech Icon';
+    //       img.style.width = '40px';
+    //       img.style.height = '40px';
+    //       img.style.objectFit = 'contain';
+    //       iconContainer.appendChild(img);
+    //   });
       document.getElementById('modal').style.display = 'flex';
     }
 
