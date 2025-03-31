@@ -11,6 +11,12 @@
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <meta name="msapplication-TileImage" content="images/mstile-150x150.png">
     <meta name="msapplication-TileColor" content="#ffffff"> -->
+    <!-- GSAP Library -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -137,33 +143,49 @@
             }
         }
         .carousel-inner {
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
         }
+
         .carousel-item img {
             width: 100%;
             height: 700px;
-            /* width: 600px; */
-            object-fit: cover; /* Ensures images fit nicely */
-            border-radius: 15px;
+            object-fit: cover;
+            filter: brightness(0.85);
+            transition: transform 0.5s ease;
         }
+
+        .carousel-item img:hover {
+            transform: scale(1.02);
+        }
+
         .carousel-caption {
-            background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f1f1f1;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
+
         .carousel-caption h2 {
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #ffffff;
         }
+
         .carousel-caption p {
             font-size: 1.2rem;
+            color: #dddddd;
         }
+
         .carousel-control-prev-icon, .carousel-control-next-icon {
             background-color: #6c757d;
             border-radius: 50%;
         }
+
         .carousel-indicators li {
             background-color: #6c757d;
         }
@@ -187,39 +209,189 @@
         #back-to-top:hover {
             background-color: #e04e4e;
         }
-        /* Initial State */
-        /* .image-animate {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        } */
-
-        /* Trigger animation when scrolled into view */
-        /* .image-animate.visible {
-            opacity: 1;
-            transform: translateY(0);
-        } */
-
-        /* Floating Effect */
-        /* @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        } */
-
-        /* Glowing Edge Effect on Hover */
-        /* .image-animate:hover {
-            animation: floating 3s infinite ease-in-out;
-            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+        /* Apple-style Profile Card */
+        .apple-card-container {
+        perspective: 1000px;
+        display: flex;
+        justify-content: center;
+        margin: 3rem 0;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        } */
-        /* .image-animate:hover 
-        { 
-            animation: pulse 1.5s infinite; 
+
+        .apple-card {
+        width: 320px;
+        height: 420px;
+        border-radius: 20px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.8s ease;
+        cursor: pointer;
+        border: 3px solid transparent;
+        background: linear-gradient(135deg, #00ffe0, #007cf0);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        box-shadow: 0 10px 25px rgba(0, 255, 255, 0.15);
+        }
+
+        .apple-card:hover {
+        transform: translateY(-10px);
+        }
+
+        .apple-card.flip {
+        transform: rotateY(180deg);
+        }
+
+        .apple-card .card-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        backface-visibility: hidden;
+        }
+
+        .apple-card .card-front img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.85);
+        }
+
+        .apple-card .card-front .overlay {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
+        text-align: center;
+        }
+
+        .apple-card .card-front .overlay h3 {
+        font-size: 1.6rem;
+        font-weight: 800;
+        margin: 0.3rem 0;
+        }
+
+        .apple-card .card-front .overlay p {
+        margin: 0;
+        font-size: 0.9rem;
+        opacity: 0.85;
+        }
+
+        /* Back of card */
+        .apple-card .card-back {
+        background: #111;
+        color: white;
+        transform: rotateY(180deg);
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-style: italic;
+        font-size: 1rem;
+        font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
+        }
+        .apple-name-wrapper {
+            position: relative;
+            padding-top: 2rem;
+        }
+
+        .apple-title {
+            font-family: 'Inter', sans-serif; /* Replace with SF Pro if hosted locally */
+            font-size: 3.2rem;
+            font-weight: 600;
+            color: #c7ccd1;
+            z-index: 2;
+            position: relative;
+        }
+
+        .spotlight-effect {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 200px;
+            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.35), transparent 85%);
+            filter: blur(60px);
+            z-index: 1;
+            pointer-events: none;
+            animation: pulseGlow 4s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateX(-50%) scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        /* Spotlight Section */
+        /* #spotlight-intro {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0f0f1a;
+        overflow: hidden;
+        position: relative;
+        }
+
+        .spotlight-wrapper {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        }
+
+        .spotlight-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 4rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.85);
+        margin: 0;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1s ease-out;
+        }
+
+        .spotlight-subtext {
+        font-size: 1.2rem;
+        color: #999;
+        margin-top: 10px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1s ease-out 0.2s;
+        }
+
+        .spotlight-glow {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%) scale(0.3);
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(0,255,255,0.4), transparent 70%);
+        filter: blur(90px);
+        opacity: 0;
+        transition: all 1.5s ease-out;
+        }
+
+        /* Active state triggered by JS */
+        .spotlight-active .spotlight-glow {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+        }
+
+        .spotlight-active .spotlight-title,
+        .spotlight-active .spotlight-subtext {
+        opacity: 1;
+        transform: translateY(0);
         } */
     </style>
 </head>
@@ -249,33 +421,63 @@
         </div>
     </nav>
 
+     <!-- Test About section -->
+     <!-- <section id="spotlight-intro" class="text-center">
+        <div class="spotlight-wrapper">
+          <div class="spotlight-glow"></div>
+          <h1 class="spotlight-title">Rohan Prasad</h1>
+          <p class="spotlight-subtext">(SlowDanger15)</p>
+        </div>
+      </section> -->
+      
+
     <!-- About section -->
     <section id="intro" class="py-5">
         <div class="container">
             <div class="row align-items-center">
                 <!-- Left Content -->
-                <div class="col-md-6">
-                    <h1 class="display-4">Rohan Prasad</h1>
+                <div class="col-md-6 text-center text-md-left apple-name-wrapper">
+                    <div class="spotlight-effect"></div>
+                    <h1 class="apple-title">Rohan Prasad</h1>
                     <p class="lead text-muted">(SlowDanger15)</p>
                     <p>
                         I'm a passionate individual who thrives on building scalable and impactful technical solutions.
                         I aspire to innovate in AI/ML, distributed systems, and computer networks to solve complex challenges.
                     </p>
-                    <!-- Social Icons -->
                     <div class="social-icons mt-3">
                         <a href="https://github.com/SlowDanger15" target="_blank"><img src="images/github.png" alt="GitHub" style="width: 40px; margin-right: 10px;"></a>
                         <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank"><img src="images/linkedin.png" alt="LinkedIn" style="width: 40px; margin-right: 10px;"></a>
                         <a href="https://x.com/_rohan06_" target="_blank"><img src="images/twitter.png" alt="Twitter" style="width: 55px; margin-right: 10px;"></a>   
-                        <!-- <a href="https://leetcode.com/u/rohanprasad_2001/" target="_blank"><img src="images/leetcode.webp" alt="Leetcode" style="width: 35px; margin-right: 5px;"></a>
-                        <a href="https://www.hackerrank.com/profile/rohanprasad_2001" target="_blank"><img src="images/hackerrank.png" alt="Hackerank" style="width: 47px; margin-right: 5px;"></a>  -->
                     </div>
-                    <!-- Call to Action Button -->
                     <a href="https://github.com/SlowDanger15" target="_blank" class="btn btn-primary mt-4">⭐ Star Me on GitHub</a>
                 </div>
+                
+                
                 <!-- Right Illustration -->
-                <div class="col-md-6 text-center">
+                <!-- <div class="col-md-6 text-center">
                     <img src="images/webill.png" alt="Illustration" class="img-fluid image-animate" style="max-width: 100%; height: auto;">
-                </div>
+                </div> -->
+                <!-- Apple-style Card -->
+                <div class="apple-card-container col-md-6 text-center">
+                    <div class="apple-card" onclick="this.classList.toggle('flip')">
+                      <!-- Front Face -->
+                      <div class="card-face card-front">
+                        <!-- <img src="images/profile.png" alt="Rohan Prasad"> -->
+                        <img src="images/profile.png" alt="Rohan Prasad" style="width: 100%; height: 100%; object-fit: cover; object-position: 65% center;">
+                        <div class="overlay">
+                          <h3>Rohan Prasad</h3>
+                          <p>Age: 23</p>
+                          <p>He/him/his</p>
+                        </div>
+                      </div>
+                  
+                      <!-- Back Face -->
+                      <div class="card-face card-back">
+                        <!-- <h3>Fun Fact</h3> -->
+                        <p>I'm obsessed with parallelism — if something can be parallelized, I will script it. Nothing satisfies me more than watching tasks fly in sync like a well-crafted machine. 🚀</p>
+                      </div>
+                    </div>
+                  </div>                  
             </div>
         </div>
     </section>
@@ -469,23 +671,22 @@
             }
         });
     </script>
-    <!-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-        const image = document.querySelector('.image-animate');
-
-        function revealImage() {
-            const rect = image.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-
-            if (rect.top < windowHeight - 50) {
-                image.classList.add('visible');
-            }
-        }
-
-        window.addEventListener('scroll', revealImage);
-        revealImage(); // Run once in case it's already visible
-    });
-    </script> -->
+    <script>
+        document.addEventListener("click", function (e) {
+          const card = document.querySelector(".apple-card");
+          if (!card.contains(e.target)) {
+            card.classList.remove("flip");
+          }
+        });
+      </script>
+      <!-- <script>
+        window.addEventListener('load', () => {
+          setTimeout(() => {
+            document.querySelector('.spotlight-wrapper').classList.add('spotlight-active');
+          }, 1100); // slight delay for effect
+        });
+      </script> -->
+      
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
