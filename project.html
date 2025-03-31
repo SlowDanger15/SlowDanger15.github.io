@@ -1,362 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="images/image.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .card {
-            perspective: 1000px;
-            transition: transform 0.2s ease-in-out;
-            border: 3px solid purple;
-            border-radius: 10px;
-            background-color: #ffff; /* Darker purple */
-            min-height: 300px; /* Ensures consistent height for all cards */
-        }
-        .card:hover {
-            transform: translateY(-10px); /* Levitating effect */
-        }
-        .card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transform-style: preserve-3d;
-            transition: transform 0.5s;
-        }
-        .card:hover .card-inner {
-            transform: rotateY(180deg); /* Flip effect */
-        }
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            padding: 20px;
-            border-radius: 15px;
-        }
-        .card-back {
-            transform: rotateY(180deg);
-            background-color: #ffff;
-        }
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-        .row {
-            margin-bottom: 30px; /* Ensure proper spacing between rows */
-        }
-        /* body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background: #556fe6; 
-            color: white;
-        }  */
-        
-        /* Navbar Styling */
-        .navbar {
-            background: rgba(0, 0, 0, 0.8);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+    body {
+      background: #0f0f0f;
+      color: white;
+      overflow-x: hidden;
+    }
 
-        .navbar-nav .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            transition: color 0.3s;
-        }
+    .navbar-wrapper {
+      background: #2f343a;
+      padding: 0 2rem;
+    }
 
-        .navbar-nav .nav-link:hover {
-            color: #ff5f5f;
-        }
-        /* Back to Top Button */
-        #back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: none;
-            background-color: #ff5f5f;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: opacity 0.3s ease-in-out;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
+    .navbar {
+      padding: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
-        #back-to-top:hover {
-            background-color: #e04e4e;
-        }
-    </style>
+    .navbar .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+
+    .navbar .navbar-nav {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+    }
+
+    .navbar .navbar-nav .nav-item .nav-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .navbar .navbar-nav .nav-item .nav-link:hover {
+      color: #ffffff;
+    }
+
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 4rem;
+    }
+
+    .project-card {
+      position: relative;
+      background: linear-gradient(145deg, #3a3b3f, #232427);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    }
+
+    .project-card .content {
+      padding: 2rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .project-card .content h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .project-card .content p {
+      font-size: 0.95rem;
+      color: #bbb;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card .content .meta {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      border-radius: 20px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+      position: relative;
+      animation: scaleIn 0.3s ease;
+    }
+
+    @keyframes scaleIn {
+      from {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .modal-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-content p {
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    .modal-content .btn {
+      margin-top: 1.5rem;
+      display: inline-block;
+      background: #fff;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Rohan Prasad</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
-                    <li class="nav-item"><a class="nav-link" href="experience.html">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
+  <!-- Navbar -->
+  <div class="navbar-wrapper">
+    <nav class="navbar">
+      <a class="navbar-brand" href="index.html">Rohan Prasad</a>
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="experience.html">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
     </nav>
+  </div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-5">
-        <div class="container">
-            <h2>Projects</h2>
-
-            <!-- First Row -->
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front bg-light text-dark">
-                                <h5 class="card-title">Custom AI Agent Builder using AutoGen 0.4 & Streamlit</h5>
-                                <p><strong>Tech Stack:</strong>Python, Autogen 0.4, Streamlit</p>
-                                <p><strong>Date:</strong> Jan 2025</p>
-                            </div>
-                            <div class="card-back">
-                                <p>Implemented a lock-free async push-relabel algorithm achieving 4x speedup for max flow problems.</p>
-                                <div>
-                                    <img src="images/cuda.png" alt="CUDA" class="img-fluid" style="width: 170px;">
-                                    <img src="images/ncsa.png" alt="NCSA" class="img-fluid" style="width: 80px;">
-                                </div>
-                                <a href="https://github.com/SlowDanger15/parallel_algo_network_flow" class="btn btn-primary" target="_blank">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front bg-light text-dark">
-                                <h5 class="card-title">Fine-Tuning LLMs with LoRA for Error Detection in Science Questions</h5>
-                                <p><strong>Tech Stack:</strong>PyTorch, TensorFlow, Ollama, OpenAI API</p>
-                                <p><strong>Date:</strong> Aug 2024</p>
-                            </div>
-                            <div class="card-back">
-                                <p>Implemented a lock-free async push-relabel algorithm achieving 4x speedup for max flow problems.</p>
-                                <div>
-                                    <img src="images/cuda.png" alt="CUDA" class="img-fluid" style="width: 170px;">
-                                    <img src="images/ncsa.png" alt="NCSA" class="img-fluid" style="width: 80px;">
-                                </div>
-                                <a href="https://github.com/SlowDanger15/parallel_algo_network_flow" class="btn btn-primary" target="_blank">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front bg-light text-dark">
-                                <h5 class="card-title">Parallel Algorithms for Max Network Flow</h5>
-                                <p><strong>Tech Stack:</strong> CUDA, GPU Programming, Graph Analytics</p>
-                                <p><strong>Date:</strong> Jan 2024</p>
-                            </div>
-                            <div class="card-back">
-                                <p>Implemented a lock-free async push-relabel algorithm achieving 4x speedup for max flow problems.</p>
-                                <div>
-                                    <img src="images/cuda.png" alt="CUDA" class="img-fluid" style="width: 170px;">
-                                    <img src="images/ncsa.png" alt="NCSA" class="img-fluid" style="width: 80px;">
-                                </div>
-                                <a href="https://github.com/SlowDanger15/parallel_algo_network_flow" class="btn btn-primary" target="_blank">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Second Row -->
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front bg-light text-dark">
-                                <h5 class="card-title">Simulation of Routing Algorithms</h5>
-                                <p><strong>Tech Stack:</strong> Python, NetworkX</p>
-                                <p><strong>Date:</strong> Oct 2024</p>
-                            </div>
-                            <div class="card-back">
-                                <p>Simulated various network routing algorithms like Dijkstra and Bellman-Ford.</p>
-                                <div>
-                                    <img src="images/python.png" alt="Python" class="img-fluid" style="width: 120px;">
-                                    <img src="images/networkx.png" alt="NetworkX" class="img-fluid" style="width: 120px;">
-                                </div>
-                                <a href="https://github.com/rpp5524/CSE_514_Project_rpp5524" class="btn btn-primary" target="_blank">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front bg-light text-dark">
-                                <h5 class="card-title">Systolic Array Hardware Optimization</h5>
-                                <p><strong>Tech Stack:</strong> Python, Hardware Design</p>
-                                <p><strong>Date:</strong> Oct 2023</p>
-                            </div>
-                            <div class="card-back">
-                                <p>Designed a systolic array architecture tailored for transformer forward passes.</p>
-                                <div>
-                                    <img src="images/python.png" alt="Python" class="img-fluid" style="width: 120px;">
-                                    <img src="images/scalesim.png" alt="Python" class="img-fluid" style="width: 90px;">
-                                </div>
-                                <a href="https://docs.google.com/document/d/1ekR-n7J6242EieYLJ3edgBjdo2WSVIB9Zuc5s74GT6A/edit?usp=sharing" class="btn btn-primary" target="_blank">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front bg-light text-dark">
-                                <h5 class="card-title">Parallel File System and Synchronizer</h5>
-                                <p><strong>Tech Stack:</strong> C, gRPC, Protobuf</p>
-                                <p><strong>Date:</strong> Jul 2023</p>
-                            </div>
-                            <div class="card-back">
-                                <p>Built a distributed file synchronization system using gRPC and Protobuf.</p>
-                                <div>
-                                    <img src="images/c.png" alt="C" class="img-fluid" style="width: 70px;">
-                                    <img src="images/grpc.png" alt="gRPC" class="img-fluid" style="width: 90px;">
-                                    <img src="images/protobuf.png" alt="protobuf" class="img-fluid" style="width: 100px;">
-                                </div>
-                                <a href="https://www.google.com" class="btn btn-primary" target="_blank">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Third Row -->
-            
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front bg-light text-dark">
-                                <h5 class="card-title">CPU Architecture and Memory Configuration Analysis</h5>
-                                <p><strong>Tech Stack:</strong>GEM5, C++</p>
-                                <p><strong>Date:</strong> Oct 2023</p>
-                            </div>
-                            <div class="card-back">
-                                <p>Built a distributed file synchronization system using gRPC and Protobuf.</p>
-                                <div>
-                                    <img src="images/c.png" alt="C" class="img-fluid" style="width: 70px;">
-                                    <img src="images/grpc.png" alt="gRPC" class="img-fluid" style="width: 90px;">
-                                    <img src="images/protobuf.png" alt="protobuf" class="img-fluid" style="width: 100px;">
-                                </div>
-                                <a href="https://www.google.com" class="btn btn-primary" target="_blank">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front bg-light text-dark">
-                                <h5 class="card-title">Deep Learning for Brain Tumor Classification</h5>
-                                <p><strong>Tech Stack:</strong> Python, TensorFlow, Keras</p>
-                                <p><strong>Date:</strong> Aug 2023</p>
-                            </div>
-                            <div class="card-back">
-                                <p>Applied CNNs and ensemble learning to identify brain tumors with 79% accuracy. Performed a comparative analysis between VGG16 & InceptionNetV3 focusing on the effect of classification.</p>
-                                <div>
-                                    <img src="images/python5.svg" alt="Python" class="img-fluid" style="width: 60px;">
-                                    <img src="images/tensorflow.svg" alt="Tensorflow" class="img-fluid" style="width: 50px;">
-                                    <img src="images/Keras.png" alt="Keras" class="img-fluid" style="width: 50px;">
-                                </div>
-                                <a href="https://ieeexplore.ieee.org/document/10037548" class="btn btn-primary" target="_blank">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front bg-light text-dark">
-                                <h5 class="card-title">3D Modelling using Blender Python</h5>
-                                <p><strong>Tech Stack:</strong> Blender Python</p>
-                                <p><strong>Date:</strong> Aug 2021</p>
-                            </div>
-                            <div class="card-back">
-                                <p>A Blender Python (BPY) script to programmatically generate a 3-D Model of a Formula 1 Circuit using GeoJSON track data coordinates obtained my driving the object on the optimum race line.</p>
-                                <div>
-                                    <img src="images/blender_logo.png" alt="BlenderPython" class="img-fluid" style="width: 120px;">
-                                </div>
-                                <a href="https://github.com/SlowDanger15/F1Hackathon_MITBoys" class="btn btn-primary" target="_blank">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fourth Row -->
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front bg-light text-dark">
-                                <h5 class="card-title">Financial Services Android App</h5>
-                                <p><strong>Tech Stack:</strong> Python, Network Simulation</p>
-                                <p><strong>Date:</strong> Dec 2023</p>
-                            </div>
-                            <div class="card-back">
-                                <p>An Android Application, developed using Google Flutter, put into production to provide a complete financial suite rendering services like Loan eligibility classifier and Stock Price Prediction.</p>
-                                <div>
-                                    <img src="images/dart.png" alt="Python" class="img-fluid" style="width: 100px;">
-                                    <img src="images/flutter.png" alt="Python" class="img-fluid" style="width: 50px;">
-                                    <img src="images/firebase.png" alt="Python" class="img-fluid" style="width: 100px;">
-                                </div>
-                                <a href="https://github.com/SlowDanger15/citibank_final_app" class="btn btn-primary" target="_blank">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="projects-container">
+    <div class="project-card" onclick="openModal('Custom AI Agent Builder', 'Jan 2025 -  Feb 2025', 'Python, Autogen 0.4, Streamlit, Ollama, OpenAI API', 'Developed a custom AI Agent Builder platform from scratch using AutoGen 0.4 and Streamlit, enabling users to create, configure, and deploy AI agents with ease. The platform allows users to:\n- Create AI agents with specific functionalities.\n- Design and assign tools to agents for enhanced task execution.\n- Group agents into runtime environments or multi-agent group chats.\n- Interact with agents in a conversational manager for seamless AI-driven workflows.\n\nBy integrating AutoGen’s advanced agentic framework with Streamlit’s interactive UI, this platform empowers users to build custom AI assistants tailored for automation, research, and decision-making in various domains. \n\nTech Stack:\n- AutoGen 0.4 – AI agent framework\n- Streamlit – UI for agent creation and interaction\n- Ollama, OpenAI APIs & Tool APIs – For intelligent task execution', 'https://github.com/SlowDanger15/parallel_algo_network_flow')">
+      <img src="images/project/project_ai_agent_builder.svg" alt="AI Agent Builder">
+      <div class="content">
+        <h3>Custom AI Agent Builder</h3>
+        <p class="meta">Jan 2025 - Feb 2025</p>
+        <p>Tech Stack: Python, Autogen 0.4, Streamlit</p>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal('Fine-Tuning LLMs with LoRA for Error Detection', 'Nov 2024 - Dec 2025', 'Python, NetworkX', 'Developed a parameter-efficient fine-tuning (PEFT) pipeline using LoRA to enhance a Phi2 LLMs ability to detect and correct flawed scientific queries. Designed a domain-specific dataset containing scientifically inaccurate questions and fine-tuned the model to improve factual accuracy, coherence, and robustness against misleading inputs. Evaluated model improvements using ROUGE scores and benchmarked against the base model.\n\nAchievements:\n- Boosted ROUGE-1 by 7.12% and ROUGE-L by 3.92%, improving scientific error detection.\n- Enhanced model accuracy by 60%, enabling better response generation for flawed questions.\n- Successfully implemented LoRA-based fine-tuning, reducing compute costs while improving performance.', 'https://github.com/rpp5524/CSE_514_Project_rpp5524')">
+        <img src="images/project/project_llm_lora.png" alt="Fine-Tuning LLMs with LoRA">
+        <div class="content">
+          <h3>Fine-Tuning LLMs with LoRA</h3>
+          <p class="meta">Oct 2024 - Dec 2024</p>
+          <p>Tech Stack: Python, PyTorch, OpenAI, Ollama</p>
         </div>
-    </section>
+      </div>
+    <div class="project-card" onclick="openModal('Routing Algorithm Simulator', 'Oct 2024 - Dec 2024', 'Python, NetworkX', 'In this project, I implemented and analyzed three foundational routing algorithms Distance Vector, Link State, Path Vector to evaluate their performance across diverse network topologies, including linear, mesh, ring, star, tree, and grid. \n\nI developed a realistic network weight model based on geographic distance, bandwidth, and congestion factors, mimicking real-world network conditions.\n The findings provide valuable insights into the trade-offs between routing algorithms and their suitability for different network structures, contributing to the optimization of real-world network performance.', 'https://github.com/rpp5524/CSE_514_Project_rpp5524')">
+      <img src="images/project/project_routing_algo.jpg" alt="Routing Algorithm Simulator">
+      <div class="content">
+        <h3>Routing Algoritms Simulator</h3>
+        <p class="meta">Oct 2024 - Dec 2024</p>
+        <p>Tech Stack: Python, NetworkX</p>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal('Parallel CUDA Algorithms for Max Network Flow', 'Jan 2024 - Apr 2024', 'CUDA C++, NCSA Delta Compute', 'In this project, I explored the enhancement of the Goldbergs push-relabel algorithm through parallel processing using CUDA for solving maximum network flow problems. I implemented two innovative lock-free variations tailored for GPU execution:\n- Asynchronous Push-Relabel Algorithm: Utilizes atomic operations to handle push and relabel operations concurrently, enhancing performance by leveraging CUDAs SIMD architecture.\n- Precolor-Based Push-Relabel Algorithm: Employs a pre-coloring method to manage dependencies and synchronization, minimizing race conditions through the use of barriers.\n\nAchievements:\n- Achieved significant performance improvements, with up to 4x speed-ups on complex network topologies like Washington-RLG and GenRMF graphs.\n- Demonstrated the potential of multi-core GPU platforms in accelerating graph-theoretical computations, specifically in sparse and dense network scenarios.', 'https://ieeexplore.ieee.org/document/10037548')">
+      <img src="images/project/7076118.jpg" alt="Parallel CUDA Algorithms">
+      <div class="content">
+        <h3>Parallel CUDA Algorithms for Max Network Flow</h3>
+        <p class="meta">Jan 2024 - Apr 2024</p>
+        <p>Tech Stack: CUDA C++, NCSA Delta Compute</p>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal('Optimizing Systolic Array Configurations for Neural Network Architectures with ScaleSimV2', 'Nov 2023 - Dec 2023', 'ScaleSimV2, Python', 'In this project, I designed and analyzed systolic array configurations to optimize hardware utilization and computation performance for various neural network topologies, including Transformer Forward, Faster R-CNN, and a custom MobileNet. By varying array dimensions and dataflow patterns, the project aimed to balance utilization and minimize total clock cycles.\n\nKey Highlights:\n- Achieved optimal configuration of a 32x32 systolic array with dataflows such as Output Stationary (OS) and Weight Stationary (WS) for different topologies.\n - Conducted a sensitivity study to evaluate the effect of filter sizes on hardware utilization and performance, identifying optimal configurations.\n- Improved average utilization (up to 78.29%) and minimized total cycles (e.g., 4.71M for Faster R-CNN).', 'https://ieeexplore.ieee.org/document/10037548')">
+        <img src="images/project/project_systolic_array.webp" alt="Optimizing Systolic Array Hardware">
+        <div class="content">
+          <h3>Optimizing Systolic Array Configurations</h3>
+          <p class="meta">Nov 2023 - Dec 2023</p>
+          <p>Tech Stack: ScaleSimV2, Python</p>
+        </div>
+      </div>
+      <div class="project-card" onclick="openModal('CPU Architecture and Memory Configuration Analysis', 'Oct 2023 - Nov 2023', 'C++. Gem5', 'Conducted extensive simulations using gem5 to evaluate how varying CPU models, clock frequencies, and memory technologies impact the performance of the quicksort algorithm. The goal was to gain microarchitectural insights and explore performance bottlenecks.\n\nKey Highlights:\n- Ran 30 gem5 simulations across TimingSimple and Minor CPU models, varying memory types and frequencies.\n- Demonstrated that TimingSimple is more sensitive to CPU frequency, while Minor CPU better adapts to memory technology changes.\n- Showed how random access patterns in quicksort degrade cache performance, suggesting avenues for optimization.', 'https://ieeexplore.ieee.org/document/10037548')">
+        <img src="images/project/project_cpu.png" alt="CPU Architecture and Memory Configuration Analysis">
+        <div class="content">
+          <h3>CPU Arch & Memory Config Analysis</h3>
+          <p class="meta">Oct 2023 - Nov 2023</p>
+          <p>Tech Stack: C++, Gem5</p>
+        </div>
+      </div>
+      <div class="project-card" onclick="openModal('Distributed Parallel File System', 'Sept 2023 - Oct 2023', 'C++, gRPC, protobuf', 'We programmed a Parallel File System with 3 components Client Machines, Metadata Server and File Servers to store files in a striped fashion and streamlined communication between the components via RPC Calls based on Proto file message formats in Protobuf.', 'https://ieeexplore.ieee.org/document/10037548')">
+        <img src="images/project/project_pfs.jpg" alt="Distributed Parallel File System">
+        <div class="content">
+          <h3>Distributed Parallel File System</h3>
+          <p class="meta">Sept 2023 - Oct 2023</p>
+          <p>Tech Stack: C++, gRPC, protobuf</p>
+        </div>
+      </div>
+      <div class="project-card" onclick="openModal('Synchronizer for Path Expressions', 'Aug 2023 - Sept 2023', 'C, Bash', 'Designed a parser to read path expressions and transform them into a linked list representing operations like Reads/Writes with synchronization. We used this parser to feed the linked list to the synchronizer to synchronize all operations using mutex locks and semaphores to solve readers-writer problem, producer-consumer problem, monkey-crossing problem, child care problem.', 'https://ieeexplore.ieee.org/document/10037548')">
+        <img src="images/project/project_sync.png" alt="Synchronizer for Path Expressions">
+        <div class="content">
+          <h3>Synchronizer for Path Expressions</h3>
+          <p class="meta">Aug 2023 - Sept 2023</p>
+          <p>Tech Stack: C, Bash</p>
+        </div>
+      </div>
+      <div class="project-card" onclick="openModal('3D Modelling using Blender Python - FormulaAI Hack 2022', 'Feb 2022 - Mar 2022', 'Blender Python', 'Built a Blender Python (BPY) script to programmatically generate a 3-D Model of a Formula 1 Circuit using GeoJSON track data coordinates obtained my driving the object on the optimum race line.\n\nRendered Blender objects in space using specialized techniques in Blender Software to obtain a picturesque 3D view of the F1 Track', 'https://ieeexplore.ieee.org/document/10037548')">
+        <img src="images/project/project_3d_model.png" alt="3D Modelling using Blender Python">
+        <div class="content">
+          <h3>3D Formula 1 Track with Blender</h3>
+          <p class="meta">Feb 2022 - Mar 2022</p>
+          <p>Tech Stack: Blender Python</p>
+        </div>
+      </div>
+      <div class="project-card" onclick="openModal('Financial Services Flutter Application', 'Aug 2023', 'Flutter, Dart, Firebase', 'Developed an Android Application, developed using Google Flutter, put into production by a flexible and dynamic team of 4 members.\n\nFunctionality- Provide a complete financial suite rendering services like Loan eligibility classifier and Stock Price Prediction.', 'https://ieeexplore.ieee.org/document/10037548')">
+        <img src="images/project/project_fin_ser_app.png" alt="Financial Services Flutter Application">
+        <div class="content">
+          <h3>Financial Services Flutter Application</h3>
+          <p class="meta">Aug 2021 - Oct 2021</p>
+          <p>Tech Stack: Flutter, Dart, Firebase</p>
+        </div>
+      </div>
+  </div>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" onclick="scrollToTop()">↑</button>
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal" style="display: none;" onclick="closeModal(event)">
+    <div class="modal-content" id="modal-content" onclick="event.stopPropagation()">
+      <h3 id="modal-title"></h3>
+      <p id="modal-date"></p>
+      <p id="modal-tech"></p>
+      <p id="modal-desc"></p>
+      <a href="#" target="_blank" id="modal-link" class="btn">Learn More</a>
+    </div>
+  </div>
 
-    <!-- Footer -->
-    <footer class="text-center py-4 bg-dark text-white">
-        <p>&copy; 2025 Rohan Prasad | <a href="https://github.com/SlowDanger15" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank">LinkedIn</a></p>
-    </footer>
+  <script>
+    function openModal(title, date, tech, desc, link) {
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-date').textContent = 'Date: ' + date;
+      document.getElementById('modal-tech').textContent = 'Tech Stack: ' + tech;
+      document.getElementById('modal-desc').textContent = desc;
+      document.getElementById('modal-link').href = link;
+      document.getElementById('modal').style.display = 'flex';
+    }
 
-    <script>
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    
-        window.addEventListener('scroll', function() {
-            let backToTopButton = document.getElementById('back-to-top');
-            if (window.scrollY > 300) {
-                backToTopButton.style.display = 'block';
-            } else {
-                backToTopButton.style.display = 'none';
-            }
-        });
-    </script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    function closeModal(e) {
+      const modal = document.getElementById('modal');
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    }
+  </script>
 </body>
 </html>
