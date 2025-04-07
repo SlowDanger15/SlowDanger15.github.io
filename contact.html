@@ -24,6 +24,7 @@
     })();
     </script>
     <script>
+
         // JavaScript for email validation
         function validateForm(event) {
             event.preventDefault();
@@ -48,29 +49,36 @@
             sendEmail(name, email, subject, question);
         }
 
-        // Use EmailJS to send email
         function sendEmail(name, email, subject, question) {
-            emailjs.init({
-                publicKey: 'PUBLIC_KEY',
-            });
-
-            const templateParams = {
-                from_name: name,
-                from_email: email,
+            const payload = {
+                name: name,
+                email: email,
                 subject: subject,
-                message: question,
+                message: question
             };
 
-            emailjs.send('SERVICE_KEY', 'TEMPLATE_KEY', templateParams) // Replace with your EmailJS service and template ID
-                .then(function(response) {
-                    // console.log('SUCCESS!', response.status, response.text);
+            fetch('https://email-service-request.vercel.app/api/sendEmail', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                if (data.success) {
                     alert('Your message has been sent successfully!');
                     document.getElementById('contactForm').reset();
-                }, function(error) {
-                    // console.log('FAILED...', error);                    
+                } else {
                     alert('Failed to send your message. Please try again later.');
-            });
-        }
+                }
+                })
+                .catch((error) => {
+                console.error('Error:', error);
+                alert('Something went wrong while sending your message.');
+                });
+            }
+
     </script>
 </head>
 <body>
