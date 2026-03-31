@@ -3,147 +3,735 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Me</title>
-    <!-- Favicon -->
+    <title>Contact - Rohan Prasad</title>
     <link rel="icon" type="image/png" sizes="32x32" href="images/image.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="styles.css">
+
     <style>
-        .navbar-brand {
+        /* Contact-specific styles */
+        .contact-header {
+            padding-top: calc(var(--nav-height) + 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-section {
+            padding: 3rem 2rem 5rem;
+        }
+
+        /* Contact Container */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .contact-info h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.15);
+            border-radius: 15px;
+            transition: all var(--transition-base);
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .contact-method:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: var(--neon-cyan);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px var(--glow-cyan);
+        }
+
+        .contact-method-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--bg-primary);
+            flex-shrink: 0;
+        }
+
+        .contact-method-text h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-method-text p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Social Links */
+        .social-links-section {
+            margin-top: 2rem;
+        }
+
+        .social-links-section h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .social-links-large {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link-large {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 255, 255, 0.08);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 15px;
+            color: var(--neon-cyan);
             font-size: 1.5rem;
-            font-weight: bold;
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .social-link-large:hover {
+            background: rgba(0, 255, 255, 0.2);
+            border-color: var(--neon-cyan);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px var(--glow-cyan);
+        }
+
+        /* Contact Form */
+        .contact-form-wrapper {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+        }
+
+        .contact-form-wrapper h2 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form-wrapper > p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: all var(--transition-base);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 25px var(--glow-cyan);
+            background: rgba(0, 255, 255, 0.05);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            color: var(--bg-primary);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-base);
+            box-shadow: 0 5px 20px var(--glow-cyan);
+        }
+
+        .form-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .form-submit:hover::before {
+            left: 100%;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--glow-cyan);
+        }
+
+        .form-submit:active {
+            transform: translateY(-1px);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Resume Download */
+        .resume-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.15);
+            border-radius: 20px;
+        }
+
+        .resume-section h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-resume {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+            color: var(--text-primary);
+            font-family: var(--font-display);
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all var(--transition-base);
+            box-shadow: 0 5px 20px var(--glow-purple);
+        }
+
+        .btn-resume:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--glow-purple);
+        }
+
+        .btn-resume i {
+            font-size: 1.1rem;
+        }
+
+        /* Map placeholder (optional) */
+        .map-container {
+            margin-top: 3rem;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        /* Success/Error Messages */
+        .form-message {
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .form-message.success {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+        }
+
+        .form-message.error {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid var(--neon-orange);
+            color: var(--neon-orange);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating particles decoration */
+        .form-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .form-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: particleFloat 10s ease-in-out infinite;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 0.6;
+            }
+        }
+
+        .contact-form-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .contact-info {
+                order: 2;
+            }
+
+            .contact-form-wrapper {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-form-wrapper {
+                padding: 1.5rem;
+            }
+
+            .contact-methods {
+                gap: 1rem;
+            }
         }
     </style>
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-    </script>
-    <script type="text/javascript">
-    (function(){
-        emailjs.init({
-            publicKey: "PUBLIC_KEY",
-        });
-    })();
-    </script>
-    <script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-title">CONTACT</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
 
-        // JavaScript for email validation
+    <!-- Custom Cursor -->
+    <div class="cursor-wrapper"></div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="nebula"></div>
+    </div>
+
+    <!-- Particles -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">RP</a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html"><span>Home</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="education.html"><span>Education</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="experience.html"><span>Experience</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="project.html"><span>Projects</span></a></li>
+                <li class="nav-item"><a class="nav-link active" href="contact.html"><span>Contact</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="contact-header">
+        <div class="section-title-wrapper reveal">
+            <h1 class="section-title">GET IN TOUCH</h1>
+        </div>
+        <p class="section-subtitle reveal">Let's build something amazing together</p>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <!-- Contact Info -->
+            <div class="contact-info reveal-left">
+                <h2>Let's Connect</h2>
+                <p>
+                    I'm always open to discussing new opportunities, collaborations, or just having a chat about technology.
+                    Whether you have a question, a project idea, or just want to say hi, feel free to reach out!
+                </p>
+
+                <div class="contact-methods">
+                    <a href="mailto:rohanprasad@example.com" class="contact-method">
+                        <div class="contact-method-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-method-text">
+                            <h3>Email</h3>
+                            <p>rohanprasad@example.com</p>
+                        </div>
+                    </a>
+
+                    <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank" class="contact-method">
+                        <div class="contact-method-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="contact-method-text">
+                            <h3>LinkedIn</h3>
+                            <p>Connect professionally</p>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/SlowDanger15" target="_blank" class="contact-method">
+                        <div class="contact-method-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-method-text">
+                            <h3>GitHub</h3>
+                            <p>Check out my code</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="social-links-section">
+                    <h3>Follow Me</h3>
+                    <div class="social-links-large">
+                        <a href="https://github.com/SlowDanger15" target="_blank" class="social-link-large" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank" class="social-link-large" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://x.com/_rohan06_" target="_blank" class="social-link-large" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com/" target="_blank" class="social-link-large" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-wrapper reveal-right">
+                <div class="form-particles" id="formParticles"></div>
+                <div class="contact-form-content">
+                    <h2>Send a Message</h2>
+                    <p>Fill out the form below and I'll get back to you as soon as possible.</p>
+
+                    <div class="form-message" id="formMessage"></div>
+
+                    <form id="contactForm" onsubmit="validateForm(event)">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Name</label>
+                            <input
+                                type="text"
+                                class="form-input"
+                                id="name"
+                                placeholder="Your name"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email</label>
+                            <input
+                                type="email"
+                                class="form-input"
+                                id="email"
+                                placeholder="your.email@example.com"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject</label>
+                            <input
+                                type="text"
+                                class="form-input"
+                                id="subject"
+                                placeholder="What's this about?"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea
+                                class="form-textarea"
+                                id="message"
+                                placeholder="Tell me about your project, idea, or just say hi..."
+                                rows="5"
+                                required
+                            ></textarea>
+                        </div>
+
+                        <button type="submit" class="form-submit" id="submitBtn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane" style="margin-left: 0.5rem;"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resume Download -->
+        <div class="section-container" style="max-width: 600px; margin: 3rem auto 0;">
+            <div class="resume-section reveal-scale">
+                <h3>Want to Know More?</h3>
+                <p>Download my resume to learn more about my experience and skills.</p>
+                <a href="files/Rohan_Prasad_s_Resume.pdf" class="btn-resume" download>
+                    <i class="fas fa-download"></i>
+                    <span>Download Resume</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Rohan Prasad | <a href="https://github.com/SlowDanger15" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank">LinkedIn</a></p>
+    </footer>
+
+    <!-- Shared Scripts -->
+    <script src="shared.js"></script>
+    <script>
+        // Form particles decoration
+        function createFormParticles() {
+            const container = document.getElementById('formParticles');
+            if (!container) return;
+
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'form-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Form validation and submission
         function validateForm(event) {
             event.preventDefault();
 
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const subject = document.getElementById('subject').value.trim();
-            const question = document.getElementById('question').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const messageEl = document.getElementById('formMessage');
+            const submitBtn = document.getElementById('submitBtn');
 
+            // Validation
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            if (!name || !email || !question || !subject) {
-                alert('All fields are required.');
+            if (!name || !email || !subject || !message) {
+                showMessage('All fields are required.', 'error');
                 return false;
             }
 
             if (!emailPattern.test(email)) {
-                alert('Please enter a valid email address.');
+                showMessage('Please enter a valid email address.', 'error');
                 return false;
             }
 
-            sendEmail(name, email, subject, question);
+            // Simulate form submission (replace with actual API call)
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+            sendEmail(name, email, subject, message)
+                .then(() => {
+                    showMessage('Your message has been sent successfully! I\'ll get back to you soon.', 'success');
+                    document.getElementById('contactForm').reset();
+                })
+                .catch(() => {
+                    showMessage('Failed to send your message. Please try again later.', 'error');
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>Send Message</span><i class="fas fa-paper-plane" style="margin-left: 0.5rem;"></i>';
+                });
+
+            return false;
         }
 
-        function sendEmail(name, email, subject, question) {
-            const payload = {
-                from_name: name,
-                from_email: email,
-                subject: subject,
-                message: question
-            };
+        function showMessage(text, type) {
+            const messageEl = document.getElementById('formMessage');
+            messageEl.textContent = text;
+            messageEl.className = 'form-message ' + type;
+            messageEl.style.display = 'block';
 
-            fetch('https://email-service-request.vercel.app/api/sendEmail', {
+            setTimeout(() => {
+                messageEl.style.display = 'none';
+            }, 5000);
+        }
+
+        function sendEmail(name, email, subject, message) {
+            return fetch('https://email-service-request.vercel.app/api/sendEmail', {
                 method: 'POST',
                 headers: {
-                'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(payload)
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                if (data.success) {
-                    alert('Your message has been sent successfully!');
-                    document.getElementById('contactForm').reset();
-                } else {
-                    alert('Failed to send your message. Please try again later.');
-                }
+                body: JSON.stringify({
+                    from_name: name,
+                    from_email: email,
+                    subject: subject,
+                    message: message
                 })
-                .catch((error) => {
-                console.error('Error:', error);
-                alert('Something went wrong while sending your message.');
-                });
-            }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    return Promise.resolve();
+                } else {
+                    return Promise.reject();
+                }
+            });
+        }
 
+        // Input animations
+        document.querySelectorAll('.form-input, .form-textarea').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('focused');
+            });
+        });
+
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', () => {
+            createFormParticles();
+
+            // Initialize magnetic effect on submit button
+            new MagneticButton('.form-submit', { range: 150, strength: 0.4 });
+        });
     </script>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Rohan Prasad</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
-                    <li class="nav-item"><a class="nav-link" href="experience.html">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <section class="py-5">
-        <div class="container">
-            <h2>Contact Me</h2>
-            <form id="contactForm" onsubmit="validateForm(event)">
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject:</label>
-                    <input type="text" class="form-control" id="subject" placeholder="Enter the subject">
-                </div>
-                <div class="form-group">
-                    <label for="question">Question:</label>
-                    <textarea class="form-control" id="question" rows="4" placeholder="Type your message here..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-            <div id="responseMessage" class="mt-3"></div>
-        </div>
-    </section>
-
-    <!-- Contact Me Section -->
-    <section class="py-5">
-        <div class="container">
-            <!-- <h2 class="text-center mb-4">Contact Me</h2> -->
-            <p class="text-center">Feel free to reach out to me via email or download my resume using the button below.</p>
-            
-            <!-- Resume Download Button -->
-            <div class="text-center">
-                <a href="files/Rohan_Prasad_s_Resume.pdf" class="btn btn-success" download>
-                    Download My Resume
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="text-center py-4 bg-dark text-white">
-        <p>&copy; 2025 Rohan Prasad | <a href="https://github.com/SlowDanger15" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank">LinkedIn</a></p>
-    </footer>
 </body>
 </html>
