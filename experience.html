@@ -5,336 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Experience - Rohan Prasad</title>
     <link rel="icon" type="image/png" sizes="32x32" href="images/image.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="styles.css">
+
     <style>
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #111111;
-            --bg-card: #1a1a1a;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --accent-orange: #ff6b35;
-            --accent-blue: #00d4ff;
-            --accent-yellow: #ffd700;
-            --accent-green: #00ff88;
-            --accent-purple: #8b5cf6;
-            --glow-orange: rgba(255, 107, 53, 0.3);
-            --glow-blue: rgba(0, 212, 255, 0.3);
-            --glow-yellow: rgba(255, 215, 0, 0.3);
-            --glow-green: rgba(0, 255, 136, 0.3);
-            --glow-purple: rgba(139, 92, 246, 0.3);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            color: var(--text-primary);
-            font-family: 'Rajdhani', sans-serif;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-            animation: backgroundShift 20s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        @keyframes backgroundShift {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 0.8; }
-        }
-
-        /* Navbar Styling */
-        .navbar {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            font-family: 'Orbitron', monospace;
-        }
-
-        .navbar-brand {
-            font-size: 1.8rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--accent-orange), var(--accent-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .navbar-nav .nav-link {
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            position: relative;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .navbar-nav .nav-link::before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-blue));
-            transition: width 0.3s ease;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: var(--text-primary);
-            text-shadow: 0 0 10px var(--glow-blue);
-        }
-
-        .navbar-nav .nav-link:hover::before {
-            width: 100%;
-        }
-
-        /* Section Headers */
-        h2 {
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            font-size: 2.5rem;
+        /* Experience-specific styles */
+        .experience-header {
+            padding-top: calc(var(--nav-height) + 3rem);
             text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            background: linear-gradient(45deg, var(--accent-orange), var(--accent-blue), var(--accent-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-transform: uppercase;
-            letter-spacing: 3px;
         }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-blue), var(--accent-green));
-            border-radius: 2px;
+        .experience-section {
+            padding: 3rem 0 5rem;
         }
 
-        /* Card Animations and Styling */
+        .section-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Experience Cards */
         .experience-card {
             background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.15);
             border-radius: 20px;
             margin-bottom: 2rem;
-            position: relative;
             overflow: hidden;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
+            position: relative;
+            transition: all var(--transition-base);
+            transform-style: preserve-3d;
         }
 
         .experience-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.6s ease;
-            z-index: 1;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--transition-base);
         }
 
         .experience-card:hover::before {
-            left: 100%;
+            transform: scaleX(1);
         }
 
-        /* Palo Alto Networks - Orange Neon */
-        .palo-alto-card {
-            position: relative;
+        .experience-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.12);
+            border-color: var(--neon-cyan);
         }
 
-        .palo-alto-card::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, transparent, var(--accent-orange), transparent, var(--accent-orange), transparent);
-            background-size: 400% 400%;
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            animation: none;
+        /* Company-specific accent colors */
+        .experience-card.palo-alto { --accent-color: var(--neon-orange); }
+        .experience-card.sap { --accent-color: var(--neon-blue); }
+        .experience-card.akamai { --accent-color: var(--neon-yellow, #ffd700); }
+        .experience-card.neodocto { --accent-color: var(--neon-green); }
+        .experience-card.academic { --accent-color: var(--neon-purple); }
+
+        .experience-card.palo-alto:hover { box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15); }
+        .experience-card.sap:hover { box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15); }
+        .experience-card.akamai:hover { box-shadow: 0 20px 40px rgba(255, 215, 0, 0.15); }
+        .experience-card.neodocto:hover { box-shadow: 0 20px 40px rgba(0, 255, 136, 0.15); }
+        .experience-card.academic:hover { box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15); }
+
+        .card-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 0;
         }
 
-        .palo-alto-card:hover::after {
-            opacity: 1;
-            animation: neonBorder 2s linear infinite;
-        }
-
-        .palo-alto-card:hover {
-            box-shadow: 0 0 30px var(--glow-orange);
-            transform: translateY(-10px) scale(1.02);
-        }
-
-        /* SAP - Blue Neon */
-        .sap-card::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, transparent, var(--accent-blue), transparent, var(--accent-blue), transparent);
-            background-size: 400% 400%;
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            animation: none;
-        }
-
-        .sap-card:hover::after {
-            opacity: 1;
-            animation: neonBorder 2s linear infinite;
-        }
-
-        .sap-card:hover {
-            box-shadow: 0 0 30px var(--glow-blue);
-            transform: translateY(-10px) scale(1.02);
-        }
-
-        /* Akamai - Yellow Neon */
-        .akamai-card::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, transparent, var(--accent-yellow), transparent, var(--accent-yellow), transparent);
-            background-size: 400% 400%;
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            animation: none;
-        }
-
-        .akamai-card:hover::after {
-            opacity: 1;
-            animation: neonBorder 2s linear infinite;
-        }
-
-        .akamai-card:hover {
-            box-shadow: 0 0 30px var(--glow-yellow);
-            transform: translateY(-10px) scale(1.02);
-        }
-
-        /* NeoDocto - Green Neon */
-        .neodocto-card::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, transparent, var(--accent-green), transparent, var(--accent-green), transparent);
-            background-size: 400% 400%;
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            animation: none;
-        }
-
-        .neodocto-card:hover::after {
-            opacity: 1;
-            animation: neonBorder 2s linear infinite;
-        }
-
-        .neodocto-card:hover {
-            box-shadow: 0 0 30px var(--glow-green);
-            transform: translateY(-10px) scale(1.02);
-        }
-
-        /* Academic Cards - Purple Neon */
-        .academic-card::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, transparent, var(--accent-purple), transparent, var(--accent-purple), transparent);
-            background-size: 400% 400%;
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            animation: none;
-        }
-
-        .academic-card:hover::after {
-            opacity: 1;
-            animation: neonBorder 2s linear infinite;
-        }
-
-        .academic-card:hover {
-            box-shadow: 0 0 30px var(--glow-purple);
-            transform: translateY(-10px) scale(1.02);
-        }
-
-        @keyframes neonBorder {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Card Content */
-        .card-header {
-            background: rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        .card-logo {
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 1.5rem;
+            border-right: 1px solid rgba(0, 255, 255, 0.1);
         }
 
-        .card-header h5 {
-            font-family: 'Orbitron', monospace;
+        .card-logo img {
+            max-width: 100%;
+            max-height: 80px;
+            object-fit: contain;
+            filter: brightness(0.8) contrast(1.1);
+            transition: all var(--transition-base);
+        }
+
+        .experience-card:hover .card-logo img {
+            filter: brightness(1.2) contrast(1.2);
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            padding: 1.5rem 1.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .card-header h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--text-primary);
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
-        .card-header .text-muted {
-            color: var(--text-secondary) !important;
-            font-weight: 500;
+        .card-header .company {
+            color: var(--neon-cyan);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .card-header .duration {
+            background: rgba(0, 255, 255, 0.1);
+            color: var(--neon-cyan);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 255, 255, 0.2);
         }
 
         .card-body {
-            padding: 1.5rem;
-            position: relative;
-            z-index: 2;
+            padding: 0 1.5rem 1.5rem;
         }
 
         .card-body ul {
@@ -344,197 +159,187 @@
 
         .card-body li {
             position: relative;
-            padding-left: 20px;
-            margin-bottom: 0.8rem;
+            padding-left: 1.75rem;
+            margin-bottom: 0.75rem;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
 
         .card-body li::before {
-            content: '▶';
+            content: '▸';
             position: absolute;
             left: 0;
-            color: var(--accent-blue);
-            font-size: 0.8rem;
+            color: var(--neon-cyan);
+            font-size: 1rem;
+            font-weight: bold;
         }
 
-        /* Logo Containers */
-        .logo-container {
+        .card-body li:hover {
+            color: var(--text-primary);
+        }
+
+        .card-body li:hover::before {
+            color: var(--neon-purple);
+            transform: translateX(3px);
+            transition: transform var(--transition-fast);
+        }
+
+        /* Section divider */
+        .section-divider {
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 1rem;
+            gap: 1rem;
+            margin: 4rem 0 2rem;
+        }
+
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+        }
+
+        .section-divider h2 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+        }
+
+        /* Timeline connector */
+        .timeline-connector {
             position: relative;
-            z-index: 2;
+            padding-left: 2rem;
+            margin-left: 1rem;
         }
 
-        .logo-container img {
-            transition: all 0.3s ease;
-            filter: brightness(0.8);
+        .timeline-connector::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple), transparent);
         }
 
-        .experience-card:hover .logo-container img {
-            filter: brightness(1.2);
-            transform: scale(1.1);
-        }
-
-        /* Back to Top Button */
-        #back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: none;
-            background: linear-gradient(45deg, var(--accent-orange), var(--accent-blue));
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 50%;
-            font-size: 18px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-        }
-
-        #back-to-top:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 8px 30px var(--glow-blue);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 4rem;
-        }
-
-        footer a {
-            color: var(--accent-blue);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        footer a:hover {
-            color: var(--accent-orange);
-            text-shadow: 0 0 10px var(--glow-orange);
-        }
-
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
-            h2 {
-                font-size: 2rem;
+            .card-row {
+                grid-template-columns: 1fr;
             }
-            
+
+            .card-logo {
+                padding: 1rem;
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            }
+
             .card-header {
                 flex-direction: column;
-                text-align: center;
             }
-            
-            .logo-container {
-                margin-bottom: 1rem;
+
+            .section-divider h2 {
+                font-size: 1.4rem;
             }
-        }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--accent-orange), var(--accent-blue));
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, var(--accent-blue), var(--accent-orange));
-        }
-
-        /* Glitch Effect for Headers */
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
-        }
-
-        h2:hover {
-            animation: glitch 0.3s ease-in-out;
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Rohan Prasad</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
-                    <li class="nav-item"><a class="nav-link" href="experience.html">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-title">EXPERIENCE</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
             </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-wrapper"></div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="nebula"></div>
+    </div>
+
+    <!-- Particles -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">RP</a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html"><span>Home</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="education.html"><span>Education</span></a></li>
+                <li class="nav-item"><a class="nav-link active" href="experience.html"><span>Experience</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="project.html"><span>Projects</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html"><span>Contact</span></a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-5" style="margin-top: 80px;">
-        <div class="container">
-            <h2>Professional Experience</h2>
-            
-            <!-- Palo Alto Networks Experience -->
-            <div class="experience-card palo-alto-card">
-                <div class="row no-gutters">
-                    <div class="col-md-2">
-                        <div class="logo-container">
-                            <img src="images/PANW.png" class="img-fluid" alt="PANW Logo" width="120px">
-                        </div>
+    <!-- Header -->
+    <div class="experience-header">
+        <div class="section-title-wrapper reveal">
+            <h1 class="section-title">PROFESSIONAL JOURNEY</h1>
+        </div>
+        <p class="section-subtitle reveal">Building the future, one innovation at a time</p>
+    </div>
+
+    <!-- Professional Experience -->
+    <section class="experience-section">
+        <div class="section-container">
+            <div class="section-divider reveal">
+                <div class="section-title-wrapper">
+                    <h2>Industry Experience</h2>
+                </div>
+            </div>
+
+            <!-- Palo Alto Networks -->
+            <div class="experience-card palo-alto reveal">
+                <div class="card-row">
+                    <div class="card-logo">
+                        <img src="images/PANW.png" alt="Palo Alto Networks">
                     </div>
-                    <div class="col-md-10">
-                        <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card-content">
+                        <div class="card-header">
                             <div>
-                                <h5 class="mb-0">Staff Software Engineer (AI/ML)</h5>
-                                <p class="text-muted mb-0">Palo Alto Networks</p>
+                                <h3>Staff Software Engineer (AI/ML)</h3>
+                                <span class="company">Palo Alto Networks</span>
                             </div>
-                            <div class="text-muted">June 2025 – Present</div>
+                            <span class="duration">June 2025 – Present</span>
                         </div>
                         <div class="card-body">
                             <ul>
                                 <li>Working on Generative AI Copilots for business use cases.</li>
-                                <li>Developing AI Agents and working closely with RAG.</li>
+                                <li>Developing AI Agents and working closely with RAG (Retrieval-Augmented Generation).</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SAP Experience -->
-            <div class="experience-card sap-card">
-                <div class="row no-gutters">
-                    <div class="col-md-2">
-                        <div class="logo-container">
-                            <img src="images/SAP.png" class="img-fluid" alt="SAP Logo" width="100px">
-                        </div>
+            <!-- SAP -->
+            <div class="experience-card sap reveal">
+                <div class="card-row">
+                    <div class="card-logo">
+                        <img src="images/SAP.png" alt="SAP">
                     </div>
-                    <div class="col-md-10">
-                        <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card-content">
+                        <div class="card-header">
                             <div>
-                                <h5 class="mb-0">AI/ML Scientist Intern</h5>
-                                <p class="text-muted mb-0">SAP</p>
+                                <h3>AI/ML Scientist Intern</h3>
+                                <span class="company">SAP</span>
                             </div>
-                            <div class="text-muted">May 2024 – May 2025</div>
+                            <span class="duration">May 2024 – May 2025</span>
                         </div>
                         <div class="card-body">
                             <ul>
@@ -547,21 +352,19 @@
                 </div>
             </div>
 
-            <!-- Akamai Experience 1 -->
-            <div class="experience-card akamai-card">
-                <div class="row no-gutters">
-                    <div class="col-md-2">
-                        <div class="logo-container">
-                            <img src="images/Akamai.png" class="img-fluid" alt="Akamai Logo" width="250px">
-                        </div>
+            <!-- Akamai Technologies (Spring) -->
+            <div class="experience-card akamai reveal">
+                <div class="card-row">
+                    <div class="card-logo">
+                        <img src="images/Akamai.png" alt="Akamai Technologies">
                     </div>
-                    <div class="col-md-10">
-                        <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card-content">
+                        <div class="card-header">
                             <div>
-                                <h5 class="mb-0">Software Engineer Intern (Spring)</h5>
-                                <p class="text-muted mb-0">Akamai Technologies</p>
+                                <h3>Software Engineer Intern (Spring)</h3>
+                                <span class="company">Akamai Technologies</span>
                             </div>
-                            <div class="text-muted">Jan 2023 – Jul 2023</div>
+                            <span class="duration">Jan 2023 – Jul 2023</span>
                         </div>
                         <div class="card-body">
                             <ul>
@@ -574,21 +377,19 @@
                 </div>
             </div>
 
-            <!-- Akamai Experience 2 -->
-            <div class="experience-card akamai-card">
-                <div class="row no-gutters">
-                    <div class="col-md-2">
-                        <div class="logo-container">
-                            <img src="images/Akamai.png" class="img-fluid" alt="Akamai Logo" width="250px">
-                        </div>
+            <!-- Akamai Technologies (Summer) -->
+            <div class="experience-card akamai reveal">
+                <div class="card-row">
+                    <div class="card-logo">
+                        <img src="images/Akamai.png" alt="Akamai Technologies">
                     </div>
-                    <div class="col-md-10">
-                        <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card-content">
+                        <div class="card-header">
                             <div>
-                                <h5 class="mb-0">Software Engineer Intern (Summer)</h5>
-                                <p class="text-muted mb-0">Akamai Technologies</p>
+                                <h3>Software Engineer Intern (Summer)</h3>
+                                <span class="company">Akamai Technologies</span>
                             </div>
-                            <div class="text-muted">Jun 2022 – Jul 2022</div>
+                            <span class="duration">Jun 2022 – Jul 2022</span>
                         </div>
                         <div class="card-body">
                             <ul>
@@ -600,27 +401,25 @@
                 </div>
             </div>
 
-            <!-- NeoDocto Experience -->
-            <div class="experience-card neodocto-card">
-                <div class="row no-gutters">
-                    <div class="col-md-2">
-                        <div class="logo-container">
-                            <img src="images/NeoDocto.jpeg" class="img-fluid" alt="NeoDocto Logo" width="100px">
-                        </div>
+            <!-- NeoDocto -->
+            <div class="experience-card neodocto reveal">
+                <div class="card-row">
+                    <div class="card-logo">
+                        <img src="images/NeoDocto.jpeg" alt="NeoDocto">
                     </div>
-                    <div class="col-md-10">
-                        <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card-content">
+                        <div class="card-header">
                             <div>
-                                <h5 class="mb-0">Data Science Intern</h5>
-                                <p class="text-muted mb-0">NeoDocto Inc.</p>
+                                <h3>Data Science Intern</h3>
+                                <span class="company">NeoDocto Inc.</span>
                             </div>
-                            <div class="text-muted">Feb 2022 – Apr 2023</div>
+                            <span class="duration">Feb 2022 – Apr 2023</span>
                         </div>
                         <div class="card-body">
                             <ul>
                                 <li>Analyzed trends and patterns in customer orders using advanced data analysis tools.</li>
                                 <li>Examined 20+ datasets to deliver actionable insights to three departments.</li>
-                                <li>Leveraged MySQL, R, BigQuery, Tableau, Python & Spark to build ETL pipelines</li>
+                                <li>Leveraged MySQL, R, BigQuery, Tableau, Python & Spark to build ETL pipelines.</li>
                             </ul>
                         </div>
                     </div>
@@ -629,37 +428,39 @@
         </div>
     </section>
 
-    <!-- Academic Experience Section -->
-    <section id="academic-experience" class="py-5">
-        <div class="container">
-            <h2>Academic Experience</h2>
+    <!-- Academic Experience -->
+    <section class="experience-section">
+        <div class="section-container">
+            <div class="section-divider reveal">
+                <div class="section-title-wrapper">
+                    <h2>Academic Experience</h2>
+                </div>
+            </div>
 
-            <!-- Teaching Assistant at Penn State -->
-            <div class="experience-card academic-card">
-                <div class="row no-gutters">
-                    <div class="col-md-2">
-                        <div class="logo-container">
-                            <img src="images/PSU.png" class="img-fluid" alt="Penn State University Logo" width="100px">
-                        </div>
+            <!-- Penn State -->
+            <div class="experience-card academic reveal">
+                <div class="card-row">
+                    <div class="card-logo">
+                        <img src="images/PSU.png" alt="Penn State University">
                     </div>
-                    <div class="col-md-10">
-                        <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card-content">
+                        <div class="card-header">
                             <div>
-                                <h5 class="mb-0">Graduate Assistant</h5>
-                                <p class="text-muted mb-0">Department of Computer Science, Penn State University</p>
+                                <h3>Graduate Assistant</h3>
+                                <span class="company">Department of Computer Science, Penn State University</span>
                             </div>
-                            <div class="text-muted">Aug 2023 – May 2025</div>
+                            <span class="duration">Aug 2023 – May 2025</span>
                         </div>
                         <div class="card-body">
-                            <h6 style="color: var(--accent-purple); font-weight: 600; margin-bottom: 1rem;">Courses:</h6>
-                            <ul style="margin-bottom: 1.5rem;">
+                            <h4 style="color: var(--neon-purple); font-weight: 600; margin-bottom: 1rem; font-size: 1rem;">Courses Taught:</h4>
+                            <ul>
                                 <li>CMPSC 311: Systems Programming</li>
                                 <li>CMPSC 431: Database Management Systems</li>
                                 <li>CMPSC 473: Operating Systems Design & Implementation</li>
                             </ul>
                             <ul>
-                                <li>Facilitated Office hours to assist students on Systems Programming, Database Systems & Operating Systems.</li>
-                                <li>Incorporated Shell scripts to grade 30 students coding assignment submissions on Github classroom.</li>
+                                <li>Facilitated office hours to assist students on Systems Programming, Database Systems & Operating Systems.</li>
+                                <li>Incorporated Shell scripts to grade 30 students' coding assignment submissions on GitHub Classroom.</li>
                                 <li>Drafted comprehensive question papers for Midterms & Final Exams, ensuring alignment with course objectives.</li>
                             </ul>
                         </div>
@@ -667,28 +468,26 @@
                 </div>
             </div>
 
-            <!-- Undergraduate Research Assistant -->
-            <div class="experience-card academic-card">
-                <div class="row no-gutters">
-                    <div class="col-md-2">
-                        <div class="logo-container">
-                            <img src="images/MIT.png" class="img-fluid" alt="Manipal Institute of Technology Logo" width="100px">
-                        </div>
+            <!-- MIT Manipal -->
+            <div class="experience-card academic reveal">
+                <div class="card-row">
+                    <div class="card-logo">
+                        <img src="images/MIT.png" alt="Manipal Institute of Technology">
                     </div>
-                    <div class="col-md-10">
-                        <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card-content">
+                        <div class="card-header">
                             <div>
-                                <h5 class="mb-0">Undergraduate Research Assistant</h5>
-                                <p class="text-muted mb-0">Department of Computer Science, Manipal Institute of Technology</p>
+                                <h3>Undergraduate Research Assistant</h3>
+                                <span class="company">Department of Computer Science, Manipal Institute of Technology</span>
                             </div>
-                            <div class="text-muted">Jan 2022 – Jun 2022</div>
+                            <span class="duration">Jan 2022 – Jun 2022</span>
                         </div>
                         <div class="card-body">
                             <ul>
                                 <li>Developed and constructed CNN models to classify MRI Scans into 1 of 4 types of Brain Tumors.</li>
                                 <li>Utilized ensemble learning methods aggregating various Neural Networks to reduce generalization errors.</li>
                                 <li>Trained hyperparameters of classical models like VGG16 and performed a comparative analysis on metrics.</li>
-                                <li>Research paper accepted to the 4th edition of International IEEE Bombay Section Signature Conference (IBSSC), 2022</li>
+                                <li>Research paper accepted to the 4th edition of International IEEE Bombay Section Signature Conference (IBSSC), 2022.</li>
                             </ul>
                         </div>
                     </div>
@@ -697,26 +496,28 @@
         </div>
     </section>
 
-    <!-- Volunteering Experience Section -->
-    <section id="volunteer-experience" class="py-5">
-        <div class="container">
-            <h2>Volunteering</h2>
+    <!-- Volunteering -->
+    <section class="experience-section">
+        <div class="section-container">
+            <div class="section-divider reveal">
+                <div class="section-title-wrapper">
+                    <h2>Volunteering</h2>
+                </div>
+            </div>
 
-            <!-- Volunteer at Rotaract club of manipal -->
-            <div class="experience-card academic-card">
-                <div class="row no-gutters">
-                    <div class="col-md-2">
-                        <div class="logo-container">
-                            <img src="images/rotaract.png" class="img-fluid" alt="Rotaract club of Manipal Logo" width="100px">
-                        </div>
+            <!-- Rotaract Club -->
+            <div class="experience-card academic reveal">
+                <div class="card-row">
+                    <div class="card-logo">
+                        <img src="images/rotaract.png" alt="Rotaract Club of Manipal">
                     </div>
-                    <div class="col-md-10">
-                        <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card-content">
+                        <div class="card-header">
                             <div>
-                                <h5 class="mb-0">Volunteer</h5>
-                                <p class="text-muted mb-0">Rotaract Club of Manipal</p>
+                                <h3>Volunteer</h3>
+                                <span class="company">Rotaract Club of Manipal</span>
                             </div>
-                            <div class="text-muted">Jan 2022 – Dec 2022</div>
+                            <span class="duration">Jan 2022 – Dec 2022</span>
                         </div>
                         <div class="card-body">
                             <ul>
@@ -731,30 +532,22 @@
     </section>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" onclick="scrollToTop()">↑</button>
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Footer -->
-    <footer class="text-center py-4">
+    <footer class="footer">
         <p>&copy; 2025 Rohan Prasad | <a href="https://github.com/SlowDanger15" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank">LinkedIn</a></p>
     </footer>
 
+    <!-- Shared Scripts -->
+    <script src="shared.js"></script>
     <script>
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        window.addEventListener('scroll', function() {
-            let backToTopButton = document.getElementById('back-to-top');
-            if (window.scrollY > 300) {
-                backToTopButton.style.display = 'block';
-            } else {
-                backToTopButton.style.display = 'none';
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize tilt effect for experience cards
+            new TiltEffect('.experience-card', { maxRotation: 5, scale: 1.01 });
         });
-
-        // Add subtle parallax effect to cards
-        window.addEventListener('scroll', function() {
-            const cards = document.querySelectorAll('.experience-card');
-            const scrollTop = window.pageYOffset;
-            
-            cards.forEach((card, index
+    </script>
+</body>
+</html>

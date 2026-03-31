@@ -1,353 +1,979 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="images/image.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Rohan Prasad</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/image.png">
 
-    body {
-      background: #0f0f0f;
-      color: white;
-      overflow-x: hidden;
-    }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    .navbar-wrapper {
-      background: #2f343a;
-      padding: 0 2rem;
-    }
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    .navbar {
-      padding: 1rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="styles.css">
 
-    .navbar .navbar-brand {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: white;
-      text-decoration: none;
-    }
+    <style>
+        /* Projects-specific styles */
+        .projects-header {
+            padding-top: calc(var(--nav-height) + 3rem);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-    .navbar .navbar-nav {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-      margin: 0;
-    }
+        .projects-section {
+            padding: 3rem 2rem 5rem;
+        }
 
-    .navbar .navbar-nav .nav-item .nav-link {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-    .navbar .navbar-nav .nav-item .nav-link:hover {
-      color: #ffffff;
-    }
+        /* Project Card */
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 255, 255, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
 
-    .projects-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 4rem;
-    }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(139, 92, 246, 0.05));
+            opacity: 0;
+            transition: opacity var(--transition-base);
+            z-index: 0;
+        }
 
-    .project-card {
-      position: relative;
-      background: linear-gradient(145deg, #3a3b3f, #232427);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
+        .project-card:hover::before {
+            opacity: 1;
+        }
 
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
-    }
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 255, 255, 0.15);
+            border-color: var(--neon-cyan);
+        }
 
-    .project-card .content {
-      padding: 2rem;
-      backdrop-filter: blur(4px);
-    }
+        .project-card-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
 
-    .project-card .content h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
+        .project-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
 
-    .project-card .content p {
-      font-size: 0.95rem;
-      color: #bbb;
-      margin-bottom: 0.5rem;
-    }
+        .project-card:hover .project-card-image {
+            transform: scale(1.15);
+        }
 
-    .project-card .content .meta {
-      font-size: 0.85rem;
-      color: #888;
-    }
+        .project-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(139, 92, 246, 0.2));
+            opacity: 0;
+            transition: opacity var(--transition-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .project-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+        .project-card:hover .project-card-overlay {
+            opacity: 1;
+        }
 
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-    }
+        .project-card-overlay i {
+            font-size: 3rem;
+            color: var(--text-primary);
+            filter: drop-shadow(0 0 10px var(--glow-cyan));
+            transform: scale(0);
+            transition: transform var(--transition-elastic);
+        }
 
-    .modal-content {
-      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-      border-radius: 20px;
-      padding: 2rem;
-      width: 90%;
-      max-width: 600px;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-      position: relative;
-      animation: scaleIn 0.3s ease;
-    }
+        .project-card:hover .project-card-overlay i {
+            transform: scale(1);
+        }
 
-    @keyframes scaleIn {
-      from {
-        transform: scale(0.95);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
+        .project-card-content {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 1;
+            background: var(--bg-card);
+        }
 
-    .modal-content h3 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
+        .project-card-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
 
-    .modal-content p {
-      font-size: 1rem;
-      color: #ccc;
-    }
+        .project-card-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
 
-    .modal-content .btn {
-      margin-top: 1.5rem;
-      display: inline-block;
-      background: #fff;
-      color: #000;
-      padding: 10px 20px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-    }
-  </style>
+        .project-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .project-meta-item i {
+            color: var(--neon-cyan);
+            font-size: 0.7rem;
+        }
+
+        .project-card-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .project-tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .tech-tag {
+            padding: 0.35rem 0.85rem;
+            background: rgba(0, 255, 255, 0.08);
+            border: 1px solid rgba(0, 255, 255, 0.25);
+            border-radius: 15px;
+            font-size: 0.75rem;
+            color: var(--neon-cyan);
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+
+        .tech-tag:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-base);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 2.5rem;
+            max-width: 700px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9) translateY(20px);
+            transition: transform var(--transition-base);
+            box-shadow: 0 25px 50px rgba(0, 255, 255, 0.2);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 45px;
+            height: 45px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 50%;
+            color: var(--neon-cyan);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-primary);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .modal-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .modal-meta-item i {
+            color: var(--neon-cyan);
+        }
+
+        .modal-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            white-space: pre-wrap;
+        }
+
+        .modal-tech-icons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .modal-tech-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(0, 255, 255, 0.08);
+            border: 1px solid rgba(0, 255, 255, 0.25);
+            border-radius: 25px;
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+            transition: all var(--transition-base);
+        }
+
+        .modal-tech-icon:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--glow-cyan);
+        }
+
+        .modal-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            color: var(--bg-primary);
+            font-family: var(--font-display);
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all var(--transition-base);
+            box-shadow: 0 5px 20px var(--glow-cyan);
+        }
+
+        .modal-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--glow-cyan);
+        }
+
+        .modal-link i {
+            font-size: 1.1rem;
+        }
+
+        /* Filter Tags */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-tag {
+            padding: 0.6rem 1.5rem;
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 25px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .filter-tag:hover {
+            background: rgba(0, 255, 255, 0.15);
+            color: var(--neon-cyan);
+            transform: translateY(-2px);
+        }
+
+        .filter-tag.active {
+            background: rgba(0, 255, 255, 0.2);
+            color: var(--neon-cyan);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px var(--glow-cyan);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
+
+            .modal-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <div class="navbar-wrapper">
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-title">PROJECTS</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-wrapper"></div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="nebula"></div>
+    </div>
+
+    <!-- Particles -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Navbar -->
     <nav class="navbar">
-      <a class="navbar-brand" href="index.html">Rohan Prasad</a>
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
-        <li class="nav-item"><a class="nav-link" href="experience.html">Experience</a></li>
-        <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-      </ul>
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">RP</a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html"><span>Home</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="education.html"><span>Education</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="experience.html"><span>Experience</span></a></li>
+                <li class="nav-item"><a class="nav-link active" href="project.html"><span>Projects</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html"><span>Contact</span></a></li>
+            </ul>
+        </div>
     </nav>
-  </div>
 
-  <div class="projects-container">
-    <div class="project-card" onclick="openModal('Hybrid Reinforcement Learning based Resource Allocation in Edge Servers', 'Feb 2025 -  Apr 2025', 'Python, IBM ILOG CPLEX', 'I developed and simulated a hybrid reinforcement learning framework for intelligent resource allocation in edge computing environments. The system models both clients and edge servers as autonomous agents that learn optimal behavior through multi-armed bandits (MAB) and Q-learning, respectively. The goal was to address resource contention and improve overall system efficiency by enabling clients to choose servers based on historical performance and servers to make adaptive bidding and preemption decisions based on system state.\n\nThe framework was tested under diverse workloads (balanced, bimodal, heavy/light clients)\n\nKey Highlights:\n- Designed a multi-agent learning architecture with client-side MAB and server-side Q-learning.\n- Modeled real-world workload patterns and dynamic job behaviors (e.g., preemptions, priorities).\n- Implemented an end-to-end simulation environment in Python with Matplotlib visualizations.\n- Performed extensive experimental analysis across multiple parameters like exploration rate, learning rate, and client types.', 'https://github.com/SlowDanger15/parallel_algo_network_flow')">
-        <img src="images/project/project_hrla.png" alt="HRLA based Resource Allocation">
-        <div class="content">
-          <h3>Reinforcement Learning in Resource Allocation</h3>
-          <p class="meta">Feb 2025 - Apr 2025</p>
-          <p>Tech Stack: Python, IBM ILOG CPLEX</p>
+    <!-- Header -->
+    <div class="projects-header">
+        <div class="section-title-wrapper reveal">
+            <h1 class="section-title">PROJECTS</h1>
         </div>
-      </div>
-    <div class="project-card" onclick="openModal('Custom AI Agent Builder', 'Jan 2025 -  Feb 2025', 'Python, Autogen 0.4, Streamlit, Ollama, OpenAI API', 'Developed a custom AI Agent Builder platform from scratch using AutoGen 0.4 and Streamlit, enabling users to create, configure, and deploy AI agents with ease. The platform allows users to:\n- Create AI agents with specific functionalities.\n- Design and assign tools to agents for enhanced task execution.\n- Group agents into runtime environments or multi-agent group chats.\n- Interact with agents in a conversational manager for seamless AI-driven workflows.\n\nBy integrating AutoGen’s advanced agentic framework with Streamlit’s interactive UI, this platform empowers users to build custom AI assistants tailored for automation, research, and decision-making in various domains. \n\nTech Stack:\n- AutoGen 0.4 – AI agent framework\n- Streamlit – UI for agent creation and interaction\n- Ollama, OpenAI APIs & Tool APIs – For intelligent task execution', 'https://github.com/SlowDanger15/parallel_algo_network_flow')">
-      <img src="images/project/project_ai_agent_builder.svg" alt="AI Agent Builder">
-      <div class="content">
-        <h3>Custom AI Agent Builder</h3>
-        <p class="meta">Jan 2025 - Feb 2025</p>
-        <p>Tech Stack: Python, Autogen 0.4, Streamlit</p>
-      </div>
+        <p class="section-subtitle reveal">Innovative solutions to complex problems</p>
     </div>
-    <div class="project-card" onclick="openModal('Fine-Tuning LLMs with LoRA for Error Detection', 'Nov 2024 - Dec 2025', 'Python, NetworkX', 'Developed a parameter-efficient fine-tuning (PEFT) pipeline using LoRA to enhance a Phi2 LLMs ability to detect and correct flawed scientific queries. Designed a domain-specific dataset containing scientifically inaccurate questions and fine-tuned the model to improve factual accuracy, coherence, and robustness against misleading inputs. Evaluated model improvements using ROUGE scores and benchmarked against the base model.\n\nAchievements:\n- Boosted ROUGE-1 by 7.12% and ROUGE-L by 3.92%, improving scientific error detection.\n- Enhanced model accuracy by 60%, enabling better response generation for flawed questions.\n- Successfully implemented LoRA-based fine-tuning, reducing compute costs while improving performance.', 'https://drive.google.com/file/d/1Am2MNnRGl91_VNR0bzFxumKZf6bRF2nb/view?usp=sharing')">
-        <img src="images/project/project_llm_lora.png" alt="Fine-Tuning LLMs with LoRA">
-        <div class="content">
-          <h3>Fine-Tuning LLMs with LoRA</h3>
-          <p class="meta">Oct 2024 - Dec 2024</p>
-          <p>Tech Stack: Python, PyTorch, OpenAI, Ollama</p>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="section-container">
+            <!-- Filter Tags -->
+            <div class="filter-container reveal">
+                <span class="filter-tag active" data-filter="all">All</span>
+                <span class="filter-tag" data-filter="ai">AI/ML</span>
+                <span class="filter-tag" data-filter="systems">Systems</span>
+                <span class="filter-tag" data-filter="data">Data</span>
+                <span class="filter-tag" data-filter="web">Web</span>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid">
+                <!-- Project 1: Reinforcement Learning -->
+                <div class="project-card reveal" data-category="ai" onclick="openProjectModal(0)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/project_hrla.png" alt="HRLA Resource Allocation" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Reinforcement Learning in Resource Allocation</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Feb 2025 - Apr 2025</span>
+                        </div>
+                        <p class="project-card-desc">Hybrid reinforcement learning framework for intelligent resource allocation in edge computing environments using multi-armed bandits and Q-learning.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">IBM ILOG CPLEX</span>
+                            <span class="tech-tag">RL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: AI Agent Builder -->
+                <div class="project-card reveal" data-category="ai" onclick="openProjectModal(1)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/project_ai_agent_builder.svg" alt="AI Agent Builder" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Custom AI Agent Builder</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Jan 2025 - Feb 2025</span>
+                        </div>
+                        <p class="project-card-desc">Platform for creating, configuring, and deploying AI agents with AutoGen 0.4 and Streamlit for seamless AI-driven workflows.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">AutoGen</span>
+                            <span class="tech-tag">Streamlit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: LLM Fine-Tuning -->
+                <div class="project-card reveal" data-category="ai" onclick="openProjectModal(2)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/project_llm_lora.png" alt="LLM Fine-Tuning" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Fine-Tuning LLMs with LoRA</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Oct 2024 - Dec 2024</span>
+                        </div>
+                        <p class="project-card-desc">Parameter-efficient fine-tuning pipeline using LoRA to enhance Phi2 LLM's error detection capabilities in scientific queries.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">LoRA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Routing Algorithms -->
+                <div class="project-card reveal" data-category="systems" onclick="openProjectModal(3)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/project_routing_algo.jpg" alt="Routing Algorithms" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Routing Algorithms Simulator</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Oct 2024 - Dec 2024</span>
+                        </div>
+                        <p class="project-card-desc">Implementation and analysis of Distance Vector, Link State, and Path Vector routing algorithms across diverse network topologies.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">NetworkX</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: CUDA Network Flow -->
+                <div class="project-card reveal" data-category="systems" onclick="openProjectModal(4)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/7076118.jpg" alt="CUDA Network Flow" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Parallel CUDA Algorithms for Max Network Flow</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Jan 2024 - Apr 2024</span>
+                        </div>
+                        <p class="project-card-desc">Enhanced Goldberg's push-relabel algorithm through parallel processing using CUDA with lock-free variations for GPU execution.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">CUDA C++</span>
+                            <span class="tech-tag">NCSA Delta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: Vision Transformers -->
+                <div class="project-card reveal" data-category="ai" onclick="openProjectModal(5)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/project_vit.png" alt="Vision Transformers" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Image Authenticity Classification with ViT</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Mar 2024 - Apr 2024</span>
+                        </div>
+                        <p class="project-card-desc">Vision Transformer model to distinguish AI-generated images from real ones using advanced data augmentation techniques.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">ViT</span>
+                            <span class="tech-tag">Hugging Face</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 7: Systolic Array -->
+                <div class="project-card reveal" data-category="systems" onclick="openProjectModal(6)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/project_systolic_array.webp" alt="Systolic Array" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Optimizing Systolic Array Configurations</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Nov 2023 - Dec 2023</span>
+                        </div>
+                        <p class="project-card-desc">Design and analysis of systolic array configurations to optimize hardware utilization for various neural network topologies.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">ScaleSimV2</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 8: CPU Architecture -->
+                <div class="project-card reveal" data-category="systems" onclick="openProjectModal(7)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/project_cpu.png" alt="CPU Architecture" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>CPU Arch & Memory Config Analysis</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Oct 2023 - Nov 2023</span>
+                        </div>
+                        <p class="project-card-desc">Extensive simulations using gem5 to evaluate CPU models, clock frequencies, and memory technologies impact on quicksort performance.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">gem5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 9: Parallel File System -->
+                <div class="project-card reveal" data-category="systems" onclick="openProjectModal(8)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/project_pfs.jpg" alt="Parallel File System" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Distributed Parallel File System</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Sept 2023 - Oct 2023</span>
+                        </div>
+                        <p class="project-card-desc">Parallel file system with Client, Metadata Server, and File Servers for striped file storage using gRPC and protobuf.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">gRPC</span>
+                            <span class="tech-tag">protobuf</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 10: Synchronizer -->
+                <div class="project-card reveal" data-category="systems" onclick="openProjectModal(9)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/project_sync.png" alt="Synchronizer" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Synchronizer for Path Expressions</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Aug 2023 - Sept 2023</span>
+                        </div>
+                        <p class="project-card-desc">Parser for path expressions that synchronizes operations using mutex locks and semaphores for classic concurrency problems.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">C</span>
+                            <span class="tech-tag">Bash</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 11: C Compiler -->
+                <div class="project-card reveal" data-category="systems" onclick="openProjectModal(10)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/project_c_compiler.png" alt="C Compiler" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Minimal C Compiler</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Nov 2022 - Dec 2022</span>
+                        </div>
+                        <p class="project-card-desc">Lightweight C compiler with lexical analysis, recursive descent parsing, and semantic checks for a subset of C language.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">C</span>
+                            <span class="tech-tag">Compiler Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 12: 3D F1 Track -->
+                <div class="project-card reveal" data-category="web" onclick="openProjectModal(11)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/project_3d_model.png" alt="3D F1 Track" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>3D Formula 1 Track with Blender</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Feb 2022 - Mar 2022</span>
+                        </div>
+                        <p class="project-card-desc">Blender Python script to programmatically generate a 3D model of an F1 circuit using GeoJSON track data coordinates.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Blender</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 13: MAC Detection -->
+                <div class="project-card reveal" data-category="data" onclick="openProjectModal(12)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/project_mac.png" alt="MAC Detection" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Detecting Fake MAC Addresses</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Oct 2021 - Dec 2021</span>
+                        </div>
+                        <p class="project-card-desc">Tool to detect MAC address spoofing in wireless networks using Scapy and Macvendors API for vendor verification.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scapy</span>
+                            <span class="tech-tag">Wireshark</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 14: Fin App -->
+                <div class="project-card reveal" data-category="web" onclick="openProjectModal(13)">
+                    <div class="project-card-image-wrapper">
+                        <img src="images/project/project_fin_ser_app.png" alt="Financial App" class="project-card-image">
+                        <div class="project-card-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Financial Services Flutter Application</h3>
+                        <div class="project-card-meta">
+                            <span class="project-meta-item"><i class="far fa-calendar"></i> Aug 2021 - Oct 2021</span>
+                        </div>
+                        <p class="project-card-desc">Complete financial suite with loan eligibility classifier and stock price prediction, built with Google Flutter.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Dart</span>
+                            <span class="tech-tag">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    <div class="project-card" onclick="openModal('Routing Algorithm Simulator', 'Oct 2024 - Dec 2024', 'Python, NetworkX', 'In this project, I implemented and analyzed three foundational routing algorithms Distance Vector, Link State, Path Vector to evaluate their performance across diverse network topologies, including linear, mesh, ring, star, tree, and grid. \n\nI developed a realistic network weight model based on geographic distance, bandwidth, and congestion factors, mimicking real-world network conditions.\n\nThe findings provide valuable insights into the trade-offs between routing algorithms and their suitability for different network structures, contributing to the optimization of real-world network performance.', 'https://drive.google.com/file/d/13nXWhdmNXHGBrbxuTIvAgOFDs6kmaxMO/view?usp=sharing')">
-      <img src="images/project/project_routing_algo.jpg" alt="Routing Algorithm Simulator">
-      <div class="content">
-        <h3>Routing Algoritms Simulator</h3>
-        <p class="meta">Oct 2024 - Dec 2024</p>
-        <p>Tech Stack: Python, NetworkX</p>
-      </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="projectModal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-meta">
+                    <span class="modal-meta-item"><i class="far fa-calendar"></i> <span id="modalDate"></span></span>
+                    <span class="modal-meta-item"><i class="fas fa-microchip"></i> <span id="modalTech"></span></span>
+                </div>
+            </div>
+            <p class="modal-description" id="modalDesc"></p>
+            <div class="modal-tech-icons" id="modalTechIcons"></div>
+            <a href="#" class="modal-link" id="modalLink" target="_blank">
+                <i class="fab fa-github"></i> <span>View Project</span>
+            </a>
+        </div>
     </div>
-    <div class="project-card" onclick="openModal('Parallel CUDA Algorithms for Max Network Flow', 'Jan 2024 - Apr 2024', 'CUDA C++, NCSA Delta Compute', 'In this project, I explored the enhancement of the Goldbergs push-relabel algorithm through parallel processing using CUDA for solving maximum network flow problems. I implemented two innovative lock-free variations tailored for GPU execution:\n- Asynchronous Push-Relabel Algorithm: Utilizes atomic operations to handle push and relabel operations concurrently, enhancing performance by leveraging CUDAs SIMD architecture.\n- Precolor-Based Push-Relabel Algorithm: Employs a pre-coloring method to manage dependencies and synchronization, minimizing race conditions through the use of barriers.\n\nAchievements:\n- Achieved significant performance improvements, with up to 4x speed-ups on complex network topologies like Washington-RLG and GenRMF graphs.\n- Demonstrated the potential of multi-core GPU platforms in accelerating graph-theoretical computations, specifically in sparse and dense network scenarios.', 'https://drive.google.com/file/d/1XHikaXztdl5LTZVq3gpcWi_pee7Ri7HT/view?usp=sharing')">
-      <img src="images/project/7076118.jpg" alt="Parallel CUDA Algorithms">
-      <div class="content">
-        <h3>Parallel CUDA Algorithms for Max Network Flow</h3>
-        <p class="meta">Jan 2024 - Apr 2024</p>
-        <p>Tech Stack: CUDA C++, NCSA Delta Compute</p>
-      </div>
-    </div>
-    <div class="project-card" onclick="openModal('Image Authenticity Classification using Vision Transformers ViT', 'Mar 2024 - Apr 2024', 'PyTorch, CIFAR-10, Hugging Face', 'In this research-driven computer vision project, we developed a robust classification model to distinguish AI-generated images from real ones using a pre-trained Vision Transformer (ViT). We tackled the growing concern of synthetic image authenticity by applying extensive data augmentation techniques, optimizing hyperparameters, and employing advanced regularization to improve model generalization.\n\nKey Highlights:\n- Fine-tuned a pre-trained ViT model on a custom binary dataset of real (CIFAR-10) and fake (Stable Diffusion generated) images, achieving significant performance gains.\n- Integrated advanced data augmentation (MixUp, CutMix, RandAugment) to combat overfitting and enhance generalization.\n- Evaluated model performance using metrics like precision, recall, specificity, and sensitivity, alongside confusion matrices to validate robustness.\n- Applied transfer learning with minimal GPU compute by freezing the base ViT layers and training a new fully connected classification head.\n\nAchievements:\n- Built a lightweight and scalable image classification pipeline capable of processing 100K+ samples.\n- Achieved marked improvement in model performance with hyperparameter tuning and augmentation.', 'https://drive.google.com/file/d/1XHikaXztdl5LTZVq3gpcWi_pee7Ri7HT/view?usp=sharing')">
-        <img src="images/project/project_vit.png" alt="Image Authenticity Classification using Vision Transformers (ViT)">
-        <div class="content">
-          <h3>Image Authenticity Classification with ViT</h3>
-          <p class="meta">Mar 2024 - Apr 2024</p>
-          <p>Tech Stack: PyTorch, CIFAR-10, Hugging Face </p>
-        </div>
-      </div>
-    <div class="project-card" onclick="openModal('Optimizing Systolic Array Configurations for Neural Network Architectures with ScaleSimV2', 'Nov 2023 - Dec 2023', 'ScaleSimV2, Python', 'In this project, I designed and analyzed systolic array configurations to optimize hardware utilization and computation performance for various neural network topologies, including Transformer Forward, Faster R-CNN, and a custom MobileNet. By varying array dimensions and dataflow patterns, the project aimed to balance utilization and minimize total clock cycles.\n\nKey Highlights:\n- Achieved optimal configuration of a 32x32 systolic array with dataflows such as Output Stationary (OS) and Weight Stationary (WS) for different topologies.\n - Conducted a sensitivity study to evaluate the effect of filter sizes on hardware utilization and performance, identifying optimal configurations.\n- Improved average utilization (up to 78.29%) and minimized total cycles (e.g., 4.71M for Faster R-CNN).', 'https://drive.google.com/file/d/185HkL76I7t54prNHejs-UbOzqtY3bOA4/view?usp=sharing')">
-        <img src="images/project/project_systolic_array.webp" alt="Optimizing Systolic Array Hardware">
-        <div class="content">
-          <h3>Optimizing Systolic Array Configurations</h3>
-          <p class="meta">Nov 2023 - Dec 2023</p>
-          <p>Tech Stack: ScaleSimV2, Python</p>
-        </div>
-      </div>
-      <div class="project-card" onclick="openModal('CPU Architecture and Memory Configuration Analysis', 'Oct 2023 - Nov 2023', 'C++. Gem5', 'Conducted extensive simulations using gem5 to evaluate how varying CPU models, clock frequencies, and memory technologies impact the performance of the quicksort algorithm. The goal was to gain microarchitectural insights and explore performance bottlenecks.\n\nKey Highlights:\n- Ran 30 gem5 simulations across TimingSimple and Minor CPU models, varying memory types and frequencies.\n- Demonstrated that TimingSimple is more sensitive to CPU frequency, while Minor CPU better adapts to memory technology changes.\n- Showed how random access patterns in quicksort degrade cache performance, suggesting avenues for optimization.', 'https://drive.google.com/file/d/1JSUixs98BNVfgAkMpo1PmGEtKu5Bhf5N/view?usp=sharing')">
-        <img src="images/project/project_cpu.png" alt="CPU Architecture and Memory Configuration Analysis">
-        <div class="content">
-          <h3>CPU Arch & Memory Config Analysis</h3>
-          <p class="meta">Oct 2023 - Nov 2023</p>
-          <p>Tech Stack: C++, Gem5</p>
-        </div>
-      </div>
-      <div class="project-card" onclick="openModal('Distributed Parallel File System', 'Sept 2023 - Oct 2023', 'C++, gRPC, protobuf', 'We programmed a Parallel File System with 3 components Client Machines, Metadata Server and File Servers to store files in a striped fashion and streamlined communication between the components via RPC Calls based on Proto file message formats in Protobuf.', 'https://ieeexplore.ieee.org/document/10037548')">
-        <img src="images/project/project_pfs.jpg" alt="Distributed Parallel File System">
-        <div class="content">
-          <h3>Distributed Parallel File System</h3>
-          <p class="meta">Sept 2023 - Oct 2023</p>
-          <p>Tech Stack: C++, gRPC, protobuf</p>
-        </div>
-      </div>
-      <div class="project-card" onclick="openModal('Synchronizer for Path Expressions', 'Aug 2023 - Sept 2023', 'C, Bash', 'Designed a parser to read path expressions and transform them into a linked list representing operations like Reads/Writes with synchronization. We used this parser to feed the linked list to the synchronizer to synchronize all operations using mutex locks and semaphores to solve readers-writer problem, producer-consumer problem, monkey-crossing problem, child care problem.', 'https://ieeexplore.ieee.org/document/10037548')">
-        <img src="images/project/project_sync.png" alt="Synchronizer for Path Expressions">
-        <div class="content">
-          <h3>Synchronizer for Path Expressions</h3>
-          <p class="meta">Aug 2023 - Sept 2023</p>
-          <p>Tech Stack: C, Bash</p>
-        </div>
-      </div>
-      <div class="project-card" onclick="openModal('Minimal C Compiler | Recursive Descent Parsing & Lexical Analysis', 'Nov 2022 - Dec 2022', 'C, Lexical Analysis, Recursive Descent Parser', 'Developed a lightweight C compiler from scratch that supports a subset of the C language. The compiler performs lexical analysis, parsing using a recursive descent parser, and basic semantic checks to validate source code correctness.\n\nKey Highlights:\n- Designed a context-free grammar (CFG) for a subset of C constructs (e.g., declarations, assignments, and control structures).\n- Implemented a recursive descent parser to process tokens and validate syntax tree structure.\n- Integrated a custom lexical analyzer to tokenize identifiers, keywords, symbols, and literals.\n- Provided meaningful error messages with lexeme, row, and column-level diagnostics.\n- Supported syntax-directed parsing with token recovery and robust error handling.\n\nTech Stack:\n- C, GCC/Linux\n- Lexical Analysis (custom lexer), \n- Recursive Descent Parsing, CFG', 'https://ieeexplore.ieee.org/document/10037548')">
-        <img src="images/project/project_c_compiler.png" alt="'Minimal C Compiler | Recursive Descent Parsing & Lexical Analysis">
-        <div class="content">
-          <h3>Minimal C Compiler</h3>
-          <p class="meta">Nov 2022 - Dec 2022</p>
-          <p>Tech Stack: C, Compiler Design, Lexical Analyzer</p>
-        </div>
-      </div>
-      <div class="project-card" onclick="openModal('3D Modelling using Blender Python - FormulaAI Hack 2022', 'Feb 2022 - Mar 2022', 'Blender Python', 'Built a Blender Python (BPY) script to programmatically generate a 3-D Model of a Formula 1 Circuit using GeoJSON track data coordinates obtained my driving the object on the optimum race line.\n\nRendered Blender objects in space using specialized techniques in Blender Software to obtain a picturesque 3D view of the F1 Track', 'https://www.youtube.com/watch?v=OaVNZupt6k0&t=6s')">
-        <img src="images/project/project_3d_model.png" alt="3D Modelling using Blender Python">
-        <div class="content">
-          <h3>3D Formula 1 Track with Blender</h3>
-          <p class="meta">Feb 2022 - Mar 2022</p>
-          <p>Tech Stack: Blender Python</p>
-        </div>
-      </div>
-      <div class="project-card" onclick="openModal('Detecting Fake MAC Addresses in Wireless Networks', 'Oct 2021 - Dec 2021', 'Python, Scapy, Wireshark', 'Developed a tool to detect MAC address spoofing in wireless networks by analyzing packet captures using Scapy and verifying vendor authenticity via the Macvendors API. This project highlighted the ease of MAC spoofing and provided a lightweight approach for validation using Python.\n\nKey Highlights\n- Implemented packet sniffing and parsing logic to extract MAC addresses from .pcap files.\n- Used Wireshark to capture and analyze wireless network traffic for test case simulations.\n- Demonstrated the tools effectiveness on both genuine and spoofed MAC addresses using real-world and synthetic datasets.\n\nAchievements\n- Successfully flagged spoofed MAC addresses in real packet traces.\n- Demonstrated robustness of detection logic against publicly available spoofed samples.\n- Delivered a working PoC tool using only lightweight Python libraries and open-source data.', 'https://www.youtube.com/watch?v=OaVNZupt6k0&t=6s')">
-        <img src="images/project/project_mac.png" alt="Detecting Fake MAC Addresses">
-        <div class="content">
-          <h3>Detecting Fake MAC Addresses</h3>
-          <p class="meta">Oct 2021 - Dec 2021</p>
-          <p>Tech Stack: Python, Scapy, Wireshark</p>
-        </div>
-      </div>
-      <div class="project-card" onclick="openModal('Financial Services Flutter Application', 'Aug 2023', 'Flutter, Dart, Firebase', 'Developed an Android Application, developed using Google Flutter, put into production by a flexible and dynamic team of 4 members.\n\nFunctionality- Provide a complete financial suite rendering services like Loan eligibility classifier and Stock Price Prediction.', 'https://codestreet-2021.hackerearth.com/challenges/hackathon/amex-codestreet-2021/custom-tab/shortlist/#Shortlist')">
-        <img src="images/project/project_fin_ser_app.png" alt="Financial Services Flutter Application">
-        <div class="content">
-          <h3>Financial Services Flutter Application</h3>
-          <p class="meta">Aug 2021 - Oct 2021</p>
-          <p>Tech Stack: Flutter, Dart, Firebase</p>
-        </div>
-      </div>
-  </div>
 
-  <!-- Modal -->
-<div class="modal-overlay" id="modal" style="display: none;" onclick="closeModal(event)">
-    <div class="modal-content" id="modal-content" onclick="event.stopPropagation()">
-      <h3 id="modal-title" style="margin-bottom: 0.8rem;"></h3>
-      <p id="modal-date" style="margin-bottom: 0.4rem;"></p>
-      <p id="modal-tech" style="margin-bottom: 1rem;"></p>
-      
-      <hr style="border: 0.5px solid rgba(255, 255, 255, 0.1); margin: 1rem 0;" />
-  
-      <!-- <p id="modal-desc" style="margin-bottom: 1rem;"></p> -->
-      <p id="modal-desc" style="margin-bottom: 1rem; white-space: pre-wrap;"></p>
-  
-      <!-- Tech Stack Icons Row -->
-      <div id="modal-icons" style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 1.5rem;">
-        <!-- Dynamically injected <img> icons will appear here -->
-      </div>
-  
-      <a href="#" target="_blank" id="modal-link" class="btn">Learn More</a>
-    </div>
-  </div>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-  <script>
-    function openModal(title, date, tech, desc, link) {
-      document.getElementById('modal-title').textContent = title;
-      document.getElementById('modal-date').textContent = 'Date: ' + date;
-      document.getElementById('modal-tech').textContent = 'Tech Stack: ' + tech;
-      document.getElementById('modal-desc').textContent = desc;
-      document.getElementById('modal-link').href = link;
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Rohan Prasad | <a href="https://github.com/SlowDanger15" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank">LinkedIn</a></p>
+    </footer>
 
-    //   const iconContainer = document.getElementById('modal-icons');
-    //   iconContainer.innerHTML = ''; // Clear previous icons
+    <!-- Shared Scripts -->
+    <script src="shared.js"></script>
+    <script>
+        // Project data
+        const projects = [
+            {
+                title: "Reinforcement Learning in Resource Allocation",
+                date: "Feb 2025 - Apr 2025",
+                tech: "Python, IBM ILOG CPLEX",
+                desc: "I developed and simulated a hybrid reinforcement learning framework for intelligent resource allocation in edge computing environments. The system models both clients and edge servers as autonomous agents that learn optimal behavior through multi-armed bandits (MAB) and Q-learning, respectively.\n\nKey Highlights:\n• Designed a multi-agent learning architecture with client-side MAB and server-side Q-learning\n• Modeled real-world workload patterns and dynamic job behaviors\n• Implemented an end-to-end simulation environment in Python with Matplotlib visualizations\n• Performed extensive experimental analysis across multiple parameters",
+                link: "https://github.com/SlowDanger15/parallel_algo_network_flow",
+                tags: ["Python", "IBM ILOG CPLEX", "Reinforcement Learning", "Edge Computing"]
+            },
+            {
+                title: "Custom AI Agent Builder",
+                date: "Jan 2025 - Feb 2025",
+                tech: "Python, AutoGen 0.4, Streamlit, Ollama, OpenAI API",
+                desc: "Developed a custom AI Agent Builder platform from scratch using AutoGen 0.4 and Streamlit, enabling users to create, configure, and deploy AI agents with ease.\n\nFeatures:\n• Create AI agents with specific functionalities\n• Design and assign tools to agents for enhanced task execution\n• Group agents into runtime environments or multi-agent group chats\n• Interact with agents in a conversational manager for seamless AI-driven workflows",
+                link: "https://github.com/SlowDanger15/parallel_algo_network_flow",
+                tags: ["Python", "AutoGen", "Streamlit", "LLM", "AI Agents"]
+            },
+            {
+                title: "Fine-Tuning LLMs with LoRA for Error Detection",
+                date: "Nov 2024 - Dec 2024",
+                tech: "Python, PyTorch, OpenAI, Ollama",
+                desc: "Developed a parameter-efficient fine-tuning (PEFT) pipeline using LoRA to enhance a Phi2 LLM's ability to detect and correct flawed scientific queries.\n\nAchievements:\n• Boosted ROUGE-1 by 7.12% and ROUGE-L by 3.92%\n• Enhanced model accuracy by 60%\n• Successfully implemented LoRA-based fine-tuning, reducing compute costs",
+                link: "https://drive.google.com/file/d/1Am2MNnRGl91_VNR0bzFxumKZf6bRF2nb/view?usp=sharing",
+                tags: ["Python", "PyTorch", "LoRA", "PEFT", "LLM"]
+            },
+            {
+                title: "Routing Algorithms Simulator",
+                date: "Oct 2024 - Dec 2024",
+                tech: "Python, NetworkX",
+                desc: "Implemented and analyzed three foundational routing algorithms: Distance Vector, Link State, and Path Vector to evaluate their performance across diverse network topologies.\n\nKey Findings:\n• Developed a realistic network weight model based on geographic distance, bandwidth, and congestion\n• Analyzed trade-offs between routing algorithms for different network structures",
+                link: "https://drive.google.com/file/d/13nXWhdmNXHGBrbxuTIvAgOFDs6kmaxMO/view?usp=sharing",
+                tags: ["Python", "NetworkX", "Routing", "Networks"]
+            },
+            {
+                title: "Parallel CUDA Algorithms for Max Network Flow",
+                date: "Jan 2024 - Apr 2024",
+                tech: "CUDA C++, NCSA Delta Compute",
+                desc: "Explored the enhancement of Goldberg's push-relabel algorithm through parallel processing using CUDA. Implemented two innovative lock-free variations:\n\n• Asynchronous Push-Relabel: Uses atomic operations for concurrent push/relabel\n• Precolor-Based Push-Relabel: Employs pre-coloring method to manage dependencies\n\nAchieved up to 4x speed-ups on complex network topologies.",
+                link: "https://drive.google.com/file/d/1XHikaXztdl5LTZVq3gpcWi_pee7Ri7HT/view?usp=sharing",
+                tags: ["CUDA", "C++", "GPU", "Parallel Computing"]
+            },
+            {
+                title: "Image Authenticity Classification with ViT",
+                date: "Mar 2024 - Apr 2024",
+                tech: "PyTorch, CIFAR-10, Hugging Face",
+                desc: "Developed a robust classification model to distinguish AI-generated images from real ones using a pre-trained Vision Transformer (ViT).\n\nKey Highlights:\n• Integrated advanced data augmentation (MixUp, CutMix, RandAugment)\n• Applied transfer learning with minimal GPU compute\n• Evaluated using precision, recall, specificity, and sensitivity metrics",
+                link: "https://drive.google.com/file/d/1XHikaXztdl5LTZVq3gpcWi_pee7Ri7HT/view?usp=sharing",
+                tags: ["PyTorch", "ViT", "Computer Vision", "Deep Learning"]
+            },
+            {
+                title: "Optimizing Systolic Array Configurations",
+                date: "Nov 2023 - Dec 2023",
+                tech: "ScaleSimV2, Python",
+                desc: "Designed and analyzed systolic array configurations to optimize hardware utilization for various neural network topologies including Transformer Forward, Faster R-CNN, and MobileNet.\n\nAchievements:\n• Achieved optimal configuration of 32x32 systolic array\n• Improved average utilization to 78.29%",
+                link: "https://drive.google.com/file/d/185HkL76I7t54prNHejs-UbOzqtY3bOA4/view?usp=sharing",
+                tags: ["ScaleSimV2", "Python", "Hardware", "Neural Networks"]
+            },
+            {
+                title: "CPU Architecture & Memory Configuration Analysis",
+                date: "Oct 2023 - Nov 2023",
+                tech: "C++, gem5",
+                desc: "Conducted extensive simulations using gem5 to evaluate how varying CPU models, clock frequencies, and memory technologies impact quicksort performance.\n\nKey Findings:\n• Ran 30 gem5 simulations across TimingSimple and Minor CPU models\n• Demonstrated TimingSimple is more sensitive to CPU frequency\n• Showed how random access patterns degrade cache performance",
+                link: "https://drive.google.com/file/d/1JSUixs98BNVfgAkMpo1PmGEtKu5Bhf5N/view?usp=sharing",
+                tags: ["C++", "gem5", "CPU", "Memory"]
+            },
+            {
+                title: "Distributed Parallel File System",
+                date: "Sept 2023 - Oct 2023",
+                tech: "C++, gRPC, protobuf",
+                desc: "Programmed a Parallel File System with three components: Client Machines, Metadata Server, and File Servers to store files in a striped fashion with streamlined RPC communication.",
+                link: "https://ieeexplore.ieee.org/document/10037548",
+                tags: ["C++", "gRPC", "protobuf", "Distributed Systems"]
+            },
+            {
+                title: "Synchronizer for Path Expressions",
+                date: "Aug 2023 - Sept 2023",
+                tech: "C, Bash",
+                desc: "Designed a parser to read path expressions and transform them into a linked list representing operations. Used mutex locks and semaphores to solve classic concurrency problems:\n\n• Readers-Writers Problem\n• Producer-Consumer Problem\n• Monkey-Crossing Problem\n• Child-Care Problem",
+                link: "https://ieeexplore.ieee.org/document/10037548",
+                tags: ["C", "Bash", "Concurrency", "Operating Systems"]
+            },
+            {
+                title: "Minimal C Compiler",
+                date: "Nov 2022 - Dec 2022",
+                tech: "C, Compiler Design, Lexical Analyzer",
+                desc: "Developed a lightweight C compiler from scratch supporting a subset of C language.\n\nFeatures:\n• Custom lexical analyzer for tokenization\n• Recursive descent parser for syntax validation\n• Context-free grammar for C constructs\n• Meaningful error messages with lexeme and column diagnostics",
+                link: "https://ieeexplore.ieee.org/document/10037548",
+                tags: ["C", "Compiler", "Parser", "Lexical Analysis"]
+            },
+            {
+                title: "3D Formula 1 Track with Blender",
+                date: "Feb 2022 - Mar 2022",
+                tech: "Blender, Python",
+                desc: "Built a Blender Python (BPY) script to programmatically generate a 3D model of an F1 Circuit using GeoJSON track data coordinates obtained by driving on the optimum race line.\n\nRendered Blender objects with specialized techniques for a picturesque 3D view.",
+                link: "https://www.youtube.com/watch?v=OaVNZupt6k0&t=6s",
+                tags: ["Blender", "Python", "3D Modeling", "GeoJSON"]
+            },
+            {
+                title: "Detecting Fake MAC Addresses",
+                date: "Oct 2021 - Dec 2021",
+                tech: "Python, Scapy, Wireshark",
+                desc: "Developed a tool to detect MAC address spoofing in wireless networks by analyzing packet captures using Scapy and verifying vendor authenticity via Macvendors API.\n\nAchievements:\n• Successfully flagged spoofed MAC addresses in real packet traces\n• Delivered a working PoC using lightweight Python libraries",
+                link: "https://www.youtube.com/watch?v=OaVNZupt6k0&t=6s",
+                tags: ["Python", "Scapy", "Wireshark", "Network Security"]
+            },
+            {
+                title: "Financial Services Flutter Application",
+                date: "Aug 2021 - Oct 2021",
+                tech: "Flutter, Dart, Firebase",
+                desc: "Developed an Android application using Google Flutter, put into production by a team of 4 members.\n\nFeatures:\n• Loan eligibility classifier\n• Stock price prediction\n• Complete financial suite",
+                link: "https://codestreet-2021.hackerearth.com/challenges/hackathon/amex-codestreet-2021/custom-tab/shortlist/",
+                tags: ["Flutter", "Dart", "Firebase", "Mobile"]
+            }
+        ];
 
-    //   iconPaths.forEach(path => {
-    //       const img = document.createElement('img');
-    //       img.src = path;
-    //       img.alt = 'Tech Icon';
-    //       img.style.width = '40px';
-    //       img.style.height = '40px';
-    //       img.style.objectFit = 'contain';
-    //       iconContainer.appendChild(img);
-    //   });
-      document.getElementById('modal').style.display = 'flex';
-    }
+        let currentModal = null;
 
-    function closeModal(e) {
-      const modal = document.getElementById('modal');
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    }
-  </script>
+        function openProjectModal(index) {
+            const project = projects[index];
+
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalDate').textContent = project.date;
+            document.getElementById('modalTech').textContent = project.tech;
+            document.getElementById('modalDesc').textContent = project.desc;
+            document.getElementById('modalLink').href = project.link;
+
+            // Generate tech icons
+            const iconsContainer = document.getElementById('modalTechIcons');
+            iconsContainer.innerHTML = '';
+            project.tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'modal-tech-icon';
+                span.textContent = tag;
+                iconsContainer.appendChild(span);
+            });
+
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+
+                document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                document.querySelectorAll('.project-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => card.classList.add('active'), 50);
+                    } else {
+                        card.style.display = 'none';
+                        card.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize tilt effect for project cards
+            new TiltEffect('.project-card', { maxRotation: 8, scale: 1.03 });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>

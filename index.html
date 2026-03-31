@@ -3,693 +3,530 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohan Prasad - Personal Website</title>
-
-    <!-- Favicon -->
+    <title>Rohan Prasad - Software/Machine Learning Engineer</title>
     <link rel="icon" type="image/png" sizes="32x32" href="images/image.png">
-    <!-- <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-    <meta name="msapplication-TileImage" content="images/mstile-150x150.png">
-    <meta name="msapplication-TileColor" content="#ffffff"> -->
-    <!-- GSAP Library -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap">
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="styles.css">
+
     <style>
-        /* General Body Styling */
-        body {
-            background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
-            color: white;
-            font-family: 'Arial', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* Loading Screen */
-        #loading-screen {
-            position: fixed;
+        /* Additional Hero-Specific Styles */
+        .hero-particles-container {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #121212;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title .name {
+            display: block;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.3));
+        }
+
+        .hero-tagline {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--neon-cyan);
+            margin-bottom: 1.5rem;
+            min-height: 2.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .hero-cta {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
-        #loading-text {
-            font-size: 2.5rem;
-            color: #ffffff;
-            font-family: 'Courier New', monospace;
-            animation: typing 1.5s steps(12) 1, blink 0.5s step-end infinite;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid white;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 11ch; } /* Adjust width based on the length of your name */
-        }
-
-        @keyframes blink {
-            from, to { border-color: transparent; }
-            50% { border-color: white; }
-        }
-
-        /* Navbar Styling */
-        .navbar {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .navbar-nav .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            transition: color 0.3s;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: #ff5f5f;
-        }
-
-        /* What I Do Section */
-        #what-i-do {
-            padding: 50px 0;
-            background: #151515;
-        }
-
-        .what-item {
-            text-align: center;
-            border-radius: 10px;
-            background: #1f1f1f;
-            margin: 20px;
-            padding: 20px;
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: fade-in 5s forwards;
-        }
-
-        .what-item:nth-child(odd) {
-            text-align: left;
-        }
-
-        .what-item:nth-child(even) {
-            text-align: right;
-            animation: fade-in-right 5s forwards;
-        }
-
-        .what-item img {
-            max-width: 50px;
-            margin-right: 10px;
-        }
-
-        .what-item h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-
-        .what-item p {
+        .btn-secondary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--neon-cyan);
+            font-family: var(--font-display);
+            font-weight: 700;
             font-size: 1rem;
-        }
-
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fade-in-right {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        .carousel-inner {
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-        }
-
-        .carousel-item img {
-            width: 100%;
-            height: 700px;
-            object-fit: cover;
-            filter: brightness(0.85);
-            transition: transform 0.5s ease;
-        }
-
-        .carousel-item img:hover {
-            transform: scale(1.02);
-        }
-
-        .carousel-caption {
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f1f1;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .carousel-caption h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: #ffffff;
-        }
-
-        .carousel-caption p {
-            font-size: 1.2rem;
-            color: #dddddd;
-        }
-
-        .carousel-control-prev-icon, .carousel-control-next-icon {
-            background-color: #6c757d;
-            border-radius: 50%;
-        }
-
-        .carousel-indicators li {
-            background-color: #6c757d;
-        }
-        /* Back to Top Button */
-        #back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: none;
-            background-color: #ff5f5f;
-            color: white;
-            border: none;
-            padding: 10px 20px;
+            text-decoration: none;
             border-radius: 50px;
-            font-size: 16px;
+            border: 2px solid var(--neon-cyan);
             cursor: pointer;
-            transition: opacity 0.3s ease-in-out;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        #back-to-top:hover {
-            background-color: #e04e4e;
-        }
-        /* Apple-style Profile Card */
-        .apple-card-container {
-        perspective: 1000px;
-        display: flex;
-        justify-content: center;
-        margin: 3rem 0;
-        }
-
-        .apple-card {
-        width: 320px;
-        height: 420px;
-        border-radius: 20px;
-        position: relative;
-        transform-style: preserve-3d;
-        transition: transform 0.8s ease;
-        cursor: pointer;
-        border: 3px solid transparent;
-        background: linear-gradient(135deg, #00ffe0, #007cf0);
-        background-origin: border-box;
-        background-clip: padding-box, border-box;
-        box-shadow: 0 10px 25px rgba(0, 255, 255, 0.15);
-        }
-
-        .apple-card:hover {
-        transform: translateY(-10px);
-        }
-
-        .apple-card.flip {
-        transform: rotateY(180deg);
-        }
-
-        .apple-card .card-face {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 16px;
-        overflow: hidden;
-        backface-visibility: hidden;
-        }
-
-        .apple-card .card-front img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: brightness(0.85);
-        }
-
-        .apple-card .card-front .overlay {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding: 1rem;
-        background: rgba(0, 0, 0, 0.5);
-        color: white;
-        font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
-        text-align: center;
-        }
-
-        .apple-card .card-front .overlay h3 {
-        font-size: 1.6rem;
-        font-weight: 800;
-        margin: 0.3rem 0;
-        }
-
-        .apple-card .card-front .overlay p {
-        margin: 0;
-        font-size: 0.9rem;
-        opacity: 0.85;
-        }
-
-        /* Back of card */
-        .apple-card .card-back {
-        background: #111;
-        color: white;
-        transform: rotateY(180deg);
-        padding: 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-style: italic;
-        font-size: 1rem;
-        font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
-        }
-        .apple-name-wrapper {
             position: relative;
-            padding-top: 2rem;
+            overflow: hidden;
+            transition: all var(--transition-base);
         }
 
-        .apple-title {
-            font-family: 'Inter', sans-serif; /* Replace with SF Pro if hosted locally */
-            font-size: 3.2rem;
-            font-weight: 600;
-            color: #c7ccd1;
-            z-index: 2;
-            position: relative;
-        }
-
-        .spotlight-effect {
+        .btn-secondary::before {
+            content: '';
             position: absolute;
             top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-secondary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px var(--glow-cyan);
+        }
+
+        /* Floating Cards Animation */
+        .floating-cards {
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-card-1 {
+            top: 10%;
+            right: -20px;
+            animation-delay: 0s;
+        }
+
+        .floating-card-2 {
+            bottom: 20%;
+            right: -40px;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotateY(10deg); }
+            50% { transform: translateY(-20px) rotateY(15deg); }
+        }
+
+        .floating-card i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .floating-card-1 i { color: var(--neon-cyan); }
+        .floating-card-2 i { color: var(--neon-purple); }
+
+        .floating-card span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Stats Section */
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Skills Preview */
+        .skills-preview {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .skill-pill {
+            padding: 0.5rem 1.25rem;
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 25px;
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+            transition: all var(--transition-base);
+        }
+
+        .skill-pill:hover {
+            background: rgba(0, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--glow-cyan);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
-            width: 80%;
-            height: 200px;
-            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.35), transparent 95%);
-            filter: blur(60px);
-            z-index: 1;
-            pointer-events: none;
-            animation: pulseGlow 4s infinite alternate ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            animation: bounce 2s ease-in-out infinite;
         }
 
-        @keyframes pulseGlow {
-            0% {
-                transform: translateX(-50%) scale(1);
-                opacity: 0.8;
+        .scroll-indicator .mouse {
+            width: 25px;
+            height: 40px;
+            border: 2px solid var(--text-muted);
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .scroll-indicator .wheel {
+            width: 4px;
+            height: 8px;
+            background: var(--neon-cyan);
+            border-radius: 2px;
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll 1.5s ease-in-out infinite;
+        }
+
+        @keyframes scroll {
+            0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(12px); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .floating-cards {
+                display: none;
             }
-            100% {
-                transform: translateX(-50%) scale(1.05);
-                opacity: 1;
+
+            .hero-stats {
+                justify-content: center;
             }
         }
 
-        /* Spotlight Section */
-        /* #spotlight-intro {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #0f0f1a;
-        overflow: hidden;
-        position: relative;
-        }
+        @media (max-width: 768px) {
+            .hero-stats {
+                gap: 1.5rem;
+            }
 
-        .spotlight-wrapper {
-        position: relative;
-        z-index: 1;
-        text-align: center;
+            .stat-number {
+                font-size: 1.8rem;
+            }
         }
-
-        .spotlight-title {
-        font-family: 'Inter', sans-serif;
-        font-size: 4rem;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.85);
-        margin: 0;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 1s ease-out;
-        }
-
-        .spotlight-subtext {
-        font-size: 1.2rem;
-        color: #999;
-        margin-top: 10px;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 1s ease-out 0.2s;
-        }
-
-        .spotlight-glow {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%) scale(0.3);
-        width: 400px;
-        height: 400px;
-        background: radial-gradient(circle, rgba(0,255,255,0.4), transparent 70%);
-        filter: blur(90px);
-        opacity: 0;
-        transition: all 1.5s ease-out;
-        }
-
-        /* Active state triggered by JS */
-        .spotlight-active .spotlight-glow {
-        transform: translateX(-50%) scale(1);
-        opacity: 1;
-        }
-
-        .spotlight-active .spotlight-title,
-        .spotlight-active .spotlight-subtext {
-        opacity: 1;
-        transform: translateY(0);
-        } */
     </style>
 </head>
 <body>
     <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div id="loading-text">Rohan Prasad</div>
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-title">ROHAN PRASAD</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
     </div>
 
+    <!-- Custom Cursor -->
+    <div class="cursor-wrapper"></div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="nebula"></div>
+    </div>
+
+    <!-- Particles -->
+    <div class="particles-container" id="particles"></div>
+
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">RP</a>
-            <!-- <img src="images/rohan.jpeg" alt="RP" class="img-fluid" href="index.html"> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
-                    <li class="nav-item"><a class="nav-link" href="experience.html">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul>
-            </div>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">RP</a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link active" href="index.html"><span>Home</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="education.html"><span>Education</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="experience.html"><span>Experience</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="project.html"><span>Projects</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html"><span>Contact</span></a></li>
+            </ul>
         </div>
     </nav>
 
-     <!-- Test About section -->
-     <!-- <section id="spotlight-intro" class="text-center">
-        <div class="spotlight-wrapper">
-          <div class="spotlight-glow"></div>
-          <h1 class="spotlight-title">Rohan Prasad</h1>
-          <p class="spotlight-subtext">(SlowDanger15)</p>
-        </div>
-      </section> -->
-      
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content reveal-left">
+                <h1 class="hero-title">
+                    <span class="name">ROHAN PRASAD</span>
+                </h1>
+                <div class="hero-tagline">
+                    <span class="typewriter-container">
+                        <span class="typewriter-text"></span>
+                    </span>
+                </div>
+                <p class="hero-description">
+                    Passionate architect of tomorrow's technology. Specializing in AI/ML, distributed systems,
+                    and cutting-edge solutions that push the boundaries of what's possible.
+                </p>
 
-    <!-- About section -->
-    <section id="intro" class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Left Content -->
-                <div class="col-md-6 text-center text-md-left apple-name-wrapper">
-                    <div class="spotlight-effect"></div>
-                    <h1 class="apple-title">Rohan Prasad</h1>
-                    <p class="lead text-muted">(SlowDanger15)</p>
-                    <p>
-                        I'm a passionate individual who thrives on building scalable and impactful technical solutions.
-                        I aspire to innovate in AI/ML, distributed systems, and computer networks to solve complex challenges.
+                <div class="social-links">
+                    <a href="https://github.com/SlowDanger15" class="social-link" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/rohanprasad7976199/" class="social-link" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://x.com/_rohan06_" class="social-link" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+
+                <div class="hero-cta">
+                    <a href="project.html" class="btn-primary">
+                        <span>Explore My Work</span>
+                    </a>
+                    <a href="contact.html" class="btn-secondary">
+                        <span>Get In Touch</span>
+                    </a>
+                </div>
+
+                <div class="skills-preview">
+                    <span class="skill-pill">Python</span>
+                    <span class="skill-pill">Machine Learning</span>
+                    <span class="skill-pill">AI/ML</span>
+                    <span class="skill-pill">Distributed Systems</span>
+                    <span class="skill-pill">CUDA</span>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Certifications</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="floating-cards reveal-right">
+                <div class="holographic-card">
+                    <img src="images/rohan.jpeg" alt="Rohan Prasad">
+                    <h3>Software / ML Engineer</h3>
+                    <p>Age: 24 | Pronouns: He/Him</p>
+                    <p style="margin-top: 1rem; color: var(--text-secondary);">
+                        Obsessed with parallelism and performance optimization.
+                        Turning complex problems into elegant solutions.
                     </p>
-                    <div class="social-icons mt-3">
-                        <a href="https://github.com/SlowDanger15" target="_blank"><img src="images/github.png" alt="GitHub" style="width: 40px; margin-right: 10px;"></a>
-                        <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank"><img src="images/linkedin.png" alt="LinkedIn" style="width: 40px; margin-right: 10px;"></a>
-                        <a href="https://x.com/_rohan06_" target="_blank"><img src="images/twitter.png" alt="Twitter" style="width: 55px; margin-right: 10px;"></a>   
-                    </div>
-                    <a href="https://github.com/SlowDanger15" target="_blank" class="btn btn-primary mt-4">⭐ Star Me on GitHub</a>
                 </div>
-                
-                
-                <!-- Right Illustration -->
-                <!-- <div class="col-md-6 text-center">
-                    <img src="images/webill.png" alt="Illustration" class="img-fluid image-animate" style="max-width: 100%; height: auto;">
-                </div> -->
-                <!-- Apple-style Card -->
-                <div class="apple-card-container col-md-6 text-center">
-                    <div class="apple-card" onclick="this.classList.toggle('flip')">
-                      <!-- Front Face -->
-                      <div class="card-face card-front">
-                        <!-- <img src="images/profile.png" alt="Rohan Prasad"> -->
-                        <img src="images/profile.png" alt="Rohan Prasad" style="width: 100%; height: 100%; object-fit: cover; object-position: 65% center;">
-                        <div class="overlay">
-                          <h3>Rohan Prasad</h3>
-                          <p>Age: 23</p>
-                          <p>He/him/his</p>
-                        </div>
-                      </div>
-                  
-                      <!-- Back Face -->
-                      <div class="card-face card-back">
-                        <!-- <h3>Fun Fact</h3> -->
-                        <p>I'm obsessed with parallelism — if something can be parallelized, I will script it. Nothing satisfies me more than watching tasks fly in sync like a well-crafted machine. 🚀</p>
-                      </div>
-                    </div>
-                  </div>                  
+
+                <div class="floating-card floating-card-1">
+                    <i class="fas fa-brain"></i>
+                    <span>AI/ML Expert</span>
+                </div>
+                <div class="floating-card floating-card-2">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Distributed Systems</span>
+                </div>
             </div>
         </div>
-    </section>
-    
 
-    <!-- What I Do Section -->
-    <section id="what-i-do" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">What I Do</h2>
-            <!-- Item 4 -->
-            <div class="row align-items-center what-item">
-                <div class="col-md-6 text-center">
-                    <img src="images/illustrations/ai_agents_ill-removebg-preview.png" alt="Generative AI & AI Agents Illustration" class="img-fluid" style="max-width: 100%; height: auto;">
-                </div>
-                <div class="col-md-6">
-                    <h3>Generative AI & AI Agents</h3>
-                    <p>⚡ Building advanced AI Agents and virtual assistants using LLMs.</p>
-                    <p>⚡ Expertise in fine-tuning and deploying LLMs.</p>
-                    <p>⚡ Implementing AI agents for Automation, Decision-making, Reasining & Routing.</p>
-                    <div>
-                        <img src="images/icons/openai.png" alt="OpenAI">
-                        <img src="images/icons/ollama.png" alt="Ollama">
-                        <img src="images/icons/langchain.png" alt="LangChain">
-                        <img src="images/icons/crewai.png" alt="CrewAI">
-                        <img src="images/icons/ag2ai_logo.png" alt="Autogen">
-                    </div>
-                </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
             </div>
-            <!-- Item 1 -->
-            <div class="row align-items-center what-item">
-                <div class="col-md-6">
-                    <h3>AI-ML & Data Science</h3>
-                    <p>⚡ Developing scalable production-ready models for deep learning and statistical use cases.</p>
-                    <p>⚡ Experienced in Computer Vision and NLP projects.</p>
-                    <p>⚡ Quantitative modeling for forecasting and time series analysis.</p>
-                    <div>
-                        <img src="images/tensorflow.svg" alt="TensorFlow">
-                        <img src="images/pytorch.png" alt="PyTorch">
-                        <img src="images/python5.svg" alt="Python">
-                        <img src="images/Keras.png" alt="Keras">
-                    </div>
-                </div>
-                <div class="col-md-6 text-center">
-                    <img src="images/data_science.png" alt="AI-ML & Data Science Illustration" class="img-fluid" style="max-width: 100%; height: auto;">
-                </div>
-            </div>
-            <!-- Item 2 -->
-            <div class="row align-items-center what-item">
-                <div class="col-md-6 text-center">
-                    <img src="images/webilldistributedsystems.png" alt="Distributed Systems Illustration" class="img-fluid" style="max-width: 100%; height: auto;">
-                </div>
-                <div class="col-md-6">
-                    <h3>Distributed Systems & Parallel processing</h3>
-                    <p>⚡ Designing parallel frameworks for large-scale computations.</p>
-                    <p>⚡ Optimizing distributed storage systems for real-world applications.</p>
-                    <div>
-                        <img src="images/docker.png" alt="Docker">
-                        <img src="images/kubernetes.png" alt="Kubernetes">
-                        <img src="images/apache-spark-5.svg" alt="Spark">
-                    </div>
-                </div>
-            </div>
-            <!-- Item 3 -->
-            <!-- <div class="row align-items-center what-item">
-                <div class="col-md-6">
-                    <h3>Computer Networks</h3>
-                    <p>⚡ Optimizing protocols for high-performance systems.</p>
-                    <p>⚡ Designing efficient network topologies for scalability.</p>
-                    <div>
-                        <img src="images/networkx.png" alt="Networking">
-                        <img src="images/wireshark.png" alt="Wireshark">
-                    </div>
-                </div>
-                <div class="col-md-6 text-center">
-                    <img src="images/computer_networks.png" alt="Computer Networks Illustration" class="img-fluid" style="max-width: 100%; height: auto;">
-                </div>
-            </div> -->
+            <span>Scroll</span>
         </div>
     </section>
 
-    <!-- About Me Carousel -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">About Me</h2>
-            <div id="aboutCarousel" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#aboutCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#aboutCarousel" data-slide-to="1"></li>
-                    <li data-target="#aboutCarousel" data-slide-to="2"></li>
-                    <li data-target="#aboutCarousel" data-slide-to="3"></li>
-                    <li data-target="#aboutCarousel" data-slide-to="4"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <!-- Slide 1 -->
-                    <div class="carousel-item active">
-                        <img src="images/webill.png" alt="Rohan Prasad">
-                        <div class="carousel-caption">
-                            <h2>Hello, I'm Rohan Prasad!</h2>
-                            <p>I am currently pursuing a Master's in Computer Science at The Pennsylvania State University. I love exploring cutting-edge technologies and finding creative solutions to real-world problems.</p>
-                        </div>
+    <!-- Skills Section -->
+    <section class="skills-section" id="skills">
+        <div class="section-container">
+            <div class="section-title-wrapper reveal">
+                <h2 class="section-title">TECHNOLOGICAL ARSENAL</h2>
+            </div>
+            <p class="section-subtitle reveal">My core competencies and tools of the trade</p>
+
+            <div class="skills-grid stagger-grid">
+                <div class="skill-card reveal">
+                    <div class="skill-icon">
+                        <i class="fas fa-robot"></i>
                     </div>
-                    <!-- Slide 2 -->
-                    <div class="carousel-item">
-                        <img src="images/word.png" alt="Word Cloud">
-                        <div class="carousel-caption">
-                            <h2>This is me</h2>
-                            <p>My core skills, technologies, and areas of expertise, reflecting my journey and passion for innovation in software development and AI/ML.</p>
-                        </div>
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="carousel-item">
-                        <img src="images/wall2.jpg" alt="Wall Climbing">
-                        <div class="carousel-caption">
-                            <h2>Fun Fact #1</h2>
-                            <p>I absolutely love wall climbing! Currently, I can climb V5 level routes, and I'm constantly working on improving my technique.</p>
-                        </div>
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="carousel-item">
-                        <img src="images/space.png" alt="Tennis">
-                        <div class="carousel-caption">
-                            <h2>Fun Fact #2</h2>
-                            <p>When I’m not coding, you can find me trying to perfect my table tennis top-spin or binge-watching documentaries about space exploration!</p>
-                        </div>
-                    </div>
-                    <!-- Slide 4 -->
-                    <div class="carousel-item">
-                        <img src="images/dreams.png" alt="Dreams and Aspirations">
-                        <div class="carousel-caption">
-                            <h2>Dreams and Aspirations</h2>
-                            <p>My ultimate goal is to innovate in the AI/ML domain, contribute to impactful open-source projects, and make a lasting difference in the tech community.</p>
-                        </div>
+                    <h3>AI/ML & Generative AI</h3>
+                    <p>Building intelligent systems that learn, adapt, and create. From neural networks to AI agents that think and reason.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">OpenAI</span>
+                        <span class="tech-tag">Transformers</span>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#aboutCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#aboutCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+
+                <div class="skill-card reveal">
+                    <div class="skill-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Distributed Systems</h3>
+                    <p>Architecting scalable, fault-tolerant systems that handle massive workloads across distributed infrastructure.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Apache Spark</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal">
+                    <div class="skill-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Data Science & Analytics</h3>
+                    <p>Extracting insights from complex datasets using advanced statistical methods and machine learning algorithms.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">R</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Jupyter</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- <script>
-        // Hide loading screen after 1.5 seconds
-        window.onload = () => {
-            setTimeout(() => {
-                document.getElementById('loading-screen').style.display = 'none';
-            }, 1500);
-        };
-    </script> -->
-    <script>
-        window.onload = () => {
-            setTimeout(() => {
-                document.getElementById('loading-screen').style.display = 'none';
-                triggerAnimations();
-            }, 1500); // Loading screen duration
-        };
-    
-        function triggerAnimations() {
-            let items = document.querySelectorAll('.what-item');
-            items.forEach((item, index) => {
-                setTimeout(() => {
-                    item.classList.add('appear');
-                }, index * 500); // Staggered animation effect
-            });
-        }
-    </script>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" onclick="scrollToTop()">↑</button>
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Footer -->
-    <footer class="text-center py-4 bg-dark text-white">
+    <footer class="footer">
         <p>&copy; 2025 Rohan Prasad | <a href="https://github.com/SlowDanger15" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank">LinkedIn</a></p>
     </footer>
+
+    <!-- Shared Scripts -->
+    <script src="shared.js"></script>
     <script>
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    
-        window.addEventListener('scroll', function() {
-            let backToTopButton = document.getElementById('back-to-top');
-            if (window.scrollY > 300) {
-                backToTopButton.style.display = 'block';
-            } else {
-                backToTopButton.style.display = 'none';
+        // Custom initialization for the home page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize holographic card effect
+            new HolographicCard('.holographic-card');
+
+            // Initialize tilt effect for skill cards
+            new TiltEffect('.skill-card', { maxRotation: 10, scale: 1.02 });
+
+            // Custom typewriter effect
+            const typewriterText = document.querySelector('.typewriter-text');
+            if (typewriterText) {
+                const words = [
+                    'Software Engineer',
+                    'Machine Learning Engineer',
+                    'AI/ML Specialist',
+                    'Distributed Systems Expert'
+                ];
+
+                let wordIndex = 0;
+                let charIndex = 0;
+                let isDeleting = false;
+                let isPaused = false;
+
+                function type() {
+                    if (isPaused) return;
+
+                    const currentWord = words[wordIndex];
+
+                    if (isDeleting) {
+                        charIndex--;
+                    } else {
+                        charIndex++;
+                    }
+
+                    typewriterText.textContent = currentWord.substring(0, charIndex);
+
+                    let delay = isDeleting ? 30 : 80;
+
+                    if (!isDeleting && charIndex === currentWord.length) {
+                        isPaused = true;
+                        setTimeout(() => {
+                            isPaused = false;
+                            isDeleting = true;
+                            type();
+                        }, 2000);
+                        return;
+                    }
+
+                    if (isDeleting && charIndex === 0) {
+                        isDeleting = false;
+                        wordIndex = (wordIndex + 1) % words.length;
+                    }
+
+                    setTimeout(() => type(), delay);
+                }
+
+                type();
             }
         });
     </script>
-    <script>
-        document.addEventListener("click", function (e) {
-          const card = document.querySelector(".apple-card");
-          if (!card.contains(e.target)) {
-            card.classList.remove("flip");
-          }
-        });
-      </script>
-      <!-- <script>
-        window.addEventListener('load', () => {
-          setTimeout(() => {
-            document.querySelector('.spotlight-wrapper').classList.add('spotlight-active');
-          }, 1100); // slight delay for effect
-        });
-      </script> -->
-      
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

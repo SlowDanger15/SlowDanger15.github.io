@@ -3,333 +3,476 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Education</title>
-    <!-- Favicon -->
+    <title>Education - Rohan Prasad</title>
     <link rel="icon" type="image/png" sizes="32x32" href="images/image.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="styles.css">
+
     <style>
-        /* Navbar Styling */
-        .navbar {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .navbar-nav .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            transition: color 0.3s;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: #ff5f5f;
-        }
-
-        /* Card Shadow Styling */
-        .card {
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Certifications Section */
-        .certifications-container {
+        /* Education-specific styles */
+        .education-header {
+            padding-top: calc(var(--nav-height) + 3rem);
             text-align: center;
-            margin-top: 50px;
+            margin-bottom: 3rem;
+        }
+
+        /* Education Cards */
+        .education-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--transition-base);
+        }
+
+        .education-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .education-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.12);
+            border-color: var(--neon-cyan);
+        }
+
+        .education-card-content {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .education-logo {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .education-logo img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            filter: brightness(0.8);
+            transition: all var(--transition-base);
+        }
+
+        .education-card:hover .education-logo img {
+            filter: brightness(1.2);
+            transform: scale(1.1);
+        }
+
+        .education-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-info .degree {
+            color: var(--neon-cyan);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-info .duration {
+            display: inline-block;
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--neon-purple);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        /* Certifications Grid */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .cert-card {
             position: relative;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-in-out;
-        }
-
-        .cert-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            filter: brightness(0.9);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            border: 1px solid rgba(0, 255, 255, 0.15);
         }
 
         .cert-card img {
             width: 100%;
-            height: auto;
-            border-radius: 10px;
+            height: 200px;
+            object-fit: cover;
+            transition: all var(--transition-base);
         }
 
-        .cert-card .cert-overlay {
+        .cert-card::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(139, 92, 246, 0.1));
             opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: opacity var(--transition-base);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.15);
+            border-color: var(--neon-cyan);
+        }
+
+        .cert-card:hover::before {
+            opacity: 1;
+        }
+
+        .cert-card:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+
+        .cert-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            transform: translateY(100%);
+            transition: transform var(--transition-base);
         }
 
         .cert-card:hover .cert-overlay {
-            opacity: 1;
-        }
-
-        .cert-card.show {
-            opacity: 1;
             transform: translateY(0);
         }
 
-        /* Back to Top Button */
-        #back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: none;
-            background-color: #ff5f5f;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: opacity 0.3s ease-in-out;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        .cert-overlay h4 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--neon-cyan);
+            margin-bottom: 0.25rem;
         }
 
-        #back-to-top:hover {
-            background-color: #e04e4e;
+        .cert-overlay p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
         }
 
+        .cert-info {
+            padding: 1rem;
+            background: var(--bg-card);
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .cert-info h4 {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .cert-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Degree illustration */
         .degree-illustration {
-            max-width: 25%;
-            height: auto;
-            /* border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; */
+            max-width: 400px;
+            margin: 0 auto 2rem;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.2));
+            transition: all var(--transition-base);
         }
 
-        /* .degree-illustration:hover {
+        .degree-illustration:hover {
+            filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.3));
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        } */
+        }
+
+        /* Section styling */
+        .section {
+            padding: 3rem 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .education-card-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .education-logo {
+                margin: 0 auto;
+            }
+
+            .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Rohan Prasad</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
-                    <li class="nav-item"><a class="nav-link" href="experience.html">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-title">EDUCATION</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
             </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-wrapper"></div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="nebula"></div>
+    </div>
+
+    <!-- Particles -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">RP</a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html"><span>Home</span></a></li>
+                <li class="nav-item"><a class="nav-link active" href="education.html"><span>Education</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="experience.html"><span>Experience</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="project.html"><span>Projects</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html"><span>Contact</span></a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Education Section -->
-    <section id="education" class="bg-light py-5">
-        <div class="row justify-content-center align-items-center mt-4 text-center">
-            <div class="col-md-6 text-center">
-                <img src="images/degree.png" alt="Degree Illustration" class="img-fluid degree-illustration">
-            </div>
-            <!-- <div class="col-md-6">
-                <h4>The Value of Education</h4>
-                <p>Education is the key to unlocking new opportunities and shaping the future. I have pursued my academic journey with passion and commitment to excellence.</p>
-            </div> -->
+    <!-- Header -->
+    <div class="education-header">
+        <img src="images/degree.png" alt="Education" class="degree-illustration reveal-scale">
+        <div class="section-title-wrapper reveal">
+            <h1 class="section-title">EDUCATION</h1>
         </div>
-        
-        <div class="container">
-            <h2>Education</h2>
-            <div class="card mb-4">
-                <a href="https://www.psu.edu/" target="_blank">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col-md-2 text-center">
-                            <img src="images/PSU.png" class="img-fluid" alt="Penn State Logo" style="max-height: 120px;">
-                        </div>
-                        <div class="col-md-10">
-                            <div class="card-body">
-                                <h4 class="card-title">The Pennsylvania State University</h4>
-                                <p class="card-text">Master of Science in Computer Science</p>
-                                <p class="text-muted text-right">Aug 2023 – May 2025</p>
-                            </div>
-                        </div>
+        <p class="section-subtitle reveal">The foundation of innovation</p>
+    </div>
+
+    <!-- Education Section -->
+    <section class="section">
+        <div class="section-container">
+            <!-- Penn State -->
+            <div class="education-card reveal">
+                <div class="education-card-content">
+                    <div class="education-logo">
+                        <img src="images/PSU.png" alt="Penn State University">
                     </div>
-                </a>
+                    <div class="education-info">
+                        <h3>The Pennsylvania State University</h3>
+                        <p class="degree">Master of Science in Computer Science</p>
+                        <span class="duration">Aug 2023 – May 2025</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="card mb-4">
-                <a href="https://www.manipal.edu/mit.html" target="_blank">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col-md-2 text-center">
-                            <img src="images/MIT.png" class="img-fluid" alt="Manipal Logo" style="max-height: 100px;">
-                        </div>
-                        <div class="col-md-10">
-                            <div class="card-body">
-                                <h4 class="card-title">Manipal Institute of Technology</h4>
-                                <p class="card-text">Bachelor of Technology in Computer Science</p>
-                                <p class="text-muted text-right">Jul 2019 – Jun 2023</p>
-                            </div>
-                        </div>
+            <!-- MIT Manipal -->
+            <div class="education-card reveal">
+                <div class="education-card-content">
+                    <div class="education-logo">
+                        <img src="images/MIT.png" alt="Manipal Institute of Technology">
                     </div>
-                </a>
+                    <div class="education-info">
+                        <h3>Manipal Institute of Technology</h3>
+                        <p class="degree">Bachelor of Technology in Computer Science</p>
+                        <span class="duration">Jul 2019 – Jun 2023</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">Certifications</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <a href="https://learn.nvidia.com/certificates?id=uR6VslC1Ro-pgtnCZS5DxA" target="_blank">
-                        <div class="cert-card">
-                            <img src="images/certifications/nvidia.png" alt="Machine Learning">
-                            <div class="cert-overlay">Certificate</div>
-                        </div>
-                    </a>
-                    <p class="text-center mt-2"><strong>Accelerated Computing with CUDA C++</strong></p>
-                </div>
-                <!-- Add more certifications similarly -->
-                <div class="col-md-4 mb-4">
-                    <a href="https://learn.deeplearning.ai/accomplishments/93bb1d81-097c-4698-bf82-4d2768a41efd?usp=sharing" target="_blank">
-                        <div class="cert-card">
-                            <img src="images/certifications/deeplearninai.png" alt="Deep Learning">
-                            <div class="cert-overlay">Certificate</div>
-                        </div>
-                    </a>
-                    <p class="text-center mt-2"><strong>AI Agents & Deep Learning</strong><br>- Andrew Ng</p>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://learn.deeplearning.ai/accomplishments/93bb1d81-097c-4698-bf82-4d2768a41efd?usp=sharing" target="_blank">
-                        <div class="cert-card">
-                            <img src="images/certifications/coursera.png" alt="ML on GCP">
-                            <div class="cert-overlay">Certificate</div>
-                        </div>
-                    </a>
-                    <p class="text-center mt-2"><strong>Coursera</strong></p>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://www.udemy.com/certificate/UC-d64ef0c4-ca05-45f6-9eb9-92c24c34c869/" target="_blank">
-                        <div class="cert-card">
-                            <img src="images/certifications/udemy.png" alt="Data Science">
-                            <div class="cert-overlay">Certificate</div>
-                        </div>
-                    </a>
-                    <p class="text-center mt-2"><strong>Mathematics & Statistics</strong></p>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://coursera.org/ibm_ds_certificate" target="_blank">
-                        <div class="cert-card">
-                            <img src="images/certifications/kaggle.png" alt="Data Analytics">
-                            <div class="cert-overlay">Certificate</div>
-                        </div>
-                    </a>
-                    <p class="text-center mt-2"><strong>Pandas</strong></p>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/A7NPTWHKBGB4" target="_blank">
-                        <div class="cert-card">
-                            <img src="images/certifications/google.png" alt="Data Analytics">
-                            <div class="cert-overlay">Certificate</div>
-                        </div>
-                    </a>
-                    <p class="text-center mt-2"><strong>Data Analytics</strong></p>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://coursera.org/ibm_ds_certificate" target="_blank">
-                        <div class="cert-card">
-                            <img src="images/certifications/linkedin.png" alt="Kubernetes">
-                            <div class="cert-overlay">Certificate</div>
-                        </div>
-                    </a>
-                    <p class="text-center mt-2"><strong>Kubernetes</strong></p>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=426019220F0BD10F0DBAFC7EECF7BE472270FDC69316327E0249A0E0A1BEA052" target="_blank">
-                        <div class="cert-card">
-                            <img src="images/certifications/oracle.png" alt="Generative AI">
-                            <div class="cert-overlay">Certificate</div>
-                        </div>
-                    </a>
-                    <p class="text-center mt-2"><strong>Generative AI Certified Professional</strong></p>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://au.badgr.com/public/assertions/w3WWIo6ST82NdM1nPwSdlQ" target="_blank">
-                        <div class="cert-card">
-                            <img src="images/certifications/canvas.png" alt="Formula AI Hack">
-                            <div class="cert-overlay">Certificate</div>
-                        </div>
-                    </a>
-                    <p class="text-center mt-2"><strong>Formula AI Hack</strong></p>
-                </div>
+    <section class="section">
+        <div class="section-container">
+            <div class="section-title-wrapper reveal">
+                <h2 class="section-title">CERTIFICATIONS</h2>
+            </div>
+            <p class="section-subtitle reveal">Validating expertise through industry-recognized credentials</p>
+
+            <div class="certifications-grid stagger-grid">
+                <!-- NVIDIA -->
+                <a href="https://learn.nvidia.com/certificates?id=uR6VslC1Ro-pgtnCZS5DxA" target="_blank" class="cert-card reveal">
+                    <img src="images/certifications/nvidia.png" alt="NVIDIA Certification">
+                    <div class="cert-overlay">
+                        <h4>View Certificate</h4>
+                        <p>Click to verify</p>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Accelerated Computing with CUDA C++</h4>
+                        <p>NVIDIA</p>
+                    </div>
+                </a>
+
+                <!-- DeepLearning.AI -->
+                <a href="https://learn.deeplearning.ai/accomplishments/93bb1d81-097c-4698-bf82-4d2768a41efd?usp=sharing" target="_blank" class="cert-card reveal">
+                    <img src="images/certifications/deeplearninai.png" alt="Deep Learning Certification">
+                    <div class="cert-overlay">
+                        <h4>View Certificate</h4>
+                        <p>Click to verify</p>
+                    </div>
+                    <div class="cert-info">
+                        <h4>AI Agents & Deep Learning</h4>
+                        <p>Andrew Ng / DeepLearning.AI</p>
+                    </div>
+                </a>
+
+                <!-- Coursera -->
+                <a href="https://learn.deeplearning.ai/accomplishments/93bb1d81-097c-4698-bf82-4d2768a41efd?usp=sharing" target="_blank" class="cert-card reveal">
+                    <img src="images/certifications/coursera.png" alt="Coursera Certification">
+                    <div class="cert-overlay">
+                        <h4>View Certificate</h4>
+                        <p>Click to verify</p>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Machine Learning Specialization</h4>
+                        <p>Coursera</p>
+                    </div>
+                </a>
+
+                <!-- Udemy -->
+                <a href="https://www.udemy.com/certificate/UC-d64ef0c4-ca05-45f6-9eb9-92c24c34c869/" target="_blank" class="cert-card reveal">
+                    <img src="images/certifications/udemy.png" alt="Udemy Certification">
+                    <div class="cert-overlay">
+                        <h4>View Certificate</h4>
+                        <p>Click to verify</p>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Mathematics & Statistics</h4>
+                        <p>Udemy</p>
+                    </div>
+                </a>
+
+                <!-- Kaggle -->
+                <a href="https://coursera.org/ibm_ds_certificate" target="_blank" class="cert-card reveal">
+                    <img src="images/certifications/kaggle.png" alt="Kaggle Certification">
+                    <div class="cert-overlay">
+                        <h4>View Certificate</h4>
+                        <p>Click to verify</p>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Pandas</h4>
+                        <p>Kaggle</p>
+                    </div>
+                </a>
+
+                <!-- Google -->
+                <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/A7NPTWHKBGB4" target="_blank" class="cert-card reveal">
+                    <img src="images/certifications/google.png" alt="Google Certification">
+                    <div class="cert-overlay">
+                        <h4>View Certificate</h4>
+                        <p>Click to verify</p>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Data Analytics</h4>
+                        <p>Google</p>
+                    </div>
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="https://coursera.org/ibm_ds_certificate" target="_blank" class="cert-card reveal">
+                    <img src="images/certifications/linkedin.png" alt="LinkedIn Certification">
+                    <div class="cert-overlay">
+                        <h4>View Certificate</h4>
+                        <p>Click to verify</p>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Kubernetes</h4>
+                        <p>LinkedIn Learning</p>
+                    </div>
+                </a>
+
+                <!-- Oracle -->
+                <a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=426019220F0BD10F0DBAFC7EECF7BE472270FDC69316327E0249A0E0A1BEA052" target="_blank" class="cert-card reveal">
+                    <img src="images/certifications/oracle.png" alt="Oracle Certification">
+                    <div class="cert-overlay">
+                        <h4>View Certificate</h4>
+                        <p>Click to verify</p>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Generative AI Certified Professional</h4>
+                        <p>Oracle</p>
+                    </div>
+                </a>
+
+                <!-- Canvas -->
+                <a href="https://au.badgr.com/public/assertions/w3WWIo6ST82NdM1nPwSdlQ" target="_blank" class="cert-card reveal">
+                    <img src="images/certifications/canvas.png" alt="Canvas Certification">
+                    <div class="cert-overlay">
+                        <h4>View Certificate</h4>
+                        <p>Click to verify</p>
+                    </div>
+                    <div class="cert-info">
+                        <h4>Formula AI Hack</h4>
+                        <p>Canvas</p>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" onclick="scrollToTop()">↑</button>
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Footer -->
-    <footer class="text-center py-4 bg-dark text-white">
+    <footer class="footer">
         <p>&copy; 2025 Rohan Prasad | <a href="https://github.com/SlowDanger15" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank">LinkedIn</a></p>
     </footer>
 
+    <!-- Shared Scripts -->
+    <script src="shared.js"></script>
     <script>
-        function revealElements() {
-            let elements = document.querySelectorAll('.education-card, .cert-card');
-            let windowHeight = window.innerHeight;
-
-            elements.forEach(el => {
-                let elementTop = el.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
-                    el.classList.add('show');
-                }
-            });
-        }
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        window.addEventListener('scroll', function() {
-            revealElements();
-            let backToTopButton = document.getElementById('back-to-top');
-            if (window.scrollY > 300) {
-                backToTopButton.style.display = 'block';
-            } else {
-                backToTopButton.style.display = 'none';
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize tilt effect for education cards
+            new TiltEffect('.education-card', { maxRotation: 5, scale: 1.02 });
+            new TiltEffect('.cert-card', { maxRotation: 8, scale: 1.05 });
         });
-
-        revealElements();
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
