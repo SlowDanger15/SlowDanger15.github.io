@@ -16,237 +16,6 @@
 
     <!-- Shared Styles -->
     <link rel="stylesheet" href="styles.css">
-
-    <style>
-        /* Education-specific styles */
-        .education-header {
-            padding-top: calc(var(--nav-height) + 3rem);
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        /* Education Cards */
-        .education-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(0, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: all var(--transition-base);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .education-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform var(--transition-base);
-        }
-
-        .education-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .education-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.12);
-            border-color: var(--neon-cyan);
-        }
-
-        .education-card-content {
-            display: grid;
-            grid-template-columns: 100px 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .education-logo {
-            width: 100px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 255, 255, 0.05);
-            border-radius: 15px;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-        }
-
-        .education-logo img {
-            max-width: 80%;
-            max-height: 80%;
-            object-fit: contain;
-            filter: brightness(0.8);
-            transition: all var(--transition-base);
-        }
-
-        .education-card:hover .education-logo img {
-            filter: brightness(1.2);
-            transform: scale(1.1);
-        }
-
-        .education-info h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .education-info .degree {
-            color: var(--neon-cyan);
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .education-info .duration {
-            display: inline-block;
-            background: rgba(139, 92, 246, 0.2);
-            color: var(--neon-purple);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-        }
-
-        /* Certifications Grid */
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .cert-card {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all var(--transition-base);
-            border: 1px solid rgba(0, 255, 255, 0.15);
-        }
-
-        .cert-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: all var(--transition-base);
-        }
-
-        .cert-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(139, 92, 246, 0.1));
-            opacity: 0;
-            transition: opacity var(--transition-base);
-        }
-
-        .cert-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.15);
-            border-color: var(--neon-cyan);
-        }
-
-        .cert-card:hover::before {
-            opacity: 1;
-        }
-
-        .cert-card:hover img {
-            transform: scale(1.1);
-            filter: brightness(1.1);
-        }
-
-        .cert-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-            transform: translateY(100%);
-            transition: transform var(--transition-base);
-        }
-
-        .cert-card:hover .cert-overlay {
-            transform: translateY(0);
-        }
-
-        .cert-overlay h4 {
-            font-family: var(--font-display);
-            font-size: 1rem;
-            color: var(--neon-cyan);
-            margin-bottom: 0.25rem;
-        }
-
-        .cert-overlay p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .cert-info {
-            padding: 1rem;
-            background: var(--bg-card);
-            border-top: 1px solid rgba(0, 255, 255, 0.1);
-        }
-
-        .cert-info h4 {
-            font-family: var(--font-display);
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .cert-info p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Degree illustration */
-        .degree-illustration {
-            max-width: 400px;
-            margin: 0 auto 2rem;
-            display: block;
-            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.2));
-            transition: all var(--transition-base);
-        }
-
-        .degree-illustration:hover {
-            filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.3));
-            transform: scale(1.05);
-        }
-
-        /* Section styling */
-        .section {
-            padding: 3rem 2rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .education-card-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .education-logo {
-                margin: 0 auto;
-            }
-
-            .certifications-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -274,6 +43,11 @@
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="navbar-brand">RP</a>
+            <button class="navbar-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="index.html"><span>Home</span></a></li>
                 <li class="nav-item"><a class="nav-link active" href="education.html"><span>Education</span></a></li>
@@ -285,7 +59,7 @@
     </nav>
 
     <!-- Header -->
-    <div class="education-header">
+    <div class="page-header education-header">
         <img src="images/degree.png" alt="Education" class="degree-illustration reveal-scale">
         <div class="section-title-wrapper reveal">
             <h1 class="section-title">EDUCATION</h1>
@@ -294,8 +68,8 @@
     </div>
 
     <!-- Education Section -->
-    <section class="section">
-        <div class="section-container">
+    <section class="education-section">
+        <div class="section-container narrow">
             <!-- Penn State -->
             <div class="education-card reveal">
                 <div class="education-card-content">
@@ -329,10 +103,11 @@
     <!-- Certifications Section -->
     <section class="section">
         <div class="section-container">
-            <div class="section-title-wrapper reveal">
-                <h2 class="section-title">CERTIFICATIONS</h2>
+            <div class="section-divider reveal">
+                <div class="section-title-wrapper">
+                    <h2>Certifications</h2>
+                </div>
             </div>
-            <p class="section-subtitle reveal">Validating expertise through industry-recognized credentials</p>
 
             <div class="certifications-grid stagger-grid">
                 <!-- NVIDIA -->
@@ -467,12 +242,5 @@
 
     <!-- Shared Scripts -->
     <script src="shared.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize tilt effect for education cards
-            new TiltEffect('.education-card', { maxRotation: 5, scale: 1.02 });
-            new TiltEffect('.cert-card', { maxRotation: 8, scale: 1.05 });
-        });
-    </script>
 </body>
 </html>

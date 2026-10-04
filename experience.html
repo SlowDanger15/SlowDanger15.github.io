@@ -16,239 +16,6 @@
 
     <!-- Shared Styles -->
     <link rel="stylesheet" href="styles.css">
-
-    <style>
-        /* Experience-specific styles */
-        .experience-header {
-            padding-top: calc(var(--nav-height) + 3rem);
-            text-align: center;
-        }
-
-        .experience-section {
-            padding: 3rem 0 5rem;
-        }
-
-        .section-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Experience Cards */
-        .experience-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(0, 255, 255, 0.15);
-            border-radius: 20px;
-            margin-bottom: 2rem;
-            overflow: hidden;
-            position: relative;
-            transition: all var(--transition-base);
-            transform-style: preserve-3d;
-        }
-
-        .experience-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform var(--transition-base);
-        }
-
-        .experience-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .experience-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.12);
-            border-color: var(--neon-cyan);
-        }
-
-        /* Company-specific accent colors */
-        .experience-card.palo-alto { --accent-color: var(--neon-orange); }
-        .experience-card.sap { --accent-color: var(--neon-blue); }
-        .experience-card.akamai { --accent-color: var(--neon-yellow, #ffd700); }
-        .experience-card.neodocto { --accent-color: var(--neon-green); }
-        .experience-card.academic { --accent-color: var(--neon-purple); }
-
-        .experience-card.palo-alto:hover { box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15); }
-        .experience-card.sap:hover { box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15); }
-        .experience-card.akamai:hover { box-shadow: 0 20px 40px rgba(255, 215, 0, 0.15); }
-        .experience-card.neodocto:hover { box-shadow: 0 20px 40px rgba(0, 255, 136, 0.15); }
-        .experience-card.academic:hover { box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15); }
-
-        .card-row {
-            display: grid;
-            grid-template-columns: 140px 1fr;
-            gap: 0;
-        }
-
-        .card-logo {
-            background: rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            border-right: 1px solid rgba(0, 255, 255, 0.1);
-        }
-
-        .card-logo img {
-            max-width: 100%;
-            max-height: 80px;
-            object-fit: contain;
-            filter: brightness(0.8) contrast(1.1);
-            transition: all var(--transition-base);
-        }
-
-        .experience-card:hover .card-logo img {
-            filter: brightness(1.2) contrast(1.2);
-            transform: scale(1.1);
-        }
-
-        .card-content {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-header {
-            padding: 1.5rem 1.5rem 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .card-header h3 {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .card-header .company {
-            color: var(--neon-cyan);
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .card-header .duration {
-            background: rgba(0, 255, 255, 0.1);
-            color: var(--neon-cyan);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-        }
-
-        .card-body {
-            padding: 0 1.5rem 1.5rem;
-        }
-
-        .card-body ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .card-body li {
-            position: relative;
-            padding-left: 1.75rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        .card-body li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--neon-cyan);
-            font-size: 1rem;
-            font-weight: bold;
-        }
-
-        .card-body li:hover {
-            color: var(--text-primary);
-        }
-
-        .card-body li:hover::before {
-            color: var(--neon-purple);
-            transform: translateX(3px);
-            transition: transform var(--transition-fast);
-        }
-
-        /* Section divider */
-        .section-divider {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin: 4rem 0 2rem;
-        }
-
-        .section-divider::before,
-        .section-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
-        }
-
-        .section-divider h2 {
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 0;
-        }
-
-        /* Timeline connector */
-        .timeline-connector {
-            position: relative;
-            padding-left: 2rem;
-            margin-left: 1rem;
-        }
-
-        .timeline-connector::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple), transparent);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .card-row {
-                grid-template-columns: 1fr;
-            }
-
-            .card-logo {
-                padding: 1rem;
-                border-right: none;
-                border-bottom: 1px solid rgba(0, 255, 255, 0.1);
-            }
-
-            .card-header {
-                flex-direction: column;
-            }
-
-            .section-divider h2 {
-                font-size: 1.4rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -276,6 +43,11 @@
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="navbar-brand">RP</a>
+            <button class="navbar-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="index.html"><span>Home</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="education.html"><span>Education</span></a></li>
@@ -287,7 +59,7 @@
     </nav>
 
     <!-- Header -->
-    <div class="experience-header">
+    <div class="page-header experience-header">
         <div class="section-title-wrapper reveal">
             <h1 class="section-title">PROFESSIONAL JOURNEY</h1>
         </div>
@@ -296,7 +68,7 @@
 
     <!-- Professional Experience -->
     <section class="experience-section">
-        <div class="section-container">
+        <div class="section-container narrow">
             <div class="section-divider reveal">
                 <div class="section-title-wrapper">
                     <h2>Industry Experience</h2>
@@ -430,7 +202,7 @@
 
     <!-- Academic Experience -->
     <section class="experience-section">
-        <div class="section-container">
+        <div class="section-container narrow">
             <div class="section-divider reveal">
                 <div class="section-title-wrapper">
                     <h2>Academic Experience</h2>
@@ -452,7 +224,7 @@
                             <span class="duration">Aug 2023 – May 2025</span>
                         </div>
                         <div class="card-body">
-                            <h4 style="color: var(--neon-purple); font-weight: 600; margin-bottom: 1rem; font-size: 1rem;">Courses Taught:</h4>
+                            <h4 style="color: var(--neon-purple); font-weight: 600; margin-bottom: 0.75rem; font-size: 1rem;">Courses Taught:</h4>
                             <ul>
                                 <li>CMPSC 311: Systems Programming</li>
                                 <li>CMPSC 431: Database Management Systems</li>
@@ -498,7 +270,7 @@
 
     <!-- Volunteering -->
     <section class="experience-section">
-        <div class="section-container">
+        <div class="section-container narrow">
             <div class="section-divider reveal">
                 <div class="section-title-wrapper">
                     <h2>Volunteering</h2>
@@ -543,11 +315,5 @@
 
     <!-- Shared Scripts -->
     <script src="shared.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize tilt effect for experience cards
-            new TiltEffect('.experience-card', { maxRotation: 5, scale: 1.01 });
-        });
-    </script>
 </body>
 </html>

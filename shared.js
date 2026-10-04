@@ -34,8 +34,14 @@ class CustomCursor {
     }
 
     createCursor() {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'cursor-wrapper';
+        let wrapper = document.querySelector('.cursor-wrapper');
+        if (!wrapper) {
+            wrapper = document.createElement('div');
+            wrapper.className = 'cursor-wrapper';
+            document.body.appendChild(wrapper);
+        } else {
+            wrapper.innerHTML = '';
+        }
 
         this.dot = document.createElement('div');
         this.dot.className = 'cursor-dot';
@@ -45,7 +51,6 @@ class CustomCursor {
 
         wrapper.appendChild(this.dot);
         wrapper.appendChild(this.ring);
-        document.body.appendChild(wrapper);
 
         this.cursor = wrapper;
     }
@@ -630,11 +635,18 @@ class LoadingScreen {
         this.screen = document.querySelector('.loading-screen');
 
         if (this.screen) {
-            window.addEventListener('load', () => {
+            const dismiss = () => {
                 setTimeout(() => {
                     this.hide();
                 }, this.options.minDuration);
-            });
+            };
+
+            if (document.readyState === 'complete') {
+                dismiss();
+            } else {
+                window.addEventListener('load', dismiss);
+                setTimeout(dismiss, 2500);
+            }
         }
     }
 
@@ -855,12 +867,37 @@ function initPortfolioEffects() {
     new SmoothScroll();
     new ParticleBurst();
 
+    // Initialize mobile navbar toggle
+    const navToggle = document.querySelector('.navbar-toggle');
+    const navMenu = document.querySelector('.navbar-nav');
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navMenu.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
+
     // Initialize holographic cards if they exist
     new HolographicCard('.holographic-card');
-    new TiltEffect('.card-3d, .project-card');
+    new TiltEffect('.card-3d, .project-card, .experience-card, .education-card, .cert-card, .skill-card');
 
     // Initialize loading screen
-    new LoadingScreen({ minDuration: 1500 });
+    new LoadingScreen({ minDuration: 600 });
 
     // Initialize typewriter effect for hero section
     const heroSubtitle = document.querySelector('.hero-subtitle');

@@ -16,259 +16,6 @@
 
     <!-- Shared Styles -->
     <link rel="stylesheet" href="styles.css">
-
-    <style>
-        /* Additional Hero-Specific Styles */
-        .hero-particles-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-title .name {
-            display: block;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.3));
-        }
-
-        .hero-tagline {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            color: var(--neon-cyan);
-            margin-bottom: 1.5rem;
-            min-height: 2.5rem;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-            max-width: 500px;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-secondary {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: transparent;
-            color: var(--neon-cyan);
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1rem;
-            text-decoration: none;
-            border-radius: 50px;
-            border: 2px solid var(--neon-cyan);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all var(--transition-base);
-        }
-
-        .btn-secondary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn-secondary:hover::before {
-            left: 100%;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(0, 255, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px var(--glow-cyan);
-        }
-
-        /* Floating Cards Animation */
-        .floating-cards {
-            position: relative;
-            perspective: 1000px;
-        }
-
-        .floating-card {
-            position: absolute;
-            background: rgba(26, 26, 46, 0.8);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 1.5rem;
-            backdrop-filter: blur(10px);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-card-1 {
-            top: 10%;
-            right: -20px;
-            animation-delay: 0s;
-        }
-
-        .floating-card-2 {
-            bottom: 20%;
-            right: -40px;
-            animation-delay: 2s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotateY(10deg); }
-            50% { transform: translateY(-20px) rotateY(15deg); }
-        }
-
-        .floating-card i {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .floating-card-1 i { color: var(--neon-cyan); }
-        .floating-card-2 i { color: var(--neon-purple); }
-
-        .floating-card span {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        /* Stats Section */
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(0, 255, 255, 0.1);
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-top: 0.25rem;
-        }
-
-        /* Skills Preview */
-        .skills-preview {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .skill-pill {
-            padding: 0.5rem 1.25rem;
-            background: rgba(0, 255, 255, 0.05);
-            border: 1px solid rgba(0, 255, 255, 0.3);
-            border-radius: 25px;
-            font-size: 0.85rem;
-            color: var(--neon-cyan);
-            transition: all var(--transition-base);
-        }
-
-        .skill-pill:hover {
-            background: rgba(0, 255, 255, 0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px var(--glow-cyan);
-        }
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .scroll-indicator .mouse {
-            width: 25px;
-            height: 40px;
-            border: 2px solid var(--text-muted);
-            border-radius: 15px;
-            position: relative;
-        }
-
-        .scroll-indicator .wheel {
-            width: 4px;
-            height: 8px;
-            background: var(--neon-cyan);
-            border-radius: 2px;
-            position: absolute;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: scroll 1.5s ease-in-out infinite;
-        }
-
-        @keyframes scroll {
-            0% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(12px); }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .floating-cards {
-                display: none;
-            }
-
-            .hero-stats {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-stats {
-                gap: 1.5rem;
-            }
-
-            .stat-number {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -296,6 +43,11 @@
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="navbar-brand">RP</a>
+            <button class="navbar-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link active" href="index.html"><span>Home</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="education.html"><span>Education</span></a></li>
@@ -307,37 +59,37 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero-section" id="hero">
         <div class="hero-container">
             <div class="hero-content reveal-left">
+                <p class="hero-greeting">HELLO WORLD, I'M</p>
                 <h1 class="hero-title">
                     <span class="name">ROHAN PRASAD</span>
                 </h1>
                 <div class="hero-tagline">
-                    <span class="typewriter-container">
-                        <span class="typewriter-text"></span>
-                    </span>
+                    <span class="typewriter-text"></span>
                 </div>
                 <p class="hero-description">
-                    Passionate architect of tomorrow's technology. Specializing in AI/ML, distributed systems,
-                    and cutting-edge solutions that push the boundaries of what's possible.
+                    Passionate Software & ML Engineer crafting intelligent, high-performance distributed systems. 
+                    Specialized in Generative AI, Large Language Models, and scalable backend architectures.
                 </p>
 
-                <div class="social-links">
-                    <a href="https://github.com/SlowDanger15" class="social-link" target="_blank" aria-label="GitHub">
+                <div class="hero-socials">
+                    <a href="https://github.com/SlowDanger15" target="_blank" class="hero-social-link" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://linkedin.com/in/rohanprasad7976199/" class="social-link" target="_blank" aria-label="LinkedIn">
+                    <a href="https://linkedin.com/in/rohanprasad7976199/" target="_blank" class="hero-social-link" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="https://x.com/_rohan06_" class="social-link" target="_blank" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
+                    <a href="mailto:rohanprasad.2001@gmail.com" class="hero-social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
                     </a>
                 </div>
 
                 <div class="hero-cta">
                     <a href="project.html" class="btn-primary">
                         <span>Explore My Work</span>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
                     <a href="contact.html" class="btn-secondary">
                         <span>Get In Touch</span>
@@ -347,16 +99,12 @@
                 <div class="skills-preview">
                     <span class="skill-pill">Python</span>
                     <span class="skill-pill">Machine Learning</span>
-                    <span class="skill-pill">AI/ML</span>
+                    <span class="skill-pill">Generative AI</span>
                     <span class="skill-pill">Distributed Systems</span>
                     <span class="skill-pill">CUDA</span>
                 </div>
 
                 <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">5+</div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
                     <div class="stat-item">
                         <div class="stat-number">20+</div>
                         <div class="stat-label">Projects Completed</div>
@@ -370,12 +118,12 @@
 
             <div class="floating-cards reveal-right">
                 <div class="holographic-card">
-                    <img src="images/rohan.jpeg" alt="Rohan Prasad">
+                    <img src="images/profile.png" alt="Rohan Prasad" class="profile-photo">
                     <h3>Software / ML Engineer</h3>
                     <p>Age: 24 | Pronouns: He/Him</p>
-                    <p style="margin-top: 1rem; color: var(--text-secondary);">
-                        Obsessed with parallelism and performance optimization.
-                        Turning complex problems into elegant solutions.
+                    <p style="margin-top: 0.75rem; color: var(--text-secondary);">
+                        Obsessed with parallelism, distributed infrastructure, and performance optimization.
+                        Turning complex algorithmic challenges into elegant solutions.
                     </p>
                 </div>
 
@@ -412,7 +160,7 @@
                         <i class="fas fa-robot"></i>
                     </div>
                     <h3>AI/ML & Generative AI</h3>
-                    <p>Building intelligent systems that learn, adapt, and create. From neural networks to AI agents that think and reason.</p>
+                    <p>Building intelligent systems that learn, adapt, and create. From neural networks to autonomous AI agents that think and reason.</p>
                     <div class="tech-tags">
                         <span class="tech-tag">TensorFlow</span>
                         <span class="tech-tag">PyTorch</span>
@@ -427,7 +175,7 @@
                         <i class="fas fa-server"></i>
                     </div>
                     <h3>Distributed Systems</h3>
-                    <p>Architecting scalable, fault-tolerant systems that handle massive workloads across distributed infrastructure.</p>
+                    <p>Architecting scalable, fault-tolerant systems that handle massive workloads across distributed cloud infrastructure.</p>
                     <div class="tech-tags">
                         <span class="tech-tag">Kubernetes</span>
                         <span class="tech-tag">Docker</span>
@@ -442,7 +190,7 @@
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3>Data Science & Analytics</h3>
-                    <p>Extracting insights from complex datasets using advanced statistical methods and machine learning algorithms.</p>
+                    <p>Extracting high-value insights from complex datasets using advanced statistical methods and machine learning algorithms.</p>
                     <div class="tech-tags">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">R</span>
@@ -468,24 +216,16 @@
     <!-- Shared Scripts -->
     <script src="shared.js"></script>
     <script>
-        // Custom initialization for the home page
+        // Custom typewriter effect for landing page
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize holographic card effect
-            new HolographicCard('.holographic-card');
-
-            // Initialize tilt effect for skill cards
-            new TiltEffect('.skill-card', { maxRotation: 10, scale: 1.02 });
-
-            // Custom typewriter effect
-            const typewriterText = document.querySelector('.typewriter-text');
-            if (typewriterText) {
+            const typewriterElement = document.querySelector('.typewriter-text');
+            if (typewriterElement) {
                 const words = [
                     'Software Engineer',
                     'Machine Learning Engineer',
                     'AI/ML Specialist',
                     'Distributed Systems Expert'
                 ];
-
                 let wordIndex = 0;
                 let charIndex = 0;
                 let isDeleting = false;
@@ -502,7 +242,7 @@
                         charIndex++;
                     }
 
-                    typewriterText.textContent = currentWord.substring(0, charIndex);
+                    typewriterElement.textContent = currentWord.substring(0, charIndex);
 
                     let delay = isDeleting ? 30 : 80;
 
